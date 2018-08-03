@@ -1,0 +1,53 @@
+<div class="order-block">
+  <div class="goods-order-list">
+    <div class="client-order"
+         *ngFor="let clientGoods of orderList; let i = index">
+    <mat-card class="goods-item clearfix"
+              *ngFor="let goods of clientGoods"
+    >
+      <div class="img-wrap">
+        <img [src]="goods.url.length ? goods.url : imageUrl" alt="car">
+      </div>
+      <div class="desc">
+        <ul class="desc-list">
+          <li class="desc-item">
+            <p><span>Brand:</span> {{ goods.brande }}</p>
+          </li>
+          <li class="desc-item">
+            <p><span>Model name:</span> {{ goods.modelName }}</p>
+          </li>
+          <li class="desc-item">
+            <p><span>Color:</span> {{ goods.color }}</p>
+          </li>
+          <li class="desc-item">
+            <p><span>Power:</span> {{ goods.power }}</p>
+          </li>
+        </ul>
+        <ul class="desc-list">
+          <li class="desc-item">
+            <p><span>Special Feature:</span> {{ goods.feature }}</p>
+          </li>
+          <li class="desc-item">
+            <p><span>Description:</span> {{ goods.desc }}</p>
+          </li>
+          <li class="desc-item">
+            <p><span>Price:</span> {{ goods.price }}</p>
+          </li>
+          <li class="desc-item">
+            <p><span>Discount:</span> {{ goods.discount }}</p>
+          </li>
+        </ul>
+      </div>
+    </mat-card>
+      <mat-card class="client-info">
+        <p>Client Information:</p>
+        <ul>
+          <li>Email: {{clientInfo[i].email}}</li>
+          <li>Name: {{clientInfo[i].name}}</li>
+          <li>Phone: {{clientInfo[i].tel}}</li>
+        </ul>
+      </mat-card>
+      <hr>
+    </div>
+  </div>
+</div>

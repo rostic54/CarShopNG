@@ -1,0 +1,16 @@
+<div class="single-card">
+    <img src="{{goodsList[id]?.url}}" alt="{{goodsList[id]?.modelName}}">
+    <h2>{{goodsList[id]?.brande}}</h2>
+    <h5>{{goodsList[id]?.modelName}}</h5>
+    <div class="product-desc">
+    <div><span class="name">color: </span>
+        <span class="color-circle"
+        [ngStyle]="{backgroundColor: goodsList[id]?.color}"></span>
+    </div>
+    <div class="feature"><span class="name">Feature: </span><span class="value">{{goodsList[id]?.feature}}</span></div>
+    <div class="power"><span class="name">Power: </span><span class="value">{{goodsList[id]?.power}}</span></div>
+    <div class="price"><span class="name">Price: </span><span class="value">{{goodsList[id]?.price}}</span></div>
+    <div class="discount"><span class="name">Discount: </span><span class="value">{{goodsList[id]?.discount}}</span></div>
+    </div>
+    <p><span class="name">Description: </span>{{goodsList[id]?.description}}</p>
+</div>

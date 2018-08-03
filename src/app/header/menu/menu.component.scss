@@ -1,0 +1,16 @@
+li {
+  display: inline-block;
+  a {
+    &:hover {
+      color: #35519b;
+    }
+  }
+}
+
+ul {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  margin: 0;
+  padding: 0;
+}

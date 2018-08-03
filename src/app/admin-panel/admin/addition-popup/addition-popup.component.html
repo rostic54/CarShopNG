@@ -1,0 +1,58 @@
+<h2 mat-dialog-title class="text-center">Registration</h2>
+<p class="text-center">You should register to have opportunity buy online</p>
+<div class="form-wrap">
+  <form [formGroup]="addGoodsForm" (ngSubmit)="onAddGoods()">
+    <mat-form-field>
+      <input matInput formControlName="brande" placeholder="brande">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="modelName" placeholder="Name of Model">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="power" placeholder="Power">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="color" placeholder="Color">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="feature" placeholder="Super feature">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="url" placeholder="Image url">
+    </mat-form-field>
+    <mat-form-field class="block">
+      <textarea matInput formControlName="description" placeholder="Description"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="price" placeholder="Price">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="discount" placeholder="discount">
+    </mat-form-field>
+    <button mat-raised-button
+            *ngIf="index == undefined"
+            [disabled]="!addGoodsForm.valid"
+            class="add"
+    >Add</button>
+    <button mat-raised-button
+            type="button"
+            *ngIf="index != undefined"
+            [disabled]="!addGoodsForm.valid"
+            class="clear"
+            (click)="cleanUpForm()"
+    >Clear</button>
+    <button mat-raised-button
+            *ngIf="index != undefined"
+            [disabled]="!addGoodsForm.valid"
+            class="save"
+    >Save</button>
+    <button mat-raised-button
+            type="button"
+            *ngIf="index != undefined"
+            (click)="cutUpProduct()"
+            [disabled]="!addGoodsForm.valid"
+            class="delete"
+    >Delete</button>
+
+  </form>
+</div>

@@ -1,0 +1,44 @@
+<div class="container"><h2>Hello, Admin!</h2>
+    <div class="add"><button class="add-btn" mat-raised-button (click)="addToServer()">Add new</button>
+    <button class="order-btn" mat-raised-button (click)="orderList()">Look order</button></div>
+    <div class="goods-list">
+        <mat-card class="goods-item clearfix"
+                  *ngFor="let goods of goodsList; let i = index"
+                  (click)="modificProduct(i)"
+        >
+            <div class="img-wrap">
+                <img [src]="goods.url.length ? goods.url : imageUrl" alt="car">
+            </div>
+            <div class="desc">
+                <ul class="desc-list">
+                    <li class="desc-item">
+                        <p><span>Brand:</span> {{ goods.brande }}</p>
+                    </li>
+                    <li class="desc-item">
+                        <p><span>Model name:</span> {{ goods.modelName }}</p>
+                    </li>
+                    <li class="desc-item">
+                        <p><span>Color:</span> {{ goods.color }}</p>
+                    </li>
+                    <li class="desc-item">
+                        <p><span>Power:</span> {{ goods.power }}</p>
+                    </li>
+                </ul>
+                <ul class="desc-list">
+                    <li class="desc-item">
+                        <p><span>Special Feature:</span> {{ goods.feature }}</p>
+                    </li>
+                    <li class="desc-item">
+                        <p><span>Description:</span> {{ goods.desc }}</p>
+                    </li>
+                    <li class="desc-item">
+                        <p><span>Price:</span> {{ goods.price }}</p>
+                    </li>
+                    <li class="desc-item">
+                        <p><span>Discount:</span> {{ goods.discount }}</p>
+                    </li>
+                </ul>
+            </div>
+        </mat-card>
+    </div>
+</div>

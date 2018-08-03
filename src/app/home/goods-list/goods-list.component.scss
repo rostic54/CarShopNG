@@ -1,0 +1,32 @@
+.product-list{
+  display: flex;
+  flex-wrap: wrap;
+}
+.product-item{
+  width: 300px;
+  margin: 10px;
+  cursor: pointer;
+  h3{
+    margin-bottom: 10px;
+  }
+  h6{
+    margin-top: 10px;
+  }
+  img{
+    width: 100%;
+    height: 180px;
+  }
+  .red-text{
+    color: #ff0027;
+  }
+  .buy{
+    width: 80px;
+    padding: 10px;
+    margin: 0 auto;
+    background-color: darksalmon;
+    cursor: pointer;
+    &:hover{
+      box-shadow: 0 0 5px 0 gray;
+    }
+  }
+}

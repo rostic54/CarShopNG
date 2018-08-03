@@ -1,2 +1,87 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+html{
+  height: 100%;
+}
+
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+.content-block {
+  min-height: 70%;
+}
+a {
+  cursor: pointer;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mat-form-field.block {
+  display: block;
+}
+
+.upper {
+  text-transform: uppercase;
+}
+
+.lower {
+  text-transform: lowercase;
+}
+
+.bold{
+  font-weight: 600;
+}
+
+.gray{
+  color: #8a8a8a;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.goods-item,
+.product-item{
+  margin-bottom: 20px;
+  cursor: pointer;
+
+  ul {
+    display: inline-block;
+    width: 250px;
+    padding-left: 0;
+  }
+
+  li {
+    list-style: none;
+    margin: 0 10px 10px 10px;
+    p {
+      margin: 0;
+    }
+    span {
+      color: #35519b;
+    }
+  }
+
+  .img-wrap {
+    float: left;
+    width: 300px;
+    margin-right: 20px;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+

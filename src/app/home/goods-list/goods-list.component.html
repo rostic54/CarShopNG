@@ -1,0 +1,22 @@
+<app-filter (filterValue)="setFilterData($event)"></app-filter>
+<div class="products-wrap">
+    <div class="product-list">
+        <div class="product-item"
+             *ngFor="let product of goodsList | price:filterData.min:filterData.max | color:filterData.color |
+                        feature:filterData.feature | paginate: { itemsPerPage: 5, currentPage: p }"
+             (click)="showProductDescription(product, $event)">
+            <div class="img-block">
+                <img src="{{product.url}}">
+            </div>
+            <h3><span>Brand name: </span>{{product.brande}}</h3>
+            <h6><span>Model Name: </span>{{product.modelName}}</h6>
+            <p><span>Price: </span>{{product.price}}</p>
+            <p>Discount: <span class="red-text">{{product.discount}}</span></p>
+            <button mat-raised-button  type="button"
+                    class="buy"
+                    (click)="addToCard(product)"
+            >BUY</button>
+        </div>
+    </div>
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

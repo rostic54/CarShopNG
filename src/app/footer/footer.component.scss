@@ -1,0 +1,18 @@
+.footer{
+  padding: 20px 0;
+  background-color: #b3b3b3;
+  ul{
+    float: left;
+  }
+  li{
+    list-style: none;
+    margin-bottom: 10px;
+  }
+  .logo-wrap {
+    float: right;
+    width: 150px;
+    img{
+      width: 100%;
+    }
+  }
+}

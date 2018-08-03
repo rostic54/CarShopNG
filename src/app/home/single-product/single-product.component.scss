@@ -1,0 +1,35 @@
+.single-card{
+  width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #eeeeee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img{
+    width: 400px;
+  }
+  h2{
+    margin-bottom: 10px;
+  }
+  h5{
+    margin-top: 5px;
+  }
+}
+.product-desc > div{
+  display: flex;
+  justify-content: space-between;
+}
+.value {
+  color: #b3b3b3;
+}
+.name {
+  font-weight: 600;
+  padding-right: 10px;
+}
+.color-circle {
+  width: 20px;
+  height: 20px;
+  border: 1px solid;
+  border-radius: 50%;
+}

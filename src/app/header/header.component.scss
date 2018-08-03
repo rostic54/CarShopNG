@@ -1,0 +1,28 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+  .basket{
+    display: block;
+    span{
+      font-size: 12px;
+    }
+  }
+}
+.header__logo {
+  display: inline-block;
+  .logo {
+    width: 150px;
+  }
+}
+.auth-block{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sign-in{
+  margin-right: 20px;
+}
+.nav{
+  display: flex;
+  align-items: center;
+}

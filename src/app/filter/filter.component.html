@@ -1,0 +1,77 @@
+<div class="filter-wrap">
+    <form [formGroup]="filterForm">
+        <div class="price-block">
+            <p class="upper bold">Choose price:</p>
+            <label for="min-price" class="gray">From: <span class="gray">Min: {{getMinPrice()}}</span></label>
+            <input formControlName="min"
+                   type="number"
+                   id="min-price"
+                   [(ngModel)]="minPrice"
+                   value="{{minPrice}}"
+                   (ngModelChange)="checkTo()">
+            <br>
+            <label for="max-price" class="gray">Until: <span class="gray">Max: {{getMaxPrice()}} </span></label>
+            <input formControlName="max"
+                   type="number"
+                   id="max-price"
+                   value="{{maxPrice}}"
+                   [(ngModel)]="maxPrice"
+                   (ngModelChange)="checkUntil()">
+        </div>
+        <div class="color-block">
+            <p class="upper bold">Color: </p>
+            <label for="red"
+                   class="color-circle"
+                   [ngStyle]="{'color': 'red'}"
+            >Red: </label>
+            <input formControlName="color"
+                   (ngModelChange)="pushChanges()"
+                   [(ngModel)]="color"
+                   type="radio"
+                   name="color"
+                   value="red"
+                   id="red">
+            <br>
+            <label for="black" class="color-circle">Black: </label>
+            <input formControlName="color"
+                   [(ngModel)]="color"
+                   type="radio"
+                   name="color"
+                   value="black"
+                   id="black">
+            <br>
+            <label for="white"
+                   class="color-circle"
+                   [ngStyle]="{'color': 'white', 'backgroundColor': 'black'}"
+            >White: </label>
+            <input formControlName="color"
+                   [(ngModel)]="color"
+                   type="radio"
+                   name="color"
+                   value="white"
+                   id="white">
+            <br>
+            <button (click)="resetColor()">Reset</button>
+        </div>
+        <div class="feature-block">
+            <label for="feature" class="upper bold"><p>Super feature: </p></label>
+            <select formControlName="feature"
+                    (change)="pushChanges()"
+                    [(ngModel)]="feature"
+                    id="feature">
+                <option value="all">All</option>
+                <option value="speed">Speed</option>
+                <option value="Glamour">Glamour</option>
+                <option value="Cabriolet">Cabriolet</option>
+                <option value="Big">Big</option>
+                <option value="Fancy">Fancy</option>
+                <option value="Safety">Safety</option>
+                <option value="Respect">Respect</option>
+            </select>
+        </div>
+    </form>
+    <div class="">
+        MIN: {{minPrice}}<br>
+        MAX: {{maxPrice}}
+    </div>
+</div>

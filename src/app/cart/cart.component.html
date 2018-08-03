@@ -1,0 +1,60 @@
+<h1 class="text-center">Hello, below list of your purchases: </h1>
+<div class="shopping-list">
+    <mat-card class="product-item"
+              *ngFor="let product of shoppingList; let i = index">
+        <div class="img-wrap">
+            <img [src]="product.url.length ? product.url : imageUrl" alt="car">
+        </div>
+        <div class="desc">
+            <ul class="desc-list">
+                <li class="desc-item">
+                    <p><span>Brand:</span> {{ product.brande }}</p>
+                </li>
+                <li class="desc-item">
+                    <p><span>Model name:</span> {{ product.modelName }}</p>
+                </li>
+                <li class="desc-item">
+                    <p><span>Color:</span> {{ product.color }}</p>
+                </li>
+                <li class="desc-item">
+                    <p><span>Power:</span> {{ product.power }}</p>
+                </li>
+            </ul>
+            <ul class="desc-list">
+                <li class="desc-item">
+                    <p><span>Special Feature:</span> {{ product.feature }}</p>
+                </li>
+                <li class="desc-item">
+                    <p><span>Description:</span> {{ product.description }}</p>
+                </li>
+                <li class="desc-item">
+                    <p><span>Price:</span> {{ product.price }}</p>
+                </li>
+                <li class="desc-item">
+                    <p><span>Discount:</span> {{ product.discount }}</p>
+                </li>
+            </ul>
+        </div>
+        <div class="btn-line text-center">
+            <button mat-raised-button
+                    (click)="removeProduct(i)"
+            >Delete
+            </button>
+        </div>
+    </mat-card>
+</div>
+<div class="order-register">
+    <h2>Fill all fields to checkout.</h2>
+    <form [formGroup]="orderForm" (ngSubmit)="submit()">
+        <mat-form-field>
+            <input matInput type="text" placeholder="Your name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="email" placeholder="Your email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="number" placeholder="Your phone number" formControlName="tel">
+        </mat-form-field>
+        <button mat-flat-button>Send</button>
+    </form>
+</div>

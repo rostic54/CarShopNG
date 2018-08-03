@@ -1,0 +1,9 @@
+<div class="basket">
+  <span class="amount">Amount: {{amount || productList.length}}</span>
+  <br>
+  <span class="cost">Cost: {{getTotalPrice()}}</span>
+  <br>
+  <span class="icon"><a (click)="cartPage()"><i
+          class="material-icons">
+                 add_shopping_cart</i></a></span>
+</div>

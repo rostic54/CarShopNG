@@ -1,0 +1,29 @@
+<div class="header">
+    <a routerLink="/" class="header__logo">
+        <img class="logo" [src]="logo" alt="ShopCar">
+    </a>
+    <app-menu class="nav"></app-menu>
+    <div class="auth-block">
+        <div class="sign-in">
+            <ng-container *ngIf="authCondition">
+                <div class="">
+                    <p *ngIf="email === 'test@test.com';else guest">Hello, <a routerLink="/admin">Admin </a></p>
+                    <ng-template #guest>
+                        <p>Hello, Guest</p>
+                    </ng-template>
+                    <button mat-raised-button (click)="onSignOut()">Sign Out</button>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="!authCondition">
+                <button mat-raised-button (click)="openSignIn()">Sign In</button>
+            </ng-container>
+        </div>
+        <div class="sign-up" *ngIf="!authCondition">
+            <button mat-raised-button (click)="openSignUp()">Sign Up</button>
+        </div>
+        <div>
+            <app-basket></app-basket>
+        </div>
+    </div>
+
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Goods} from '../../shared/models/goods.model';
-import {GoodsService} from '../../shared/goods.service';
+import {GoodsService} from '../../shared/services/goods.service';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 

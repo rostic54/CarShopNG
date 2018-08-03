@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-
-import {AuthService} from '../../shared/auth.service';
 import {MatDialog} from '@angular/material';
 import {ToasterService} from 'angular2-toaster';
+
+import {AuthService} from '../../shared/services/auth.service';
+import {CommonService} from '../../shared/services/common.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,7 +16,8 @@ export class SignUpComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private dialog: MatDialog,
-  private toasterService: ToasterService) { }
+              private toasterService: ToasterService,
+              private commonService: CommonService) { }
 
   ngOnInit( ) {
     this.initForm();
@@ -23,9 +25,16 @@ export class SignUpComponent implements OnInit {
 
   initForm() {
     this.signUp = new FormGroup({
-        'email': new FormControl('', Validators.required),
-        'password': new FormControl('', Validators.required),
-        'name': new FormControl('', Validators.required)
+        'name': new FormControl('', [Validators.required,
+                                                             Validators.minLength(2),
+                                                             this.commonService.antiAdmin]),
+        'email': new FormControl('', [Validators.required, Validators.email]),
+        'passwordFormGroup': new FormGroup({
+        'password': new FormControl('', [Validators.required, Validators.minLength(6)]),
+        'password2': new FormControl('', [Validators.required, Validators.minLength(6)]),
+      }, {
+        validators: this.commonService.validate.bind(this)
+      })
     });
   }
 

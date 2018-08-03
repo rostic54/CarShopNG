@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {GoodsService} from '../../shared/goods.service';
+import {GoodsService} from '../../shared/services/goods.service';
 import {Subscription} from 'rxjs';
 import {isObject} from 'rxjs/internal-compatibility';
 

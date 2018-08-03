@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AuthService} from './shared/auth.service';
-import {AppService} from './shared/app.service';
+import {AuthService} from './shared/services/auth.service';
+import {AppService} from './shared/services/app.service';
 import {Subscription} from 'rxjs';
 import { ToasterService, ToasterConfig} from 'angular2-toaster';
 

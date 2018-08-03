@@ -2,7 +2,7 @@ import * as firebase from 'firebase';
 import {Injectable, OnInit} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {ToasterService} from 'angular2-toaster';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class AuthService implements OnInit {
@@ -80,5 +80,9 @@ export class AuthService implements OnInit {
     }).catch((error) => {
       console.log('error while Outing');
     });
+  }
+
+  isAdmin() {
+    return this.email === 'test@test.com';
   }
 }

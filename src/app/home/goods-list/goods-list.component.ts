@@ -1,9 +1,9 @@
 import {Component, OnInit, ChangeDetectorRef, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Goods} from '../../shared/models/goods.model';
-import {GoodsService} from '../../shared/goods.service';
+import {GoodsService} from '../../shared/services/goods.service';
 import {Subscription} from 'rxjs';
-import {PurchaseService} from '../../shared/purchase.service';
+import {PurchaseService} from '../../shared/services/purchase.service';
 
 
 @Component({

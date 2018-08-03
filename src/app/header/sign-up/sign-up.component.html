@@ -4,13 +4,47 @@
     <form [formGroup]="signUp">
         <mat-form-field>
             <input matInput formControlName="name" placeholder="Your name">
+            <span *ngIf="(signUp.get('name').invalid && signUp.get('name').touched)"
+                  class="material-icons error-text">highlight_off</span>
+            <span *ngIf="signUp.get('name').valid"
+                  class="material-icons success-text">check_circle</span>
         </mat-form-field>
+        <span *ngIf="!signUp.get('name').valid && signUp.get('name').touched"
+        class="form-info error-text">
+            Please enter a valid name, minimal 2 symbols
+        </span>
         <mat-form-field>
             <input matInput formControlName="email" placeholder="Your email">
+            <span *ngIf="(signUp.get('email').invalid && signUp.get('email').touched)"
+                  class="material-icons error-text">highlight_off</span>
+            <span *ngIf="signUp.get('email').valid"
+                  class="material-icons success-text">check_circle</span>
         </mat-form-field>
-        <mat-form-field>
-            <input matInput type="password" formControlName="password" placeholder="Your password">
-        </mat-form-field>
-        <button mat-raised-button (click)="onSignUp()">Sign Up</button>
+        <span *ngIf="!signUp.get('email').valid && signUp.get('email').touched"
+              class="form-info error-text">
+            Please enter a valid email
+        </span>
+
+        <div formGroupName="passwordFormGroup"
+                class="pass-group">
+            <mat-form-field>
+                <input matInput type="password" formControlName="password" placeholder="Your password">
+                <span *ngIf="(signUp.get('passwordFormGroup.password').invalid && signUp.get('passwordFormGroup.password').touched)"
+                      class="material-icons error-text">highlight_off</span>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="password" formControlName="password2" placeholder="Your password">
+                <span *ngIf="(signUp.get('passwordFormGroup.password2').invalid && signUp.get('passwordFormGroup.password2').touched)"
+                      class="material-icons error-text">highlight_off</span>
+            </mat-form-field>
+            <span class="error-text form-info" *ngIf="!signUp.get('passwordFormGroup').valid && signUp.get('passwordFormGroup').touched">
+            The password must be equal!
+        </span>
+        </div>
+
+        <button mat-raised-button
+                (click)="onSignUp()"
+                [disabled]="signUp.invalid"
+        >Sign Up</button>
     </form>
 </div>

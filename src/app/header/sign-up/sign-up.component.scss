@@ -1,5 +1,19 @@
 .mat-form-field{
   display: block;
+  margin-top: 12px;
+}
+.material-icons{
+  position: absolute;
+  right: 10px;
+  // float: right;
+}
+.form-info{
+  position: absolute;
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+.pass-group{
+  margin: 14px 0;
 }
 h2{
   color: #ff0027;

@@ -51,7 +51,15 @@
                    value="white"
                    id="white">
             <br>
-            <button (click)="resetColor()">Reset</button>
+            <label for="all"
+                   class="color-circle"
+            >All: </label>
+            <input formControlName="color"
+                   [(ngModel)]="color"
+                   type="radio"
+                   name="color"
+                   value="all"
+                   id="all">
         </div>
         <div class="feature-block">
             <label for="feature" class="upper bold"><p>Super feature: </p></label>

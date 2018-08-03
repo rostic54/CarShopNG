@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {PurchaseService} from '../../shared/purchase.service';
+import {PurchaseService} from '../../shared/services/purchase.service';
 import {Subscription} from 'rxjs';
 
 @Component({

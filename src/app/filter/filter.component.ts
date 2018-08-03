@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnChanges, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Pipe} from '@angular/core';
-import {GoodsService} from '../shared/goods.service';
+import {GoodsService} from '../shared/services/goods.service';
 import {until} from 'selenium-webdriver';
 import elementIsEnabled = until.elementIsEnabled;
 

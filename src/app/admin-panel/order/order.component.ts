@@ -35,8 +35,6 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.clientInfo.push(orderLIst[key].data);
       this.orderList.push(orderLIst[key].list);
     }
-    console.log(this.clientInfo);
-    console.log(this.orderList);
   }
 
   ngOnDestroy() {

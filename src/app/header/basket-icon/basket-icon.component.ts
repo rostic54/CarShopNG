@@ -13,7 +13,6 @@ export class BasketIconComponent implements OnInit, OnDestroy {
   productList: any = [];
   subscript: Subscription;
   total = 0;
-  amount = 0;
 
   constructor(private purchaseService: PurchaseService,
               private router: Router,
@@ -32,14 +31,13 @@ export class BasketIconComponent implements OnInit, OnDestroy {
           this.productList.push(product);
           this.totalCalculate();
           this.rewriteLocalStor(this.productList);
-          this.amount = this.productList.length;
         }
       }
     );
     this.subscript = this.purchaseService.changedSubject.subscribe(
       purchaseStatus => {
         if (purchaseStatus) {
-          this.amount = purchaseStatus.amount;
+          this.productList.length = purchaseStatus.amount;
           this.total = purchaseStatus.total;
         }
       }
@@ -72,6 +70,7 @@ export class BasketIconComponent implements OnInit, OnDestroy {
   }
 
   cartPage() {
-    this.router.navigate(['./cart'], {relativeTo: this.activeRoute});
+      this.router.navigate(['./cart'], {relativeTo: this.activeRoute});
+
   }
 }

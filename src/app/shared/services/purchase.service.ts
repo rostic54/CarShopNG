@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, observable, Observable} from 'rxjs';
 
 @Injectable()
 export class PurchaseService {
@@ -16,4 +16,5 @@ export class PurchaseService {
   purchaseStatus(orderAmount: {amount: number, total: number}) {
     this.changedSubject.next(orderAmount);
   }
+
 }

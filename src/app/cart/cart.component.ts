@@ -4,6 +4,7 @@ import {Goods} from '../shared/models/goods.model';
 import {GoodsService} from '../shared/services/goods.service';
 import {PurchaseService} from '../shared/services/purchase.service';
 import {ToasterService} from 'angular2-toaster';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -17,7 +18,8 @@ export class CartComponent implements OnInit {
 
   constructor(private goodsService: GoodsService,
               private purchaseService: PurchaseService,
-              private toasterService: ToasterService) {
+              private toasterService: ToasterService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -39,6 +41,9 @@ export class CartComponent implements OnInit {
 
   removeProduct(index: number) {
     this.shoppingList.splice(index, 1);
+    if (!this.shoppingList.length) {
+      this.router.navigate(['/']);
+    }
     this.setGoods();
     this.purchaseService.purchaseStatus({amount: this.shoppingList.length, total: this.getTotal()});
   }

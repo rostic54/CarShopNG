@@ -1,7 +1,13 @@
 li {
   display: inline-block;
   a {
+    position: relative;
+      border-bottom: 2px solid transparent;
     text-decoration: none;
+    &.active {
+      color: #35519b;
+      border-color: #35519b;
+    }
     &:hover {
       color: #35519b;
     }

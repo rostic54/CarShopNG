@@ -9,7 +9,6 @@ import {MenuComponent} from './menu/menu.component';
 import {HeaderComponent} from './header.component';
 import {RouterModule, Routes} from '@angular/router';
 import {AdminComponent} from '../admin-panel/admin/admin.component';
-import {HomeComponent} from '../home/home.component';
 import {OrderComponent} from '../admin-panel/order/order.component';
 import {AdminPanelComponent} from '../admin-panel/admin-panel.component';
 import {AdminGuard} from '../admin-panel/admin/admin.guard';

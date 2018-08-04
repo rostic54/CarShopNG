@@ -1,19 +1,20 @@
 import {NgModule} from '@angular/core';
-import {FilterComponent} from '../filter/filter.component';
-import {HomeComponent} from './home.component';
+import {RouterModule, Routes} from '@angular/router';
+import {ReactiveFormsModule} from '@angular/forms';
+
+import {ProductComponent} from './product.component';
 import {GoodsListComponent} from './goods-list/goods-list.component';
+import {FilterComponent} from '../filter/filter.component';
 import {SharedModule} from '../modules/shared.module';
 import {SingleProductComponent} from './single-product/single-product.component';
-import {RouterModule, Routes} from '@angular/router';
 import {PricePipe} from '../shared/pipe/price.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
-import {ReactiveFormsModule} from '@angular/forms';
 import {ColorPipe} from '../shared/pipe/color.pipe';
 import {FeaturePipe} from '../shared/pipe/feature.pipe';
 
 const AppRouts: Routes = [
   {
-    path: 'products', component: HomeComponent, children: [
+    path: 'products', component: ProductComponent, children: [
       {path: '', component: GoodsListComponent},
       {path: ':id', component: SingleProductComponent}
     ],
@@ -23,7 +24,7 @@ const AppRouts: Routes = [
 @NgModule({
   declarations: [
     FilterComponent,
-    HomeComponent,
+    ProductComponent,
     GoodsListComponent,
     SingleProductComponent,
     ColorPipe,
@@ -42,5 +43,5 @@ const AppRouts: Routes = [
 
 })
 
-export class HomeModule {
+export class ProductModule {
 }

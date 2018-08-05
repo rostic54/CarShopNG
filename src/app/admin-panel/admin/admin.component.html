@@ -3,7 +3,7 @@
     <button class="order-btn" mat-raised-button (click)="orderList()">Look order</button></div>
     <div class="goods-list">
         <mat-card class="goods-item clearfix"
-                  *ngFor="let goods of goodsList; let i = index"
+                  *ngFor="let goods of goodsList ; let i = index"
                   (click)="modificProduct(i)"
         >
             <div class="img-wrap">
@@ -42,3 +42,4 @@
         </mat-card>
     </div>
 </div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

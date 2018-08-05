@@ -30,7 +30,6 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   getOrders(orderLIst) {
-    // console.log(orderLIst);
     for (const key in orderLIst) {
       this.clientInfo.push(orderLIst[key].data);
       this.orderList.push(orderLIst[key].list);

@@ -34,7 +34,7 @@ const AppRouts: Routes = [
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
-     RouterModule.forChild(AppRouts)
+    RouterModule.forChild(AppRouts)
   ],
   exports: [
     HeaderComponent,

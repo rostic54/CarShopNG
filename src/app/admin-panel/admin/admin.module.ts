@@ -5,10 +5,10 @@ import {AdditionPopupComponent} from './addition-popup/addition-popup.component'
 import {AdminComponent} from './admin.component';
 import {HttpClientModule} from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {AdminPanelModule} from '../admin-panel.module';
 
 @NgModule({
   declarations: [
-    AdditionPopupComponent,
     AdminComponent
   ],
   imports: [
@@ -16,14 +16,15 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormsModule,
     HttpClientModule,
     SharedModule,
+    AdminPanelModule,
     NgxPaginationModule,
   ],
   exports: [
     AdminComponent
-  ],
-  entryComponents: [
-    AdditionPopupComponent
-  ]
+   ],
+  // entryComponents: [
+  //   AdditionPopupComponent
+  // ]
 })
 export class AdminModule {
 }

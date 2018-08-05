@@ -4,6 +4,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {Routes} from '@angular/router';
+import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import {ToasterModule, ToasterService} from 'angular2-toaster';
+import {SliderModule} from 'ngx-slider';
 
 import {AppComponent} from './app.component';
 import {HeaderModule} from './header/header.module';
@@ -14,7 +18,6 @@ import {AuthService} from './shared/services/auth.service';
 import {AppService} from './shared/services/app.service';
 import {GoodsService} from './shared/services/goods.service';
 import {AdminModule} from './admin-panel/admin/admin.module';
-import {ToasterModule, ToasterService} from 'angular2-toaster';
 import {PurchaseService} from './shared/services/purchase.service';
 import { CartComponent } from './cart/cart.component';
 import {ProductComponent} from './product/product.component';
@@ -23,11 +26,9 @@ import { OrderComponent } from './admin-panel/order/order.component';
 import {AdminGuard} from './admin-panel/admin/admin.guard';
 import { AboutComponent } from './about/about.component';
 import { ContactsComponent } from './contacts/contacts.component';
-import { AgmCoreModule } from '@agm/core';
-import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { HomeComponent } from './home/home.component';
-import {SliderModule} from 'ngx-slider';
 import {CartGuard} from './cart/cart.guard';
+import {AdminPanelModule} from './admin-panel/admin-panel.module';
 
 const AppRouts: Routes = [
   {path: '', component: HomeComponent},
@@ -42,8 +43,6 @@ const AppRouts: Routes = [
     AppComponent,
     FooterComponent,
     CartComponent,
-    AdminPanelComponent,
-    OrderComponent,
     AboutComponent,
     ContactsComponent,
     HomeComponent
@@ -56,6 +55,7 @@ const AppRouts: Routes = [
     ProductModule,
     HeaderModule,
     AdminModule,
+    AdminPanelModule,
     SliderModule,
     SharedModule,
     RouterModule.forRoot(AppRouts),

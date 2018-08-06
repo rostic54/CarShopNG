@@ -21,8 +21,6 @@ import {AdminModule} from './admin-panel/admin/admin.module';
 import {PurchaseService} from './shared/services/purchase.service';
 import { CartComponent } from './cart/cart.component';
 import {ProductComponent} from './product/product.component';
-import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-import { OrderComponent } from './admin-panel/order/order.component';
 import {AdminGuard} from './admin-panel/admin/admin.guard';
 import { AboutComponent } from './about/about.component';
 import { ContactsComponent } from './contacts/contacts.component';

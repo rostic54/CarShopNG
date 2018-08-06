@@ -2,21 +2,22 @@
     <form [formGroup]="filterForm">
         <div class="price-block">
             <p class="upper bold">Choose price:</p>
-            <label for="min-price" class="gray">From: <span class="gray">Min: {{getMinPrice()}}</span></label>
+            <label for="min-price" class="gray">From: <span class="gray">Min: {{staticMin}}</span></label>
             <input formControlName="min"
                    type="number"
                    id="min-price"
                    [(ngModel)]="minPrice"
                    value="{{minPrice}}"
-                   (ngModelChange)="checkTo()">
+                   (ngModelChange)="checkLowPrice()"
+                   >
             <br>
-            <label for="max-price" class="gray">Until: <span class="gray">Max: {{getMaxPrice()}} </span></label>
+            <label for="max-price" class="gray">Until: <span class="gray">Max: {{staticMax}} </span></label>
             <input formControlName="max"
                    type="number"
                    id="max-price"
                    value="{{maxPrice}}"
                    [(ngModel)]="maxPrice"
-                   (ngModelChange)="checkUntil()">
+                   (ngModelChange)="checkMAxPrice()">
         </div>
         <div class="color-block">
             <p class="upper bold">Color: </p>
@@ -79,7 +80,7 @@
         </div>
     </form>
     <div class="">
-        MIN: {{minPrice}}<br>
-        MAX: {{maxPrice}}
+        MIN: {{ getMinPrice() }}<br>
+        MAX: {{ getMaxPrice() }}
     </div>
 </div>

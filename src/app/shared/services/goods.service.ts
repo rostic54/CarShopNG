@@ -8,6 +8,7 @@ import {BehaviorSubject} from 'rxjs';
 export class GoodsService {
   goodsSubject = new BehaviorSubject([]);
   orderSubject = new BehaviorSubject(null);
+  priceLimit = new BehaviorSubject( null);
   min: number;
   max: number;
 
@@ -66,6 +67,7 @@ export class GoodsService {
           }
           return item;
         });
+        this.priceLimit.next({minPrice: this.min, maxPrice: this.max});
         this.goodsSubject.next(modifiedGoods);
       });
   }

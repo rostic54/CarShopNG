@@ -1,20 +1,19 @@
-import {Component, EventEmitter, OnChanges, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnChanges, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Pipe} from '@angular/core';
 import {GoodsService} from '../shared/services/goods.service';
-import {until} from 'selenium-webdriver';
-import elementIsEnabled = until.elementIsEnabled;
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent implements OnInit, OnDestroy {
   filterForm: FormGroup;
+  subscribe: Subscription;
   @Output() filterValue = new EventEmitter<any>();
   minPrice = 0;
-  maxPrice = 1600000;
+  maxPrice = 0;
   staticMax: number;
   staticMin: number;
   color = 'all';
@@ -30,8 +29,14 @@ export class FilterComponent implements OnInit {
       'color': new FormControl(null),
       'feature': new FormControl(null)
     });
-    this.staticMin = this.goodsService.min;
-    this.staticMax = this.goodsService.max;
+    this.subscribe = this.goodsService.priceLimit.subscribe(
+      priceLimit => {
+        if (priceLimit) {
+          this.minPrice = this.staticMin = priceLimit.minPrice;
+          this.maxPrice = this.staticMax = priceLimit.maxPrice;
+        }
+      }
+    );
   }
 
   pushChanges() {
@@ -50,23 +55,23 @@ export class FilterComponent implements OnInit {
     return this.staticMax;
   }
 
-  resetColor() {
-    console.log(this.filterForm.controls);
-   // this.filterForm.controls.color.touched = false; // attempt to reset condition
-  }
-
-  checkTo() {
+  checkLowPrice() {
     if (this.minPrice >= this.maxPrice) {
       this.minPrice = this.maxPrice - 1;
+      console.log(this.minPrice);
     }
     this.pushChanges();
   }
 
-  checkUntil() {
+  checkMAxPrice() {
     if (this.maxPrice <= this.minPrice) {
       this.maxPrice = this.minPrice + 1;
     }
     this.pushChanges();
+  }
+
+  ngOnDestroy() {
+    this.subscribe.unsubscribe();
   }
 
 }

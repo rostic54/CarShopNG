@@ -1,8 +1,14 @@
+
 <app-filter (filterValue)="setFilterData($event)"></app-filter>
+<div class="search-block">
+    <h3>Search:</h3>
+    <input class="form-control" type="text" name="term" [(ngModel)]="term">
+</div>
 <div class="products-wrap">
     <div class="product-list">
+
         <div class="product-item"
-             *ngFor="let product of goodsList | price:filterData.min:filterData.max | color:filterData.color |
+             *ngFor="let product of goodsList | price:filterData.min:filterData.max | color:filterData.color | filter:term |
                         feature:filterData.feature | paginate: { itemsPerPage: 5, currentPage: p }"
              (click)="showProductDescription(product, $event)">
             <div class="img-block">

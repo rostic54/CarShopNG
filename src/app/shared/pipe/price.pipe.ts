@@ -11,7 +11,7 @@ export class PricePipe implements PipeTransform {
       return value;
     }
     return value.filter(item => {
-      if (item.price >= priceStart && item.price <= priceFinish) {
+      if ( +item.price >= priceStart && +item.price <= priceFinish) {
         return item;
       }
     });

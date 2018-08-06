@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, observable, Observable} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable()
 export class PurchaseService {

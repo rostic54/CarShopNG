@@ -16,6 +16,7 @@ import {PurchaseService} from '@shared/services/purchase.service';
 export class GoodsListComponent implements OnInit, OnDestroy {
   goodsList: Goods[];
   subscribe: Subscription;
+  page: number;
   filterData = {
     min: 0,
     max: 1600000,

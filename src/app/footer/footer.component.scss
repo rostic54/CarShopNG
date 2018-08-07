@@ -1,16 +1,37 @@
 .footer{
   padding: 10px 0;
   background-color: #b3b3b3;
+  h3{
+    margin: 10px 0;
+  }
+  .content{
+    display: flex;
+    justify-content: space-between;
+  }
   ul{
-    float: left;
+    padding: 0;
+    margin: 0;
   }
   li{
+    display: flex;
+    align-items: center;
     list-style: none;
     margin-bottom: 10px;
+    a{
+      color: #266eab;
+      border-bottom: 2px solid transparent;
+      text-decoration: none;
+      font-size: 15px;
+      margin-left: 10px;
+      &:hover {
+        border-bottom: 2px solid #266eab;
+      }
+    }
   }
   .logo-wrap {
+    align-self: center;
     float: right;
-    width: 150px;
+    width: 100px;
     img{
       width: 100%;
     }

@@ -16,11 +16,23 @@
 }
 .auth-block{
   display: flex;
+  flex-direction: column;
   align-items: center;
+  align-self: center;
   justify-content: space-between;
+}
+.button-wrap{
+  display: flex;
+
 }
 .sign-in{
   margin-right: 20px;
+  .user-info {
+    text-align: center;
+  }
+  p{
+    margin: 5px;
+  }
 }
 .nav{
   display: flex;

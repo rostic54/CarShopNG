@@ -1,9 +1,9 @@
 <div class="container"><h2>Hello, Admin!</h2>
     <div class="add"><button class="add-btn" mat-raised-button (click)="addToServer()">Add new</button>
-    <button class="order-btn" mat-raised-button (click)="orderList()">Look order</button></div>
+    <button class="order-btn" mat-raised-button (click)="orderList()">Look orders</button></div>
     <div class="goods-list">
         <mat-card class="goods-item clearfix"
-                  *ngFor="let goods of goodsList | paginate: { itemsPerPage: 5, currentPage: p }; let i = index"
+                  *ngFor="let goods of goodsList | paginate: { itemsPerPage: 5, currentPage: page }; let i = index"
                   (click)="modificProduct(i)"
         >
             <div class="img-wrap">
@@ -42,4 +42,4 @@
         </mat-card>
     </div>
 </div>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<pagination-controls (pageChange)="page = $event"></pagination-controls>

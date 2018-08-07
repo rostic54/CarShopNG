@@ -1,7 +1,7 @@
 <div class="order-block">
   <div class="goods-order-list">
     <div class="client-order"
-         *ngFor="let clientGoods of orderList | paginate: { itemsPerPage: 1, currentPage: p }; let i = index">
+         *ngFor="let clientGoods of orderList | paginate: { itemsPerPage: 1, currentPage: page }; let i = index">
     <mat-card class="goods-item clearfix"
               *ngFor="let goods of clientGoods"
     >
@@ -51,4 +51,4 @@
     </div>
   </div>
 </div>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<pagination-controls (pageChange)="page = $event"></pagination-controls>

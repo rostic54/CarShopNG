@@ -9,6 +9,7 @@ import {isObject} from 'rxjs/internal-compatibility';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit, OnDestroy {
+  page: number;
   orderList = [];
   clientInfo = [];
   subscribe: Subscription;

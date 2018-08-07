@@ -2,5 +2,15 @@ form{
   display: flex;
   justify-content: space-between;
   border: 3px solid #eee;
-  padding: 10px;
+  padding: 20px;
+}
+.field-wrap{
+  display: flex;
+  justify-content: space-between;
+  label{
+    margin-right: 15px;
+  }
+}
+.color-block{
+  width: 120px;
 }

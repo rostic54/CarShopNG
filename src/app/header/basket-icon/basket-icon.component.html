@@ -1,9 +1,9 @@
 <div class="basket">
-  <span class="amount">Amount: {{ productList.length}}</span>
-  <br>
-  <span class="cost">Cost: {{getTotalPrice()}}</span>
-  <br>
-  <span *ngIf="productList.length" class="icon"><a (click)="cartPage()"><i
-          class="material-icons">
+    <div class="info-wrap">
+        <span class="amount">Amount: <span class="result">{{ productList.length}}</span></span>
+        <span class="cost">Cost: <span class="result">{{getTotalPrice()}}</span></span>
+    </div>
+    <span *ngIf="productList.length" class="icon"><a (click)="cartPage()"><i
+            class="material-icons">
                  add_shopping_cart</i></a></span>
 </div>

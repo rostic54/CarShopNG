@@ -2,7 +2,8 @@
     <form [formGroup]="filterForm">
         <div class="price-block">
             <p class="upper bold">Choose price:</p>
-            <label for="min-price" class="gray">From: <span class="gray">Min: {{staticMin}}</span></label>
+            <div class="field-wrap">
+            <label for="min-price" class="gray"><span class="gray">Min: {{staticMin}}</span></label>
             <input formControlName="min"
                    type="number"
                    id="min-price"
@@ -10,17 +11,20 @@
                    value="{{minPrice}}"
                    (ngModelChange)="checkLowPrice()"
                    >
-            <br>
-            <label for="max-price" class="gray">Until: <span class="gray">Max: {{staticMax}} </span></label>
+            </div>
+            <div class="field-wrap">
+            <label for="max-price" class="gray"><span class="gray">Max: {{staticMax}} </span></label>
             <input formControlName="max"
                    type="number"
                    id="max-price"
                    value="{{maxPrice}}"
                    [(ngModel)]="maxPrice"
                    (ngModelChange)="checkMAxPrice()">
+            </div>
         </div>
         <div class="color-block">
             <p class="upper bold">Color: </p>
+            <div class="field-wrap">
             <label for="red"
                    class="color-circle"
                    [ngStyle]="{'color': 'red'}"
@@ -32,7 +36,8 @@
                    name="color"
                    value="red"
                    id="red">
-            <br>
+            </div>
+            <div class="field-wrap">
             <label for="black" class="color-circle">Black: </label>
             <input formControlName="color"
                    [(ngModel)]="color"
@@ -40,7 +45,8 @@
                    name="color"
                    value="black"
                    id="black">
-            <br>
+            </div>
+            <div class="field-wrap">
             <label for="white"
                    class="color-circle"
                    [ngStyle]="{'color': 'white', 'backgroundColor': 'black'}"
@@ -51,7 +57,8 @@
                    name="color"
                    value="white"
                    id="white">
-            <br>
+            </div>
+            <div class="field-wrap">
             <label for="all"
                    class="color-circle"
             >All: </label>
@@ -61,6 +68,7 @@
                    name="color"
                    value="all"
                    id="all">
+            </div>
         </div>
         <div class="feature-block">
             <label for="feature" class="upper bold"><p>Super feature: </p></label>
@@ -79,8 +87,4 @@
             </select>
         </div>
     </form>
-    <div class="">
-        MIN: {{ getMinPrice() }}<br>
-        MAX: {{ getMaxPrice() }}
-    </div>
 </div>

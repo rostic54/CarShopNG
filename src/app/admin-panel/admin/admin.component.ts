@@ -14,6 +14,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class AdminComponent implements OnInit {
   imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9h_LLTf5LYlXd9-ho5YW4SUOFI4M6vfDVwjc2n6PTBOpCb5z';
   goodsList;
+  page: number;
 
   constructor(private goodsService: GoodsService,
               private dialog: MatDialog,

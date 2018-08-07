@@ -23,7 +23,6 @@ import {HeaderModule} from '../header/header.module';
     NgxPaginationModule,
   ],
   exports: [
-    // AdminPanelComponent
   ],
   entryComponents: [
     AdditionPopupComponent

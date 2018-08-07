@@ -3,7 +3,7 @@ import {MatDialog} from '@angular/material';
 
 import {SignUpComponent} from './sign-up/sign-up.component';
 import {SignInComponent} from './sign-in/sign-in.component';
-import {AuthService} from '../shared/services/auth.service';
+import {AuthService} from '@shared/services/auth.service';
 import {Subscription} from 'rxjs';
 import {ToasterService} from 'angular2-toaster';
 

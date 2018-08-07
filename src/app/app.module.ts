@@ -18,7 +18,7 @@ import {AuthService} from '@shared/services/auth.service';
 import {AppService} from '@shared/services/app.service';
 import {GoodsService} from '@shared/services/goods.service';
 import {AdminModule} from './admin-panel/admin/admin.module';
-import {PurchaseService} from '@shared/services/purchase.service';
+import {PurchaseService} from './shared/services/purchase.service';
 import { CartComponent } from './cart/cart.component';
 import {ProductComponent} from './product/product.component';
 import {AdminGuard} from './admin-panel/admin/admin.guard';

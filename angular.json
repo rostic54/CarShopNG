@@ -49,6 +49,14 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ]
             }
           }
         },
@@ -61,7 +69,12 @@
           "configurations": {
             "production": {
               "browserTarget": "shop:build:production"
+            },
+
+            "staging": {
+              "browserTarget": "shop:build:staging"
             }
+
           }
         },
         "extract-i18n": {

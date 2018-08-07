@@ -4,6 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start --prod": "ng serve --prod",
+    "start -c staging": "ng serve -c staging",
     "build": "ng build --prod --aot",
     "test": "ng test",
     "lint": "ng lint",

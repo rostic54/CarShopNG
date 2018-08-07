@@ -3,6 +3,7 @@ import {AuthService} from './shared/services/auth.service';
 import {AppService} from './shared/services/app.service';
 import {Subscription} from 'rxjs';
 import { ToasterService, ToasterConfig} from 'angular2-toaster';
+import {environment} from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,6 @@ import { ToasterService, ToasterConfig} from 'angular2-toaster';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  goodsList;
   subscription: Subscription;
 
   toasterconfig: ToasterConfig =
@@ -38,6 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       );
     this.authService.authInit();
+    console.log(environment.env);
   }
 
   ngOnDestroy() {

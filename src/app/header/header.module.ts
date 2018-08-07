@@ -8,19 +8,7 @@ import {BasketIconComponent} from './basket-icon/basket-icon.component';
 import {MenuComponent} from './menu/menu.component';
 import {HeaderComponent} from './header.component';
 import {RouterModule, Routes} from '@angular/router';
-import {AdminComponent} from '../admin-panel/admin/admin.component';
-import {OrderComponent} from '../admin-panel/order/order.component';
-import {AdminPanelComponent} from '../admin-panel/admin-panel.component';
-import {AdminGuard} from '../admin-panel/admin/admin.guard';
-
-const AppRouts: Routes = [
-  {
-    path: 'admin', component: AdminPanelComponent, canActivate:  [AdminGuard], children: [
-      {path: '', component: AdminComponent},
-      {path: 'orders', component: OrderComponent}
-    ]
-  },
-];
+import {HeaderRoutingModule} from '@app/header/header-routing.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +22,7 @@ const AppRouts: Routes = [
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
-    RouterModule.forChild(AppRouts)
+    HeaderRoutingModule
   ],
   exports: [
     HeaderComponent,

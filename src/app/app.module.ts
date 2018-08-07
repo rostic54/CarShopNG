@@ -18,7 +18,7 @@ import {AuthService} from '@shared/services/auth.service';
 import {AppService} from '@shared/services/app.service';
 import {GoodsService} from '@shared/services/goods.service';
 import {AdminModule} from './admin-panel/admin/admin.module';
-import {PurchaseService} from './shared/services/purchase.service';
+import {PurchaseService} from '@shared/services/purchase.service';
 import { CartComponent } from './cart/cart.component';
 import {ProductComponent} from './product/product.component';
 import {AdminGuard} from './admin-panel/admin/admin.guard';
@@ -27,14 +27,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { HomeComponent } from './home/home.component';
 import {CartGuard} from './cart/cart.guard';
 import {AdminPanelModule} from './admin-panel/admin-panel.module';
-
-const AppRouts: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'cart', component: CartComponent, canActivate: [CartGuard]},
-  {path: 'aboutUs', component: AboutComponent},
-  {path: 'contacts', component: ContactsComponent},
-  {path: '**', component: ProductComponent}
-  ];
+import {AppRoutingModule} from '@app/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -54,9 +47,9 @@ const AppRouts: Routes = [
     HeaderModule,
     AdminModule,
     AdminPanelModule,
+    AppRoutingModule,
     SliderModule,
     SharedModule,
-    RouterModule.forRoot(AppRouts),
     ToasterModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA6pkG4fkv1K0dxPXOvBOQWE4ZaB_2H6y4'

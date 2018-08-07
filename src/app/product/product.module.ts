@@ -11,14 +11,8 @@ import {SingleProductComponent} from './single-product/single-product.component'
 import {ColorPipe} from '@shared/pipe/color.pipe';
 import {FeaturePipe} from '@shared/pipe/feature.pipe';
 import {PricePipe} from '@shared/pipe/price.pipe';
+import {ProductRoutingModule} from '@app/product/product-routing.module';
 
-const AppRouts: Routes = [
-  {
-    path: 'products', component: ProductComponent, children: [
-      {path: '', component: GoodsListComponent},
-      {path: ':id', component: SingleProductComponent}
-    ],
-  }];
 
 @NgModule({
   declarations: [
@@ -31,14 +25,11 @@ const AppRouts: Routes = [
     FeaturePipe
   ],
   imports: [
-    // BrowserModule,
     SharedModule,
     FormsModule,
+    ProductRoutingModule,
     ReactiveFormsModule,
-    // NgModule,
-    NgxPaginationModule,
-    // Ng2SearchPipeModule,
-    RouterModule.forChild(AppRouts)
+    NgxPaginationModule
   ],
   exports: [
     RouterModule

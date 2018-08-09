@@ -61,7 +61,7 @@ export class BasketIconComponent implements OnInit, OnDestroy {
   totalCalculate() {
     this.total = 0;
     this.productList.forEach(item => {
-      this.total += (+item.price);
+      this.total += (+item.price) * (1 - (+item.discount / 100) );
     });
   }
 

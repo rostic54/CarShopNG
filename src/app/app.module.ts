@@ -52,9 +52,9 @@ import {AppRoutingModule} from '@app/app-routing.module';
     SharedModule,
     ToasterModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyA6pkG4fkv1K0dxPXOvBOQWE4ZaB_2H6y4'
+      apiKey: 'AIzaSyDm1BYCuRhX5Y9Viy5lyi91gH6CtyW-Aj0'
     }),
-    AgmSnazzyInfoWindowModule
+     AgmSnazzyInfoWindowModule
   ],
   providers: [
     AuthService,

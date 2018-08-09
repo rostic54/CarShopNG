@@ -5,17 +5,15 @@ import {ToasterService} from 'angular2-toaster';
 import {environment} from '../../../environments/environment';
 
 @Injectable()
-export class AuthService implements OnInit {
+export class AuthService {
   currentTokenSubject = new BehaviorSubject(null);
   email;
 
   constructor(private toasterService: ToasterService) {
   }
 
-  ngOnInit() {
-  }
-
   signUpUser(cred: { email: string, password: string }) {
+    console.log(cred.password, cred.email);
     firebase.auth().createUserWithEmailAndPassword(cred.email, cred.password)
       .then((response) => {
           this.signInUser(cred.email, cred.password);
@@ -25,7 +23,7 @@ export class AuthService implements OnInit {
       error => {
         console.log(error);
         this.currentTokenSubject.next(null);
-        this.toasterService.pop('error', 'Error', 'This email has already registered!' );
+        this.toasterService.pop('error', 'Error', 'This email has already registered!');
 
       }
     );
@@ -35,21 +33,18 @@ export class AuthService implements OnInit {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((response) => {
           firebase.auth().currentUser.getIdToken()
-            .then(
-              (token: string) => {
+            .then((token: string) => {
                 this.currentTokenSubject.next(token);
                 this.toasterService.pop('success', 'Hello', 'You\'ve signed in');
 
               }
             );
         }
-      )
-      .catch(
-        error => {
-          this.currentTokenSubject.next(null);
-          this.toasterService.pop('error', 'Wrong data', 'Try again');
-        }
-      );
+      ).catch(error => {
+        this.currentTokenSubject.next(null);
+        this.toasterService.pop('error', 'Wrong data', 'Try again');
+      }
+    );
   }
 
   authInit() {

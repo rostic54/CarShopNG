@@ -1,14 +1,23 @@
 form{
   display: flex;
   justify-content: space-between;
-  border: 3px solid #eee;
-  padding: 20px;
+}
+mat-card{
+  background-image: url("https://static8.depositphotos.com/1280399/967/i/950/depositphotos_9675708-stock-photo-white-leather-texture-or-background.jpg");
+  background-repeat: repeat;
 }
 .field-wrap{
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+
   label{
     margin-right: 15px;
+    margin-bottom: 0;
+  }
+  input{
+    max-width: 300px;
   }
 }
 .color-block{

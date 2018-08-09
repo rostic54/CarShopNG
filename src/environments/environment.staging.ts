@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiKey: 'AIzaSyCQfXMMTaHrvcvz8SdZ9sAmB9X4s-nRYUg',
+  apiKey: 'AIzaSyDm1BYCuRhX5Y9Viy5lyi91gH6CtyW-Aj0',
   authDomain: 'carshop-ff44a.firebaseapp.com',
   env: 'staging'
 };

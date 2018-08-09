@@ -1,14 +1,19 @@
 
 .single-card{
-  width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #eeeeee;
   display: flex;
   flex-direction: column;
+  margin: 20px auto;
+  padding: 20px;
+  background-image: url("https://static8.depositphotos.com/1280399/967/i/950/depositphotos_9675708-stock-photo-white-leather-texture-or-background.jpg");
+  background-repeat: repeat;
+  border: 1px solid #eeeeee;
   align-items: center;
+  .img-wrap{
+    max-width: 300px;
+    margin-bottom: 25px;
+  }
   img{
-    width: 400px;
+    width: 100%;
   }
   h2{
     margin-bottom: 10px;
@@ -21,12 +26,19 @@
   display: flex;
   justify-content: space-between;
 }
+.desc {
+  color: #949494;
+}
 .value {
-  color: #b3b3b3;
+  color: #000;
 }
 .name {
   font-weight: 600;
   padding-right: 10px;
+}
+.buy{
+  color: white;
+  background-color: #58bdb9;
 }
 .color-circle {
   width: 20px;

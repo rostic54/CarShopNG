@@ -1,8 +1,9 @@
-<div class="filter-wrap">
-    <form [formGroup]="filterForm">
+<mat-card  class="filter-wrap">
+    <form [formGroup]="filterForm"
+          class="flex-column flex-md-row align-items-center align-items-md-start">
         <div class="price-block">
             <p class="upper bold">Choose price:</p>
-            <div class="field-wrap">
+            <div class="field-wrap flex-column">
             <label for="min-price" class="gray"><span class="gray">Min: {{staticMin}}</span></label>
             <input formControlName="min"
                    type="number"
@@ -12,7 +13,7 @@
                    (ngModelChange)="checkLowPrice()"
                    >
             </div>
-            <div class="field-wrap">
+            <div class="field-wrap flex-column">
             <label for="max-price" class="gray"><span class="gray">Max: {{staticMax}} </span></label>
             <input formControlName="max"
                    type="number"
@@ -87,4 +88,4 @@
             </select>
         </div>
     </form>
-</div>
+</mat-card >

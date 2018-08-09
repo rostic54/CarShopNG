@@ -50,8 +50,8 @@ export class AdditionPopupComponent implements OnInit {
     this.addGoodsForm.reset();
   }
 
-  cutUpProduct() {
-    this.goodsService.cutUpGoods(this.data.index);
+  deleteProduct() {
+    this.goodsService.deleteProduct(this.data.index);
     this.cleanUpForm();
     this.dialog.closeAll();
   }

@@ -1,27 +1,30 @@
-
-<app-filter (filterValue)="setFilterData($event)"></app-filter>
+<app-filter class="filter-wrap" (filterValue)="setFilterData($event)"></app-filter>
 <!--<div class="search-block">-->
-    <!--<h3>Search:</h3>-->
-    <!--<input class="form-control" type="text" name="term" [(ngModel)]="term">-->
+<!--<h3>Search:</h3>-->
+<!--<input class="form-control" type="text" name="term" [(ngModel)]="term">-->
 <!--</div>-->
 <div class="products-wrap">
     <div class="product-list">
-
-        <div class="product-item"
-             *ngFor="let product of goodsList | price:filterData.min:filterData.max | color:filterData.color |
-                        feature:filterData.feature | paginate: { itemsPerPage: 5, currentPage: page }"
-             (click)="showProductDescription(product, $event)">
-            <div class="img-block">
-                <img src="{{product.url}}">
+        <div class="row">
+            <div class="product-item  col-12 col-md-6 col-lg-4"
+                 *ngFor="let product of goodsList | price:filterData.min:filterData.max | color:filterData.color |
+                        feature:filterData.feature | paginate: { itemsPerPage: 6, currentPage: page }"
+                 (click)="showProductDescription(product, $event)">
+                <mat-card class="card text-sm-center text-md-left">
+                    <div class="img-block text-center">
+                        <img src="{{product.url}}">
+                    </div>
+                    <h5 class="desc"><span class="field">Brand name: </span>{{product.brande | uppercase}}</h5>
+                    <h6 class="desc"><span class="field">Model Name: </span>{{product.modelName}}</h6>
+                    <h6 class="desc"><span class="field">Price: </span>{{product.price}}</h6>
+                    <h6 class="desc"><span class="field">Discount: </span><span class="red-text">{{product.discount}}%</span></h6>
+                    <button mat-raised-button type="button"
+                            class="buy"
+                            (click)="addToCart(product)"
+                    >BUY
+                    </button>
+                </mat-card>
             </div>
-            <h3><span>Brand name: </span>{{product.brande}}</h3>
-            <h6><span>Model Name: </span>{{product.modelName}}</h6>
-            <p><span>Price: </span>{{product.price}}</p>
-            <p>Discount: <span class="red-text">{{product.discount}}</span></p>
-            <button mat-raised-button  type="button"
-                    class="buy"
-                    (click)="addToCard(product)"
-            >BUY</button>
         </div>
     </div>
 </div>

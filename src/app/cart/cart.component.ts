@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Goods} from '../shared/models/goods.model';
-import {GoodsService} from '../shared/services/goods.service';
-import {PurchaseService} from '../shared/services/purchase.service';
+import {Goods} from '@shared/models/goods.model';
+import {GoodsService} from '@shared/services/goods.service';
+import {PurchaseService} from '@shared/services/purchase.service';
 import {ToasterService} from 'angular2-toaster';
 import {Router} from '@angular/router';
 

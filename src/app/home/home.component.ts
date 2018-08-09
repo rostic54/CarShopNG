@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Slider} from 'ngx-slider';
 
 @Component({
@@ -7,23 +7,13 @@ import {Slider} from 'ngx-slider';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public slider = new Slider();
-
-  constructor() {
-    this.slider.config.loop = true;
-    this.slider.config.showPreview = false;
-  }
-
+  carList = ['http://bm.img.com.ua/berlin/storage/600x500/e/6f/328e4a870b03574ee83382e639a306fe.jpg',
+  'https://img1.liveinternet.ru/images/attach/c/8/99/192/99192149_krasivuyy_kabriolet_Mercedesbens_300_SC_1.jpg',
+  'https://img0.liveinternet.ru/images/attach/c/3/77/686/77686112_BMW_Z4_M_Roadster_E89_Hamann.jpg',
+  'https://img0.liveinternet.ru/images/attach/c/10/110/335/110335138_avto_2.jpg',
+  'https://img1.liveinternet.ru/images/attach/c/11/127/806/127806365_498w.jpg',
+  'https://img1.liveinternet.ru/images/attach/c/0//52/498/52498038_audi_a7_sportback01.jpg'];
   ngOnInit() {
-
-    const slideItems = [
-      {src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxqIDuIV73I3Q6sUoqrzvkqzsobuj5AHNQ6a9Js5QKL5lwUyQKug', title: 'Buggati'},
-      {src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfzJ4lACX-oQXtODcQid3y3KXEIyhw5hmPlbwFLeJkc9-zu8j5', title: 'Ferrari'},
-      {src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS89GjSRMLPZCcDNUdD7DvZ5cxXfQ27Rhr0DJ_EKY98r_NORSgn', title: 'Buggati'},
-      {src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwnU8t3wMLel2st50_R3VDUtcQC-f9K4UeWg8Vw_g16CLEYQtE', title: 'Ford'},
-      {src: 'http://bm.img.com.ua/berlin/storage/600x500/b/c7/9dc80292f041032dcfb4b9ed72c05c7b.jpg', title: 'Ferrari'}
-    ];
-
-    this.slider.items = slideItems;
   }
+
 }

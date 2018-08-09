@@ -52,7 +52,7 @@ export class GoodsListComponent implements OnInit, OnDestroy {
     this.cdr.detectChanges();
   }
 
-  addToCard(product: Goods) {
+  addToCart(product: Goods) {
     this.purchaseService.addProduct(product);
   }
 

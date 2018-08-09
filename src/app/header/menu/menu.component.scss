@@ -2,7 +2,8 @@ li {
   display: inline-block;
   a {
     position: relative;
-      border-bottom: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    color: #fff;
     text-decoration: none;
     &.active {
       color: #35519b;

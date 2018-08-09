@@ -9,7 +9,7 @@
     flex-direction: column;
     justify-content: space-between;
     span{
-      color: #8a8a8a;
+      color: #e9ecef;
       font-size: 15px;
     }
     .result {
@@ -18,12 +18,18 @@
     }
   }
   .icon{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     a{
       display: inline-block;
     }
     i{
       font-size: 31px;
-      color: #35519b;
+      color: #e9ecef;
+      &:hover{
+        opacity: .6;
+      }
     }
   }
 }

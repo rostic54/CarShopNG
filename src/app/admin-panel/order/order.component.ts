@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {GoodsService} from '../../shared/services/goods.service';
+import {GoodsService} from '@shared/services/goods.service';
 import {Subscription} from 'rxjs';
-import {isObject} from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-order',
@@ -21,8 +20,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.goodsService.getOrder();
     this.subscribe = this.goodsService.orderSubject
-      .subscribe(
-        orders => {
+      .subscribe(orders => {
           if (orders) {
             this.getOrders(orders);
           }

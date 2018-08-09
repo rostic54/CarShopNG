@@ -3,8 +3,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material';
 import {ToasterService} from 'angular2-toaster';
 
-import {AuthService} from '../../shared/services/auth.service';
-import {CommonService} from '../../shared/services/common.service';
+import {AuthService} from '@shared/services/auth.service';
+import {CommonService} from '@shared/services/common.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -39,7 +39,7 @@ export class SignUpComponent implements OnInit {
   }
 
     onSignUp() {
-     this.authService.signUpUser(this.signUp.value);
+     this.authService.signUpUser({email: this.signUp.value.email, password: this.signUp.value.passwordFormGroup.password});
      this.dialog.closeAll();
     }
 

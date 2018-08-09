@@ -3,6 +3,7 @@ import {AuthService} from './auth.service';
 import {Injectable} from '@angular/core';
 import {Goods} from '../models/goods.model';
 import {BehaviorSubject} from 'rxjs';
+import {ToasterService} from 'angular2-toaster';
 
 @Injectable()
 export class GoodsService {
@@ -13,7 +14,8 @@ export class GoodsService {
   max: number;
 
   constructor(private http: HttpClient,
-              private  authService: AuthService) {
+              private  authService: AuthService,
+              private toasterService: ToasterService) {
 
   }
 
@@ -38,7 +40,7 @@ export class GoodsService {
   }
 
 
-  cutUpGoods(index: number) {
+  deleteProduct(index: number) {
     const goodsList = this.getCurrentGoods();
     goodsList.splice(index, 1);
     this.addGoods(goodsList);

@@ -1,3 +1,11 @@
 button.next[_ngcontent-c8] {
-    outline: none;
+  outline: none;
+}
+
+.slider-main{
+  .slide-wrapper {
+    .slide[_ngcontent-c8] {
+      background-size: cover !important;
+    }
+  }
 }

@@ -6,6 +6,7 @@ import {SignInComponent} from './sign-in/sign-in.component';
 import {AuthService} from '@shared/services/auth.service';
 import {Subscription} from 'rxjs';
 import {ToasterService} from 'angular2-toaster';
+import {CommonService} from '@shared/services/common.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(public dialog: MatDialog,
               public authService: AuthService,
-              private toasterService: ToasterService) {
+              private toasterService: ToasterService,
+              private commonService: CommonService) {
   }
 
   ngOnInit() {
@@ -57,7 +59,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.commonService.checkSubscription(this.subscription);
   }
 
 }

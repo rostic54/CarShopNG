@@ -7,7 +7,7 @@ import {
   MatFormFieldModule,
   MatDialogModule,
   MatIconModule,
-  MatGridListModule,
+  MatGridListModule
 } from '@angular/material';
 
 @NgModule({
@@ -20,7 +20,7 @@ import {
     MatButtonModule,
     MatDialogModule,
     MatIconModule,
-    MatGridListModule,
+    MatGridListModule
   ],
   exports: [
     BrowserAnimationsModule,

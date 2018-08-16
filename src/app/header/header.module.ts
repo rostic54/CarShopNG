@@ -3,7 +3,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {SignInComponent} from './sign-in/sign-in.component';
 import {SignUpComponent} from './sign-up/sign-up.component';
-import {SharedModule} from '../modules/shared.module';
+import {SharedModule} from '@shared/modules/shared.module';
 import {BasketIconComponent} from './basket-icon/basket-icon.component';
 import {MenuComponent} from './menu/menu.component';
 import {HeaderComponent} from './header.component';

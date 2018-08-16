@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {SharedModule} from '@app/modules/shared.module';
+import {SharedModule} from '@app/shared/modules/shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AdminComponent} from './admin.component';
 import {HttpClientModule} from '@angular/common/http';

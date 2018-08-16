@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PurchaseService} from '../../shared/services/purchase.service';
 import {Subscription} from 'rxjs';
+import {CommonService} from '@shared/services/common.service';
 
 @Component({
   selector: 'app-basket',
@@ -16,6 +17,7 @@ export class BasketIconComponent implements OnInit, OnDestroy {
 
   constructor(private purchaseService: PurchaseService,
               private router: Router,
+              private commonService: CommonService,
               private activeRoute: ActivatedRoute,) {
   }
 
@@ -45,8 +47,8 @@ export class BasketIconComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscribe.unsubscribe();
-    this.subscript.unsubscribe();
+    this.commonService.checkSubscription(this.subscribe);
+    this.commonService.checkSubscription(this.subscript);
   }
 
   getTotalPrice() {
@@ -61,7 +63,7 @@ export class BasketIconComponent implements OnInit, OnDestroy {
   totalCalculate() {
     this.total = 0;
     this.productList.forEach(item => {
-      this.total += (+item.price) * (1 - (+item.discount / 100) );
+      this.total += (+item.price) * (1 - (+item.discount / 100));
     });
   }
 
@@ -70,7 +72,7 @@ export class BasketIconComponent implements OnInit, OnDestroy {
   }
 
   cartPage() {
-      this.router.navigate(['./cart'], {relativeTo: this.activeRoute});
+    this.router.navigate(['./cart'], {relativeTo: this.activeRoute});
 
   }
 }

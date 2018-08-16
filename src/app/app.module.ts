@@ -13,7 +13,7 @@ import {AppComponent} from './app.component';
 import {HeaderModule} from './header/header.module';
 import {ProductModule} from './product/product.module';
 import {FooterComponent} from './footer/footer.component';
-import {SharedModule} from './modules/shared.module';
+import {SharedModule} from './shared/modules/shared.module';
 import {AuthService} from '@shared/services/auth.service';
 import {AppService} from '@shared/services/app.service';
 import {GoodsService} from '@shared/services/goods.service';
@@ -28,6 +28,7 @@ import { HomeComponent } from './home/home.component';
 import {CartGuard} from './cart/cart.guard';
 import {AdminPanelModule} from './admin-panel/admin-panel.module';
 import {AppRoutingModule} from '@app/app-routing.module';
+import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import {AppRoutingModule} from '@app/app-routing.module';
     ToasterService,
     PurchaseService,
     AdminGuard,
-    CartGuard
+    CartGuard,
+    {provide: APP_BASE_HREF, useValue : '/' }
   ],
   bootstrap: [AppComponent]
 })

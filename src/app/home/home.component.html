@@ -1,7 +1,7 @@
-<!--<div style="height: 300px;">-->
-  <!--<ngx-slider [init]="slider" class="slider-main"></ngx-slider>-->
-<!--</div>-->
 
 <mat-grid-list cols="2" rowHeight="2:1">
-  <mat-grid-tile *ngFor="let img of carList; let i = index"><img [src]="img" alt=""></mat-grid-tile>
+  <mat-grid-tile *ngFor="let img of carList; let i = index">
+    <img *ngIf="i%2 == 0" [@flyToRight]="{value: 'inLeft', params: {start: i/4}}" [src]="img" alt="left">
+    <img *ngIf="i%2 != 0" [@flyToLeft]="{value: 'inRight', params: {start: i/4}}" [src]="img" alt="right">
+  </mat-grid-tile>
 </mat-grid-list>

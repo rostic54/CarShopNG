@@ -20,7 +20,7 @@
                    id="max-price"
                    value="{{maxPrice}}"
                    [(ngModel)]="maxPrice"
-                   (ngModelChange)="checkMAxPrice()">
+                   (ngModelChange)="checkMaxPrice()">
             </div>
         </div>
         <div class="color-block">
@@ -41,6 +41,7 @@
             <div class="field-wrap">
             <label for="black" class="color-circle">Black: </label>
             <input formControlName="color"
+                   (ngModelChange)="pushChanges()"
                    [(ngModel)]="color"
                    type="radio"
                    name="color"
@@ -53,6 +54,7 @@
                    [ngStyle]="{'color': 'white', 'backgroundColor': 'black'}"
             >White: </label>
             <input formControlName="color"
+                   (ngModelChange)="pushChanges()"
                    [(ngModel)]="color"
                    type="radio"
                    name="color"
@@ -64,6 +66,7 @@
                    class="color-circle"
             >All: </label>
             <input formControlName="color"
+                   (ngModelChange)="pushChanges()"
                    [(ngModel)]="color"
                    type="radio"
                    name="color"

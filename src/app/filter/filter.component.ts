@@ -1,7 +1,8 @@
 import {Component, EventEmitter, OnChanges, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {GoodsService} from '../shared/services/goods.service';
-import {Subscription} from 'rxjs';
+import {BehaviorSubject, Subscription} from 'rxjs';
+import {CommonService} from '@shared/services/common.service';
 
 @Component({
   selector: 'app-filter',
@@ -11,15 +12,18 @@ import {Subscription} from 'rxjs';
 export class FilterComponent implements OnInit, OnDestroy {
   filterForm: FormGroup;
   subscribe: Subscription;
-  @Output() filterValue = new EventEmitter<any>();
-  minPrice = 0;
-  maxPrice = 0;
+  // @Output() filterValue = new EventEmitter<any>();
+  minPrice;
+  maxPrice;
   staticMax: number;
   staticMin: number;
   color = 'all';
   feature = 'all';
 
-  constructor(private goodsService: GoodsService) {
+  // filterInfo = new BehaviorSubject(null);
+
+  constructor(private goodsService: GoodsService,
+              private commonService: CommonService) {
   }
 
   ngOnInit() {
@@ -40,30 +44,26 @@ export class FilterComponent implements OnInit, OnDestroy {
   }
 
   pushChanges() {
-    this.filterValue.emit({
-      min: this.minPrice,
-      max: this.maxPrice,
-      color: this.color,
-      feature: this.feature
-    });
-  }
-
-  getMinPrice() {
-    return this.staticMin;
-  }
-  getMaxPrice() {
-    return this.staticMax;
+    if (this.filterForm.dirty) {
+      this.commonService.getFilterCondition(this.filterForm.value);
+    }
+    // console.log(this.filterForm.value);
+    // this.filterValue.emit({
+    //   min: this.minPrice,
+    //   max: this.maxPrice,
+    //   color: this.color,
+    //   feature: this.feature
+    // });
   }
 
   checkLowPrice() {
     if (this.minPrice >= this.maxPrice) {
       this.minPrice = this.maxPrice - 1;
-      console.log(this.minPrice);
     }
     this.pushChanges();
   }
 
-  checkMAxPrice() {
+  checkMaxPrice() {
     if (this.maxPrice <= this.minPrice) {
       this.maxPrice = this.minPrice + 1;
     }
@@ -71,7 +71,7 @@ export class FilterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscribe.unsubscribe();
+    this.commonService.checkSubscription(this.subscribe);
   }
 
 }

@@ -4,6 +4,8 @@ import {Injectable} from '@angular/core';
 import {Goods} from '../models/goods.model';
 import {BehaviorSubject} from 'rxjs';
 import {ToasterService} from 'angular2-toaster';
+import {User} from '@shared/models/user.model';
+import {Order} from '@shared/models/order.model';
 
 @Injectable()
 export class GoodsService {
@@ -31,7 +33,9 @@ export class GoodsService {
   getOrder() {
     this.http.get('https://carshop-ff44a.firebaseio.com/order.json')
       .subscribe(
-        response => this.orderSubject.next(response)
+        ( response: {'key': {data: Order, list: Goods[]}})  => {
+          this.orderSubject.next(response);
+        }
       );
   }
 

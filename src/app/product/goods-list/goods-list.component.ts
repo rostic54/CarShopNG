@@ -1,21 +1,23 @@
-import {Component, OnInit, ChangeDetectorRef, OnDestroy} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {Goods} from '@shared/models/goods.model';
 import {GoodsService} from '@shared/services/goods.service';
 import {PurchaseService} from '@shared/services/purchase.service';
-
+import {CommonService} from '@shared/services/common.service';
+import {FilterModel} from '@shared/models/filter.model';
 
 
 @Component({
   selector: 'app-goods',
   templateUrl: './goods-list.component.html',
-  styleUrls: ['./goods-list.component.scss']
+  styleUrls: ['./goods-list.component.scss'],
 })
 export class GoodsListComponent implements OnInit, OnDestroy {
   goodsList: Goods[];
   subscribe: Subscription;
+  subscribeFilter: Subscription;
   page: number;
   filterData = {
     min: 0,
@@ -24,11 +26,13 @@ export class GoodsListComponent implements OnInit, OnDestroy {
     feature: 'all'
   };
 
-  constructor(private goodsService: GoodsService,
-              private router: Router,
-              private activeRoute: ActivatedRoute,
-              private purchaseService: PurchaseService,
-              private cdr: ChangeDetectorRef) {
+  constructor(
+    private goodsService: GoodsService,
+    private router: Router,
+    private activeRoute: ActivatedRoute,
+    private purchaseService: PurchaseService,
+    private commonService: CommonService,
+    private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -37,7 +41,17 @@ export class GoodsListComponent implements OnInit, OnDestroy {
     this.subscribe = this.goodsService.goodsSubject.subscribe(
       (goods: Goods[]) => {
         this.goodsList = goods;
-      });
+      }
+    );
+
+    this.subscribeFilter = this.commonService.filterData.subscribe(
+      (data: FilterModel) => {
+        if (data) {
+          this.filterData = data;
+          // this.cdr.markForCheck();
+        }
+      }
+    );
   }
 
   showProductDescription(product: Goods, elem) {
@@ -47,16 +61,12 @@ export class GoodsListComponent implements OnInit, OnDestroy {
     this.router.navigate([product.id], {relativeTo: this.activeRoute});
   }
 
-  setFilterData(data) {
-    this.filterData = data;
-    this.cdr.detectChanges();
-  }
-
   addToCart(product: Goods) {
     this.purchaseService.addProduct(product);
   }
 
   ngOnDestroy() {
-    this.subscribe.unsubscribe();
+    this.commonService.checkSubscription(this.subscribe);
+    this.commonService.checkSubscription(this.subscribeFilter);
   }
 }

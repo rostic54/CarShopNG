@@ -4,6 +4,7 @@ import {AppService} from './shared/services/app.service';
 import {Subscription} from 'rxjs';
 import { ToasterService, ToasterConfig} from 'angular2-toaster';
 import {environment} from '../environments/environment';
+import {CommonService} from '@shared/services/common.service';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    private commonService: CommonService
   ) {
   }
 
@@ -42,6 +44,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+      this.commonService.checkSubscription(this.subscription);
   }
 }

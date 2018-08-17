@@ -2,16 +2,18 @@ import {HttpClient} from '@angular/common/http';
 import {AuthService} from './auth.service';
 import {Injectable} from '@angular/core';
 import {Goods} from '../models/goods.model';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 import {ToasterService} from 'angular2-toaster';
 import {User} from '@shared/models/user.model';
 import {Order} from '@shared/models/order.model';
+import {FilterModel} from '@shared/models/filter.model';
 
 @Injectable()
 export class GoodsService {
   goodsSubject = new BehaviorSubject([]);
   orderSubject = new BehaviorSubject(null);
   priceLimit = new BehaviorSubject( null);
+  filterData = new Subject<any>();
   min: number;
   max: number;
 
@@ -76,5 +78,14 @@ export class GoodsService {
         this.priceLimit.next({minPrice: this.min, maxPrice: this.max});
         this.goodsSubject.next(modifiedGoods);
       });
+  }
+  getFilterCondition(data: FilterModel) {
+    this.filterData.next(data);
+  }
+
+  checkSubscription(subscription) {
+    if (subscription) {
+      subscription.unsubscribe();
+    }
   }
 }

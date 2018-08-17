@@ -44,7 +44,7 @@ export class GoodsListComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.subscribeFilter = this.commonService.filterData.subscribe(
+    this.subscribeFilter = this.goodsService.filterData.subscribe(
       (data: FilterModel) => {
         if (data) {
           this.filterData = data;
@@ -66,7 +66,7 @@ export class GoodsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.commonService.checkSubscription(this.subscribe);
-    this.commonService.checkSubscription(this.subscribeFilter);
+    this.goodsService.checkSubscription(this.subscribe);
+    this.goodsService.checkSubscription(this.subscribeFilter);
   }
 }

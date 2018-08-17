@@ -55,13 +55,13 @@ describe('CartComponent', () => {
     });
 
   }));
-  fit('Should create CartComponent', async(() => {
+  it('Should create CartComponent', async(() => {
     expect(component).toBeTruthy();
   }));
 
   describe('ngOnInit method', () => {
 
-    fit('Should call getGoods method.', async(() => {
+    it('Should call getGoods method.', async(() => {
       const spy = spyOn(component, 'getGoods');
       component.ngOnInit();
       expect(spy).toHaveBeenCalledWith();
@@ -70,7 +70,7 @@ describe('CartComponent', () => {
 
   describe('ngOnInit method', () => {
 
-    fit('Should call formInit method.', async(() => {
+    it('Should call formInit method.', async(() => {
       const spy = spyOn(component, 'formInit');
       component.ngOnInit();
       expect(spy).toHaveBeenCalledWith();
@@ -79,15 +79,45 @@ describe('CartComponent', () => {
 
   describe('formInit method', () => {
 
-    fit('Should call formInit method which create empty form.', async(() => {
+    it('Should call formInit method which create empty', async(() => {
       component.formInit();
       expect(component.orderForm.valid).toBeFalsy();
     }));
   });
 
+  describe('formInit method', () => {
+
+    it('Should call formInit method which create form with: name, email, tel.', async(() => {
+      component.formInit();
+      const  name = component.orderForm.controls['name'];
+      const  email = component.orderForm.controls['email'];
+      const  tel = component.orderForm.controls['tel'];
+      expect(name.valid).toBeFalsy();
+      expect(email.email).toBeFalsy();
+      expect(tel.tel).toBeFalsy();
+    }));
+  });
+
+  describe('formInit method', () => {
+
+    it('Check each field has required filling', async(() => {
+      component.formInit();
+      const  name = component.orderForm.controls['name'];
+      const nameError = name.errors;
+      const  email = component.orderForm.controls['email'];
+      const emailError = email.errors;
+      const  tel = component.orderForm.controls['tel'];
+      const telError = tel.errors;
+
+      expect(nameError['required']).toBeTruthy();
+      expect(emailError['required']).toBeTruthy();
+      expect(telError['required']).toBeTruthy();
+    }));
+  });
+
   describe('getGoods method', () => {
 
-    fit('Should call getGoods method and get data from LocalStorage.', async(() => {
+    it('Should call getGoods method and get data from LocalStorage.', async(() => {
       const purchaseArr = JSON.stringify({data: 'information'});
       localStorage.setItem('order', purchaseArr);
       const localData = component.getGoods();
@@ -97,7 +127,7 @@ describe('CartComponent', () => {
 
   describe('removeProduct method', () => {
 
-    fit('Should call with index and remove element from arr by index.', async(() => {
+    it('Should call with index and remove element from arr by index.', async(() => {
       component.shoppingList = [1, 2, 3, 4];
       component.removeProduct(1);
       expect(component.shoppingList.length).toBe(3);
@@ -106,7 +136,7 @@ describe('CartComponent', () => {
 
   describe('removeProduct method', () => {
 
-    fit('Should call removeProduct method.', async(() => {
+    it('Should call removeProduct method.', async(() => {
       const spy = spyOn(component, 'setGoods');
       component.shoppingList = [{price: 1}, {price: 2}, {price: 3}, {price: 4}];
       component.removeProduct(1);
@@ -116,7 +146,7 @@ describe('CartComponent', () => {
 
   describe('removeProduct method', () => {
 
-    fit('Should call PurchaseService  method -> purchaseStatus.', async(() => {
+    it('Should call PurchaseService  method -> purchaseStatus.', async(() => {
       const spy = spyOn(component.purchaseService, 'purchaseStatus');
       component.shoppingList = [{price: 1}, {price: 2}, {price: 3}, {price: 4}];
       component.removeProduct(1);
@@ -126,7 +156,7 @@ describe('CartComponent', () => {
 
   describe('removeProduct method', () => {
 
-    fit('Should call  method -> getTotal.', async(() => {
+    it('Should call  method -> getTotal.', async(() => {
       component.shoppingList = [{price: 1}, {price: 2}, {price: 3}, {price: 4}];
       expect(component.getTotal()).toBe(10);
     }));

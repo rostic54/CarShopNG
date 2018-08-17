@@ -1,6 +1,7 @@
 import {Goods} from '@shared/models/goods.model';
 import {Observable, of, Subject, Subscribable} from 'rxjs';
 import {Order} from '@shared/models/order.model';
+import {FilterModel} from '@shared/models/filter.model';
 
 export const goods = {
   modelName: 'example',
@@ -27,6 +28,13 @@ export const user = {
 export class MockGoodsService {
   goodsSubject = of([goods]);
   orderSubject = of({'number': {data: goods, list: user}});
+  priceLimit = of({minPrice: 10, maxPrice: 50});
+  filterData = of({
+    min: 0,
+    max: 1600000,
+    color: 'all',
+    feature: 'all'
+  });
 
   sendOrder(order: Order) {
     return true;
@@ -44,6 +52,16 @@ export class MockGoodsService {
   }
 
   addGoods(goodsList) {
+  }
+
+  getFilterCondition(data: FilterModel) {
+    // this.filterData.next(data);
+  }
+
+  checkSubscription(subscription) {
+    if (subscription) {
+      subscription.unsubscribe();
+    }
   }
 
   getGoods() {

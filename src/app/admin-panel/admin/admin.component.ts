@@ -66,7 +66,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.commonService.checkSubscription(this.subscribe);
+    this.goodsService.checkSubscription(this.subscribe);
   }
 
 }

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {FilterModel} from '@shared/models/filter.model';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
-  filterData = new BehaviorSubject(null);
+  // filterData = new Subject<any>();
 
   constructor() { }
 
@@ -35,13 +35,13 @@ export class CommonService {
     return null;
   }
 
-  getFilterCondition(data: FilterModel) {
-    this.filterData.next(data);
-  }
-
-  checkSubscription(subscription) {
-    if (subscription) {
-      subscription.unsubscribe();
-    }
-  }
+  // getFilterCondition(data: FilterModel) {
+  //   this.filterData.next(data);
+  // }
+  //
+  // checkSubscription(subscription) {
+  //   if (subscription) {
+  //     subscription.unsubscribe();
+  //   }
+  // }
 }

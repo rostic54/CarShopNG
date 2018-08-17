@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {PurchaseService} from '../../shared/services/purchase.service';
 import {Subscription} from 'rxjs';
 import {CommonService} from '@shared/services/common.service';
+import {GoodsService} from '@shared/services/goods.service';
 
 @Component({
   selector: 'app-basket',
@@ -18,7 +19,8 @@ export class BasketIconComponent implements OnInit, OnDestroy {
   constructor(private purchaseService: PurchaseService,
               private router: Router,
               private commonService: CommonService,
-              private activeRoute: ActivatedRoute,) {
+              private activeRoute: ActivatedRoute,
+              private goodsService: GoodsService) {
   }
 
   ngOnInit() {
@@ -47,8 +49,8 @@ export class BasketIconComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.commonService.checkSubscription(this.subscribe);
-    this.commonService.checkSubscription(this.subscript);
+    this.goodsService.checkSubscription(this.subscribe);
+    this.goodsService.checkSubscription(this.subscript);
   }
 
   getTotalPrice() {

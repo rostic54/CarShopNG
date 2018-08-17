@@ -8,9 +8,7 @@
             <input formControlName="min"
                    type="number"
                    id="min-price"
-                   [(ngModel)]="minPrice"
                    value="{{minPrice}}"
-                   (ngModelChange)="checkLowPrice()"
                    >
             </div>
             <div class="field-wrap flex-column">
@@ -18,9 +16,7 @@
             <input formControlName="max"
                    type="number"
                    id="max-price"
-                   value="{{maxPrice}}"
-                   [(ngModel)]="maxPrice"
-                   (ngModelChange)="checkMaxPrice()">
+                   value="{{maxPrice}}">
             </div>
         </div>
         <div class="color-block">
@@ -31,8 +27,6 @@
                    [ngStyle]="{'color': 'red'}"
             >Red: </label>
             <input formControlName="color"
-                   (ngModelChange)="pushChanges()"
-                   [(ngModel)]="color"
                    type="radio"
                    name="color"
                    value="red"
@@ -41,8 +35,6 @@
             <div class="field-wrap">
             <label for="black" class="color-circle">Black: </label>
             <input formControlName="color"
-                   (ngModelChange)="pushChanges()"
-                   [(ngModel)]="color"
                    type="radio"
                    name="color"
                    value="black"
@@ -54,8 +46,6 @@
                    [ngStyle]="{'color': 'white', 'backgroundColor': 'black'}"
             >White: </label>
             <input formControlName="color"
-                   (ngModelChange)="pushChanges()"
-                   [(ngModel)]="color"
                    type="radio"
                    name="color"
                    value="white"
@@ -66,8 +56,6 @@
                    class="color-circle"
             >All: </label>
             <input formControlName="color"
-                   (ngModelChange)="pushChanges()"
-                   [(ngModel)]="color"
                    type="radio"
                    name="color"
                    value="all"
@@ -77,8 +65,6 @@
         <div class="feature-block">
             <label for="feature" class="upper bold"><p>Super feature: </p></label>
             <select formControlName="feature"
-                    (change)="pushChanges()"
-                    [(ngModel)]="feature"
                     id="feature">
                 <option value="all">All</option>
                 <option value="speed">Speed</option>

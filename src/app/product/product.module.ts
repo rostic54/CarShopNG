@@ -5,7 +5,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 import {ProductComponent} from './product.component';
 import {GoodsListComponent} from './goods-list/goods-list.component';
-import {FilterComponent} from '../filter/filter.component';
+import {FilterComponent} from '../shared/filter/filter.component';
 import {SharedModule} from '../shared/modules/shared.module';
 import {SingleProductComponent} from './single-product/single-product.component';
 import {ColorPipe} from '@shared/pipe/color.pipe';

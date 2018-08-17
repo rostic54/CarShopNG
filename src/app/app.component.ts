@@ -40,7 +40,6 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       );
     this.authService.authInit();
-    console.log(environment.env);
   }
 
   ngOnDestroy() {

@@ -97,8 +97,7 @@ describe('AdminComponent', () => {
         width: '450px',
         data: {obj: goodsList[index], index: index}
       };
-      console.log(component);
-      console.log(goodsList);
+
       component.modificProduct(index);
       expect(spy).toHaveBeenCalledWith(jasmine.any(Function), params);
     }));

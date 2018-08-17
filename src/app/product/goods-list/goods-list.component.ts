@@ -31,7 +31,6 @@ export class GoodsListComponent implements OnInit, OnDestroy {
     private router: Router,
     private activeRoute: ActivatedRoute,
     private purchaseService: PurchaseService,
-    private commonService: CommonService,
     private cdr: ChangeDetectorRef) {
   }
 

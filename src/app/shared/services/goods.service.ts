@@ -4,7 +4,6 @@ import {Injectable} from '@angular/core';
 import {Goods} from '../models/goods.model';
 import {BehaviorSubject, Subject} from 'rxjs';
 import {ToasterService} from 'angular2-toaster';
-import {User} from '@shared/models/user.model';
 import {Order} from '@shared/models/order.model';
 import {FilterModel} from '@shared/models/filter.model';
 
@@ -79,6 +78,7 @@ export class GoodsService {
         this.goodsSubject.next(modifiedGoods);
       });
   }
+
   getFilterCondition(data: FilterModel) {
     this.filterData.next(data);
   }

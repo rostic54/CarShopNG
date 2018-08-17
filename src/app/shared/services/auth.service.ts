@@ -13,7 +13,6 @@ export class AuthService {
   }
 
   signUpUser(cred: { email: string, password: string }) {
-    console.log(cred.password, cred.email);
     firebase.auth().createUserWithEmailAndPassword(cred.email, cred.password)
       .then((response) => {
           this.signInUser(cred.email, cred.password);
@@ -21,7 +20,6 @@ export class AuthService {
         }
       ).catch(
       error => {
-        console.log(error);
         this.currentTokenSubject.next(null);
         this.toasterService.pop('error', 'Error', 'This email has already registered!');
 

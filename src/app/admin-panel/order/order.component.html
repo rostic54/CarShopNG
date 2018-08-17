@@ -6,7 +6,7 @@
               *ngFor="let goods of clientGoods"
     >
       <div class="img-wrap">
-        <img [src]="goods.url.length ? goods.url : imageUrl" alt="car">
+        <img [src]="goods.url.length ? goods.url : defaultImageUrl" alt="car">
       </div>
       <div class="desc">
         <ul class="desc-list">

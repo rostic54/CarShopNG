@@ -13,7 +13,7 @@ import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {AdminModule} from '@app/admin-panel/admin/admin.module';
 import {FilterComponent} from '@shared/filter/filter.component';
 import {RouterTestingModule} from '@angular/router/testing';
-import {BasketIconComponent} from '@app/header/basket-icon/basket-icon.component';
+import {BasketIconComponent} from '@app/header/basket/basket.component';
 
 describe('BasketIconComponent', () => {
   let component: any;

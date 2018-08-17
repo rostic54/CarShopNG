@@ -42,6 +42,9 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     this.goodsService.goodsSubject.subscribe(
       (goods: Goods[]) => {
+       goods.forEach((item, i) => {
+          item.id = i;
+        });
         this.goodsList = goods;
       }
     );

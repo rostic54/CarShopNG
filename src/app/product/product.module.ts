@@ -7,7 +7,7 @@ import {ProductComponent} from './product.component';
 import {GoodsListComponent} from './goods-list/goods-list.component';
 import {FilterComponent} from '../shared/filter/filter.component';
 import {SharedModule} from '../shared/modules/shared.module';
-import {SingleProductComponent} from './single-product/single-product.component';
+import {SingleProductComponent} from './product-detail/single-product.component';
 import {ColorPipe} from '@shared/pipe/color.pipe';
 import {FeaturePipe} from '@shared/pipe/feature.pipe';
 import {PricePipe} from '@shared/pipe/price.pipe';

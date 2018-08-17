@@ -4,7 +4,7 @@
     <div class="goods-list">
         <mat-card class="goods-item clearfix"
                   *ngFor="let goods of goodsList | paginate: { itemsPerPage: 5, currentPage: page }; let i = index"
-                  (click)="modificProduct(i)"
+                  (click)="modificProduct(goods.id)"
         >
             <div class="img-wrap">
                 <img [src]="goods.url.length ? goods.url : imageUrl" alt="car">

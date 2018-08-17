@@ -7,7 +7,7 @@ import {PurchaseService} from '@shared/services/purchase.service';
 
 @Component({
   selector: 'app-single-product',
-  templateUrl: './single-product.component.html',
+  templateUrl: './product-detail.component.html',
   styleUrls: ['./single-product.component.scss']
 })
 export class SingleProductComponent implements OnInit {

@@ -1,8 +1,8 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {GoodsService} from '../../../shared/services/goods.service';
+import {GoodsService} from '@shared/services/goods.service';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
-import {Goods} from '../../../shared/models/goods.model';
+import {Goods} from '@shared/models/goods.model';
 
 @Component({
   selector: 'app-addition-popup',
@@ -51,10 +51,10 @@ export class AdditionPopupComponent implements OnInit {
   }
 
   deleteProduct() {
-    this.goodsService.deleteProduct(this.data.index);
-    this.cleanUpForm();
+    this.goodsService.deleteProduct(this.index);
     this.dialog.closeAll();
   }
+
 
   modifyProductsList(goods: Goods, index: number) {
     this.productsList.splice(index, 1, goods);
@@ -65,7 +65,9 @@ export class AdditionPopupComponent implements OnInit {
     if (this.data) {
       this.modifyProductsList(this.addGoodsForm.value, this.data.index);
     } else {
-      this.productsList.push(this.addGoodsForm.value);
+      const product = this.addGoodsForm.value;
+      product.id = this.productsList.length;
+      this.productsList.push(product);
     }
     this.goodsService.addGoods(this.productsList);
     this.dialog.closeAll();

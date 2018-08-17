@@ -7,8 +7,8 @@ import {GoodsService} from '@shared/services/goods.service';
 
 @Component({
   selector: 'app-basket',
-  templateUrl: './basket-icon.component.html',
-  styleUrls: ['./basket-icon.component.scss']
+  templateUrl: './basket.component.html',
+  styleUrls: ['./basket.component.scss']
 })
 export class BasketIconComponent implements OnInit, OnDestroy {
   subscribe: Subscription;

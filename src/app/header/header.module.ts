@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SignInComponent} from './sign-in/sign-in.component';
 import {SignUpComponent} from './sign-up/sign-up.component';
 import {SharedModule} from '@shared/modules/shared.module';
-import {BasketIconComponent} from './basket-icon/basket-icon.component';
+import {BasketIconComponent} from './basket/basket.component';
 import {MenuComponent} from './menu/menu.component';
 import {HeaderComponent} from './header.component';
 import {RouterModule, Routes} from '@angular/router';

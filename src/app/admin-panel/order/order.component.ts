@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GoodsService} from '@shared/services/goods.service';
 import {Subscription} from 'rxjs';
-import {CommonService} from '@shared/services/common.service';
 
 @Component({
   selector: 'app-order',
@@ -13,10 +12,9 @@ export class OrderComponent implements OnInit, OnDestroy {
   orderList = [];
   clientInfo = [];
   subscribe: Subscription;
-  imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9h_LLTf5LYlXd9-ho5YW4SUOFI4M6vfDVwjc2n6PTBOpCb5z';
+  defaultImageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9h_LLTf5LYlXd9-ho5YW4SUOFI4M6vfDVwjc2n6PTBOpCb5z';
 
-  constructor(private goodsService: GoodsService,
-              private commonService: CommonService) {
+  constructor(private goodsService: GoodsService) {
   }
 
   ngOnInit() {

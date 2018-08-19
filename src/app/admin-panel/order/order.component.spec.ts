@@ -64,7 +64,7 @@ describe('OrderComponent', () => {
     it('Should call getOrders method.', async(() => {
       const order = component.goodsService.getOrder().value;
       component.getOrders(order);
-      expect(component.orderList.length).toBe(1);
+      expect(component.productsList.length).toBe(1);
     }));
   });
 

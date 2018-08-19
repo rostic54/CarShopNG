@@ -46,8 +46,6 @@ export class CartComponent implements OnInit {
 
   getTotal() {
     return this.shoppingList.reduce((sum, item) => {
-      console.log(item);
-      console.log(sum);
       return sum + (+item.price);
     }, 0);
   }

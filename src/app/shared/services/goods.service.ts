@@ -12,6 +12,7 @@ export class GoodsService {
   goodsSubject = new BehaviorSubject([]);
   orderSubject = new BehaviorSubject(null);
   priceLimit = new BehaviorSubject( null);
+
   filterData = new Subject<any>();
   chosenProduct = 0;
   min: number;
@@ -38,6 +39,15 @@ export class GoodsService {
         ( response: {'key': {data: Order, list: Goods[]}})  => {
           this.orderSubject.next(response);
         }
+      );
+  }
+
+  deleteOrder(order) {
+    const token = this.authService.getToken();
+    this.http.put('https://carshop-ff44a.firebaseio.com/order.json?auth=' + token, order)
+      .subscribe(
+        result => this.getOrder(),
+        error => console.log(error)
       );
   }
 

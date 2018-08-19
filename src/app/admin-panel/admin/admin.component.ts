@@ -16,7 +16,9 @@ import {CommonService} from '@shared/services/common.service';
 export class AdminComponent implements OnInit, OnDestroy {
   imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9h_LLTf5LYlXd9-ho5YW4SUOFI4M6vfDVwjc2n6PTBOpCb5z';
   goodsList;
+  order;
   subscribe: Subscription;
+  subscriptionOrder: Subscription;
   name: string;
   page: number;
 
@@ -29,10 +31,17 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getGoods();
+    this.goodsService.getOrder();
     this.subscribe = this.activeRoute.data.subscribe(
       (value: { name: string }) => {
 
         this.name = value.name;
+      }
+    );
+
+    this.subscriptionOrder = this.goodsService.orderSubject.subscribe(
+      order => {
+        this.order = order;
       }
     );
   }
@@ -42,7 +51,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     this.goodsService.goodsSubject.subscribe(
       (goods: Goods[]) => {
-       goods.forEach((item, i) => {
+        goods.forEach((item, i) => {
           item.id = i;
         });
         this.goodsList = goods;
@@ -70,6 +79,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.goodsService.checkSubscription(this.subscribe);
+    this.goodsService.checkSubscription(this.subscriptionOrder);
   }
 
 }

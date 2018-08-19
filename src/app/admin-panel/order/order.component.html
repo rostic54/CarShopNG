@@ -1,7 +1,7 @@
 <div class="order-block">
   <div class="goods-order-list">
     <div class="client-order"
-         *ngFor="let clientGoods of orderList | paginate: { itemsPerPage: 1, currentPage: page }; let i = index">
+         *ngFor="let clientGoods of productsList | paginate: { itemsPerPage: 1, currentPage: page }">
     <mat-card class="goods-item clearfix"
               *ngFor="let goods of clientGoods"
     >
@@ -42,10 +42,15 @@
       <mat-card class="client-info">
         <p>Client Information:</p>
         <ul>
-          <li>Email: {{clientInfo[i]?.email}}</li>
-          <li>Name: {{clientInfo[i]?.name}}</li>
-          <li>Phone: {{clientInfo[i]?.tel}}</li>
+          <li>Email: {{clientInfo[page - 1]?.email}}</li>
+          <li>Name: {{clientInfo[page - 1]?.name}}</li>
+          <li>Phone: {{clientInfo[page - 1]?.tel}}</li>
         </ul>
+        <button mat-raised-button
+                type="button"
+                class="done"
+                (click)="removeOrder(page - 1)"
+        >Done</button>
       </mat-card>
     </div>
   </div>

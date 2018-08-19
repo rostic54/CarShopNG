@@ -9,15 +9,17 @@ import {CommonService} from '@shared/services/common.service';
 import {MockGoodsService} from '@shared/mock-services/mock-goods.services';
 import {AppMaterialModule} from '@shared/modules/app-material.module';
 import {HttpClientModule} from '@angular/common/http';
+import {BasketIconComponent} from '@app/header/basket/basket.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {AdminModule} from '@app/admin-panel/admin/admin.module';
-import {FilterComponent} from '@shared/filter/filter.component';
 import {RouterTestingModule} from '@angular/router/testing';
-import {BasketIconComponent} from '@app/header/basket/basket.component';
+import {SignInComponent} from '@app/header/sign-in/sign-in.component';
+import {MockAuthService} from '@shared/mock-services/mock-auth.service';
+import {AuthService} from '@shared/services/auth.service';
 
-describe('BasketIconComponent', () => {
+describe('SignInComponent', () => {
   let component: any;
-  let fixture: ComponentFixture<BasketIconComponent>;
+  let fixture: ComponentFixture<SignInComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,12 +39,13 @@ describe('BasketIconComponent', () => {
       providers: [
         {provide: CommonService, useClass: CommonService},
         {provide: GoodsService, useClass: MockGoodsService},
+        {provide: AuthService, useClass: MockAuthService},
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
       ]
     }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(BasketIconComponent);
+      fixture = TestBed.createComponent(SignInComponent);
       component = fixture.debugElement.componentInstance;
       component.ngOnInit();
       // fixture.detectChanges();
@@ -57,55 +60,31 @@ describe('BasketIconComponent', () => {
   describe('ngOnInit method', () => {
 
     it('Should call initForm ', async(() => {
-      const spy = spyOn(component, 'getBasketData');
-      const order = JSON.parse(localStorage.getItem('order'));
+      const spy = spyOn(component, 'initForm');
+
       component.ngOnInit();
       expect(spy).toHaveBeenCalled();
-      expect(component.productList).toEqual(order);
+    }));
+  });
+  describe('initForm method', () => {
+
+    it('New form was created ', async(() => {
+      component.initForm();
+      const email = component.signIn.controls['email'];
+      const password = component.signIn.controls['password'];
+      expect(email.valid).toBeFalsy();
+      expect(password.valid).toBeFalsy();
     }));
   });
 
-  describe('ngOnInit method', () => {
+  describe('initForm method', () => {
 
-    it('Should call initForm ', async(() => {
-      const spy = spyOn(component, 'totalCalculate');
-      const orderArr = JSON.parse(localStorage.getItem('order'));
-      component.ngOnInit();
-      let total = 0 ;
-      orderArr.forEach( (item) => {
-        total += (+item.price) * (1 - (+item.discount / 100));
-      });
-      expect(spy).toHaveBeenCalled();
-      expect(component.total).toEqual(total);
+    it('New form was created ', async(() => {
+      const spy = spyOn(component.authService, 'signInUser');
+      component.signIn.controls['email'].setValue('test');
+      component.signIn.controls['password'].setValue('123');
+      component.onSignIn();
+      expect(spy).toHaveBeenCalledWith('test', '123');
     }));
   });
-
-  describe('getTotalPrice method', () => {
-
-    it('Should call total ', async(() => {
-      // const spy = spyOn(component, 'getBasketData');
-      const orderArr = JSON.parse(localStorage.getItem('order'));
-      let total = 0 ;
-      orderArr.forEach( (item) => {
-        total += (+item.price) * (1 - (+item.discount / 100));
-      });
-      const result = component.getTotalPrice();
-      expect(result).toEqual(total);
-    }));
-  });
-
-  describe('rewriteLocalStor and getBasketData method', () => {
-
-    it('Should rewrite and get data from LocalStorage', async(() => {
-      // const orderArr = JSON.parse(localStorage.getItem('order'));
-      const orderArr = component.getBasketData();
-      orderArr.forEach( (item) => {
-        item.price = (+item.price + 1 );
-      });
-      component.rewriteLocalStor(orderArr);
-      const editedrArr = component.getBasketData();
-      expect(editedrArr).toEqual(orderArr);
-    }));
-  });
-
 });

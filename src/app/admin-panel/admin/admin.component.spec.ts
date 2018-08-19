@@ -93,12 +93,13 @@ describe('AdminComponent', () => {
       const spy = spyOn(component.dialog, 'open');
       const index = 1;
       const goodsList = [goods, goods];
+      component.goodsList = goodsList;
       const params = {
         width: '450px',
         data: {obj: goodsList[index], index: index}
       };
 
-      component.modificProduct(index);
+      component.modifyProduct(index);
       expect(spy).toHaveBeenCalledWith(jasmine.any(Function), params);
     }));
   });

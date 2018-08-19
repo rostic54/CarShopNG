@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GoodsService} from '@shared/services/goods.service';
 
 import {MatDialog} from '@angular/material';
-import {AdditionPopupComponent} from './addition-popup/addition-popup.component';
+import {ControlPopupComponent} from './control-popup/control-popup.component';
 import {Goods} from '@shared/models/goods.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
@@ -51,14 +51,14 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   addToServer() {
-    this.dialog.open(AdditionPopupComponent, {
+    this.dialog.open(ControlPopupComponent, {
       width: '450px',
       data: null
     });
   }
 
-  modificProduct(index: number) {
-    this.dialog.open(AdditionPopupComponent, {
+  modifyProduct(index: number) {
+    this.dialog.open(ControlPopupComponent, {
       width: '450px',
       data: {obj: this.goodsList[index], index: index}
     });

@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {ToasterService} from 'angular2-toaster';
 import {environment} from '../../../environments/environment';

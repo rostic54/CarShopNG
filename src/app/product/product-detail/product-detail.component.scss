@@ -1,4 +1,6 @@
-
+.row{
+  flex-direction: column;
+}
 .single-card{
   display: flex;
   flex-direction: column;
@@ -39,6 +41,13 @@
 .buy{
   color: white;
   background-color: #58bdb9;
+}
+.goBack {
+  width: 380px;
+  margin: 0 auto;
+  background-image: url(https://static8.depositphotos.com/1280399/967/i/950/depositphotos_9675708-stock-photo-white-leather-texture-or-background.jpg);
+  color: #17a2b8;
+  cursor: pointer;
 }
 .color-circle {
   width: 20px;

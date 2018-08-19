@@ -19,6 +19,7 @@ export class GoodsListComponent implements OnInit, OnDestroy {
   subscribe: Subscription;
   subscribeFilter: Subscription;
   page: number;
+  viewProducts = 6;
   filterData = {
     min: 0,
     max: 1600000,
@@ -35,6 +36,7 @@ export class GoodsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.page = Math.ceil(this.goodsService.chosenProduct / this.viewProducts);
     this.goodsService.getGoods();
 
     this.subscribe = this.goodsService.goodsSubject.subscribe(
@@ -53,10 +55,8 @@ export class GoodsListComponent implements OnInit, OnDestroy {
     );
   }
 
-  showProductDescription(product: Goods, elem) {
-    if (elem.target.tagName === 'BUTTON' || elem.target.tagName === 'SPAN') {
-      return false;
-    }
+  showProductDescription(product: Goods, page) {
+    this.goodsService.chosenProduct = product.id + 1;
     this.router.navigate([product.id], {relativeTo: this.activeRoute});
   }
 

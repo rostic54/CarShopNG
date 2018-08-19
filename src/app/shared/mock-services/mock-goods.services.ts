@@ -23,6 +23,7 @@ export const user = {
 };
 // export const index = +2;
 
+export const shoppingList = [{price: 1}, {price: 2}, {price: 3}, {price: 4}];
 
 
 export class MockGoodsService {
@@ -56,6 +57,15 @@ export class MockGoodsService {
 
   getFilterCondition(data: FilterModel) {
     // this.filterData.next(data);
+  }
+
+  getLocalStorage() {
+    return JSON.parse(localStorage.getItem('order'));
+  }
+
+  setLocalStorage(shoppingList) {
+    const purchaseArr = JSON.stringify(shoppingList);
+    localStorage.setItem('order', purchaseArr);
   }
 
   checkSubscription(subscription) {

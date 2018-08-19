@@ -18,7 +18,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
       ], {params: {start: '0'}})
     ]),
     trigger('flyToLeft', [
-      state('inRight', style({opacity: 1, transform: 'translateX(0)'})),
+      state('inRight', style({opacity: 1, transform: 'translateX(0) translateY(-38px)'})),
       transition('void => *', [
         style({
           opacity: 0,

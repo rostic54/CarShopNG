@@ -35,33 +35,33 @@ export class CartComponent implements OnInit {
     });
   }
 
-  getGoods() {
-    return JSON.parse(localStorage.getItem('order'));
-  }
-
   removeProduct(index: number) {
     this.shoppingList.splice(index, 1);
     if (!this.shoppingList.length) {
       this.router.navigate(['/']);
     }
-    this.setGoods();
+    this.setGoods(this.shoppingList);
     this.purchaseService.purchaseStatus({amount: this.shoppingList.length, total: this.getTotal()});
   }
 
   getTotal() {
     return this.shoppingList.reduce((sum, item) => {
+      console.log(item);
+      console.log(sum);
       return sum + (+item.price);
     }, 0);
   }
+  getGoods() {
+    return this.goodsService.getLocalStorage();
+  }
 
-  setGoods() {
-    const purchaseArr = JSON.stringify(this.shoppingList);
-    localStorage.setItem('order', purchaseArr);
+  setGoods(shoppingList) {
+    this.goodsService.setLocalStorage(shoppingList);
   }
 
   submit() {
     this.goodsService.sendOrder({list: this.shoppingList, data: this.orderForm.value});
-    this.toasterService.pop('success', 'Your order\'s just sent', 'Wait when our operator\'ll call you' );
+    this.toasterService.pop('success', 'Your order\'s just sent', 'Wait when our operator\'ll call you');
     this.orderForm.reset();
   }
 

@@ -4,7 +4,7 @@ import {SharedModule} from '@shared/modules/shared.module';
 import {GoodsService} from '@shared/services/goods.service';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CommonService} from '@shared/services/common.service';
-import {MockGoodsService} from '@shared/mock-services/mock-goods.services';
+import {MockGoodsService, shoppingList} from '@shared/mock-services/mock-goods.services';
 import {AppMaterialModule} from '@shared/modules/app-material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
@@ -138,7 +138,7 @@ describe('CartComponent', () => {
 
     it('Should call removeProduct method.', async(() => {
       const spy = spyOn(component, 'setGoods');
-      component.shoppingList = [{price: 1}, {price: 2}, {price: 3}, {price: 4}];
+      component.shoppingList = shoppingList;
       component.removeProduct(1);
       expect(spy).toHaveBeenCalled();
     }));
@@ -148,7 +148,7 @@ describe('CartComponent', () => {
 
     it('Should call PurchaseService  method -> purchaseStatus.', async(() => {
       const spy = spyOn(component.purchaseService, 'purchaseStatus');
-      component.shoppingList = [{price: 1}, {price: 2}, {price: 3}, {price: 4}];
+      component.shoppingList = shoppingList;
       component.removeProduct(1);
       expect(spy).toHaveBeenCalled();
     }));
@@ -158,6 +158,7 @@ describe('CartComponent', () => {
 
     it('Should call  method -> getTotal.', async(() => {
       component.shoppingList = [{price: 1}, {price: 2}, {price: 3}, {price: 4}];
+      console.log(component.shoppingList);
       expect(component.getTotal()).toBe(10);
     }));
   });

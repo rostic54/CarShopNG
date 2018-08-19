@@ -3,13 +3,14 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {GoodsService} from '@shared/services/goods.service';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
 import {Goods} from '@shared/models/goods.model';
+import {ToasterService} from 'angular2-toaster';
 
 @Component({
   selector: 'app-addition-popup',
-  templateUrl: './addition-popup.component.html',
-  styleUrls: ['./addition-popup.component.scss']
+  templateUrl: './control-popup.component.html',
+  styleUrls: ['./control-popup.component.scss']
 })
-export class AdditionPopupComponent implements OnInit {
+export class ControlPopupComponent implements OnInit {
   addGoodsForm: FormGroup;
   product: Goods;
   productsList: Goods[];
@@ -17,6 +18,7 @@ export class AdditionPopupComponent implements OnInit {
 
   constructor(private goodsService: GoodsService,
               private dialog: MatDialog,
+              private toasterService: ToasterService,
               @Inject(MAT_DIALOG_DATA) public data: { obj: Goods, index: number }) {
   }
 
@@ -52,6 +54,7 @@ export class AdditionPopupComponent implements OnInit {
 
   deleteProduct() {
     this.goodsService.deleteProduct(this.index);
+    this.toasterService.pop('error', 'The product was deleted');
     this.dialog.closeAll();
   }
 
@@ -64,10 +67,12 @@ export class AdditionPopupComponent implements OnInit {
     this.productsList = this.goodsService.getCurrentGoods();
     if (this.data) {
       this.modifyProductsList(this.addGoodsForm.value, this.data.index);
+      this.toasterService.pop('success', 'The changes\'s saved', 'You\'ve recently done some changes!');
     } else {
       const product = this.addGoodsForm.value;
       product.id = this.productsList.length;
       this.productsList.push(product);
+      this.toasterService.pop('success', 'You\'ve recently added new car!', 'Brande: ' + product.brande);
     }
     this.goodsService.addGoods(this.productsList);
     this.dialog.closeAll();

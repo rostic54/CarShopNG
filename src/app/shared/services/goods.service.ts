@@ -13,6 +13,7 @@ export class GoodsService {
   orderSubject = new BehaviorSubject(null);
   priceLimit = new BehaviorSubject( null);
   filterData = new Subject<any>();
+  chosenProduct = 0;
   min: number;
   max: number;
 
@@ -81,6 +82,15 @@ export class GoodsService {
 
   getFilterCondition(data: FilterModel) {
     this.filterData.next(data);
+  }
+
+  getLocalStorage() {
+    return JSON.parse(localStorage.getItem('order'));
+  }
+
+  setLocalStorage(shoppingList) {
+    const purchaseArr = JSON.stringify(shoppingList);
+    localStorage.setItem('order', purchaseArr);
   }
 
   checkSubscription(subscription) {

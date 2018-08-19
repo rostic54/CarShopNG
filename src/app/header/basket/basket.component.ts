@@ -48,18 +48,12 @@ export class BasketIconComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy() {
-    this.goodsService.checkSubscription(this.subscribe);
-    this.goodsService.checkSubscription(this.subscript);
-  }
-
   getTotalPrice() {
     return this.total;
   }
 
   rewriteLocalStor(productsList) {
-    const purchaseArr = JSON.stringify(productsList);
-    localStorage.setItem('order', purchaseArr);
+    this.goodsService.setLocalStorage(productsList);
   }
 
   totalCalculate() {
@@ -70,11 +64,16 @@ export class BasketIconComponent implements OnInit, OnDestroy {
   }
 
   getBasketData() {
-    return JSON.parse(localStorage.getItem('order'));
+    return this.goodsService.getLocalStorage();
   }
 
   cartPage() {
     this.router.navigate(['./cart'], {relativeTo: this.activeRoute});
 
+  }
+
+  ngOnDestroy() {
+    this.goodsService.checkSubscription(this.subscribe);
+    this.goodsService.checkSubscription(this.subscript);
   }
 }

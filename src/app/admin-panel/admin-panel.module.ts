@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {SharedModule} from '../shared/modules/shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AdditionPopupComponent} from './admin/addition-popup/addition-popup.component';
+import {ControlPopupComponent} from './admin/control-popup/control-popup.component';
 import {HttpClientModule} from '@angular/common/http';
 import {AdminPanelComponent} from './admin-panel.component';
 import {OrderComponent} from './order/order.component';
@@ -10,7 +10,7 @@ import {HeaderModule} from '../header/header.module';
 
 @NgModule({
   declarations: [
-    AdditionPopupComponent,
+    ControlPopupComponent,
     AdminPanelComponent,
     OrderComponent
   ],
@@ -25,7 +25,7 @@ import {HeaderModule} from '../header/header.module';
   exports: [
   ],
   entryComponents: [
-    AdditionPopupComponent
+    ControlPopupComponent
   ]
 })
 export class AdminPanelModule {

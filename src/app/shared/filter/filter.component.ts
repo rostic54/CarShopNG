@@ -19,7 +19,8 @@ export class FilterComponent implements OnInit, OnDestroy {
   color = 'all';
   feature = 'all';
 
-  constructor(private goodsService: GoodsService) {
+  constructor(private goodsService: GoodsService,
+              private commonService: CommonService,) {
   }
 
   ngOnInit() {
@@ -70,7 +71,7 @@ export class FilterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.goodsService.checkSubscription(this.subscribe);
+    this.commonService.checkSubscription(this.subscribe);
   }
 
 }

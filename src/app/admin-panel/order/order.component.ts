@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GoodsService} from '@shared/services/goods.service';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
+import {CommonService} from '@shared/services/common.service';
 
 @Component({
   selector: 'app-order',
@@ -18,6 +19,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   defaultImageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9h_LLTf5LYlXd9-ho5YW4SUOFI4M6vfDVwjc2n6PTBOpCb5z';
 
   constructor(private goodsService: GoodsService,
+              private commonService: CommonService,
               private router: Router,
               private activeRoute: ActivatedRoute) {
   }
@@ -52,7 +54,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.goodsService.checkSubscription(this.subscribe);
+    this.commonService.checkSubscription(this.subscribe);
   }
 
 }

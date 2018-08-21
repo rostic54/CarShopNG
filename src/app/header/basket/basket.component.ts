@@ -73,7 +73,7 @@ export class BasketIconComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.goodsService.checkSubscription(this.subscribe);
-    this.goodsService.checkSubscription(this.subscript);
+    this.commonService.checkSubscription(this.subscribe);
+    this.commonService.checkSubscription(this.subscript);
   }
 }

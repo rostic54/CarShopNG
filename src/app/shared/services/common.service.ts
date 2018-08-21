@@ -39,9 +39,9 @@ export class CommonService {
   //   this.filterData.next(data);
   // }
   //
-  // checkSubscription(subscription) {
-  //   if (subscription) {
-  //     subscription.unsubscribe();
-  //   }
-  // }
+  checkSubscription(subscription) {
+    if (subscription) {
+      subscription.unsubscribe();
+    }
+  }
 }

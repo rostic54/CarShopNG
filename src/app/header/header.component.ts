@@ -23,7 +23,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(public dialog: MatDialog,
               public authService: AuthService,
-              private goodsService: GoodsService) {
+              private commonService: CommonService
+              ) {
   }
 
   ngOnInit() {
@@ -59,7 +60,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.goodsService.checkSubscription(this.subscription);
+    this.commonService.checkSubscription(this.subscription);
   }
 
 }

@@ -7,6 +7,7 @@ import {Goods} from '@shared/models/goods.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {CommonService} from '@shared/services/common.service';
+import {FilterModel} from '@shared/models/filter.model';
 
 @Component({
   selector: 'app-admin',
@@ -19,8 +20,15 @@ export class AdminComponent implements OnInit, OnDestroy {
   order;
   subscribe: Subscription;
   subscriptionOrder: Subscription;
+  subscribeFilter: Subscription;
   name: string;
   page: number;
+  filterData = {
+    min: 0,
+    max: 1600000,
+    color: 'all',
+    feature: 'all'
+  };
 
   constructor(private goodsService: GoodsService,
               public dialog: MatDialog,
@@ -42,6 +50,15 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.subscriptionOrder = this.goodsService.orderSubject.subscribe(
       order => {
         this.order = order;
+      }
+    );
+
+    this.subscribeFilter = this.goodsService.filterData.subscribe(
+      (data: FilterModel) => {
+        if (data) {
+          this.filterData = data;
+          // this.cdr.markForCheck();
+        }
       }
     );
   }
@@ -78,8 +95,9 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.goodsService.checkSubscription(this.subscribe);
-    this.goodsService.checkSubscription(this.subscriptionOrder);
+    this.commonService.checkSubscription(this.subscribe);
+    this.commonService.checkSubscription(this.subscriptionOrder);
+    this.commonService.checkSubscription(this.subscribeFilter);
   }
 
 }

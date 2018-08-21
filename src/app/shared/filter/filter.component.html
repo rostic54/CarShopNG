@@ -1,80 +1,46 @@
-<mat-card  class="filter-wrap">
+<mat-card class="filter-wrap">
     <form [formGroup]="filterForm"
           class="flex-column flex-md-row align-items-center align-items-md-start">
         <div class="price-block">
             <p class="upper bold">Choose price:</p>
-            <div class="field-wrap flex-column">
-            <label for="min-price" class="gray"><span class="gray">Min: {{staticMin}}</span></label>
-            <input formControlName="min"
-                   type="number"
-                   id="min-price"
-                   value="{{minPrice}}"
-                   >
-            </div>
-            <div class="field-wrap flex-column">
-            <label for="max-price" class="gray"><span class="gray">Max: {{staticMax}} </span></label>
-            <input formControlName="max"
-                   type="number"
-                   id="max-price"
-                   value="{{maxPrice}}">
-            </div>
+            <mat-form-field class="field-wrap flex-column">
+                <input matInput
+                       formControlName="min"
+                       type="number"
+                       id="min-price"
+                       placeholder="Min: {{staticMin}}"
+                       value="{{minPrice}}"
+                >
+            </mat-form-field>
+            <mat-form-field class="field-wrap flex-column">
+                <input matInput
+                       formControlName="max"
+                       type="number"
+                       id="max-price"
+                       placeholder="Max: {{staticMax}}"
+                       value="{{maxPrice}}">
+            </mat-form-field>
         </div>
-        <div class="color-block">
+        <mat-radio-group formControlName="color" class="color-block">
             <p class="upper bold">Color: </p>
-            <div class="field-wrap">
-            <label for="red"
-                   class="color-circle"
-                   [ngStyle]="{'color': 'red'}"
-            >Red: </label>
-            <input formControlName="color"
-                   type="radio"
-                   name="color"
-                   value="red"
-                   id="red">
-            </div>
-            <div class="field-wrap">
-            <label for="black" class="color-circle">Black: </label>
-            <input formControlName="color"
-                   type="radio"
-                   name="color"
-                   value="black"
-                   id="black">
-            </div>
-            <div class="field-wrap">
-            <label for="white"
-                   class="color-circle"
-                   [ngStyle]="{'color': 'white', 'backgroundColor': 'black'}"
-            >White: </label>
-            <input formControlName="color"
-                   type="radio"
-                   name="color"
-                   value="white"
-                   id="white">
-            </div>
-            <div class="field-wrap">
-            <label for="all"
-                   class="color-circle"
-            >All: </label>
-            <input formControlName="color"
-                   type="radio"
-                   name="color"
-                   value="all"
-                   id="all">
-            </div>
-        </div>
+            <mat-radio-button value="red">Red</mat-radio-button>
+            <mat-radio-button value="black">Black</mat-radio-button>
+            <mat-radio-button value="white">White</mat-radio-button>
+            <mat-radio-button value="all">All</mat-radio-button>
+        </mat-radio-group>
         <div class="feature-block">
             <label for="feature" class="upper bold"><p>Super feature: </p></label>
-            <select formControlName="feature"
+            <mat-select formControlName="feature"
                     id="feature">
-                <option value="all">All</option>
-                <option value="speed">Speed</option>
-                <option value="Glamour">Glamour</option>
-                <option value="Cabriolet">Cabriolet</option>
-                <option value="Big">Big</option>
-                <option value="Fancy">Fancy</option>
-                <option value="Safety">Safety</option>
-                <option value="Respect">Respect</option>
-            </select>
+                <mat-option value="all">All</mat-option>
+                <mat-option value="speed">Speed</mat-option>
+                <mat-option value="Glamour">Glamour</mat-option>
+                <mat-option value="Cabriolet">Cabriolet</mat-option>
+                <mat-option value="Big">Big</mat-option>
+                <mat-option value="Fancy">Fancy</mat-option>
+                <mat-option value="Safety">Safety</mat-option>
+                <mat-option value="Respect">Respect</mat-option>
+            </mat-select>
         </div>
     </form>
-</mat-card >
+</mat-card>

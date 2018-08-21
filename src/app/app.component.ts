@@ -1,18 +1,14 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AuthService} from './shared/services/auth.service';
-import {AppService} from './shared/services/app.service';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '@shared/services/auth.service';
 import {Subscription} from 'rxjs';
-import { ToasterService, ToasterConfig} from 'angular2-toaster';
-import {environment} from '../environments/environment';
-import {CommonService} from '@shared/services/common.service';
-import {GoodsService} from '@shared/services/goods.service';
+import { ToasterConfig} from 'angular2-toaster';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
   subscription: Subscription;
 
   toasterconfig: ToasterConfig =
@@ -26,23 +22,12 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
   constructor(
-    private authService: AuthService,
-    private goodsService: GoodsService
+    private authService: AuthService
   ) {
   }
 
   ngOnInit() {
-    this.subscription = this.authService.currentTokenSubject
-      .subscribe((token) => {
-          if (!token) {
-            return;
-          }
-        }
-      );
     this.authService.authInit();
   }
 
-  ngOnDestroy() {
-      this.goodsService.checkSubscription(this.subscription);
-  }
 }

@@ -1,6 +1,9 @@
 form{
   display: flex;
   justify-content: space-between;
+  p{
+    margin-bottom: 0;
+  }
 }
 mat-card{
   background-image: url("https://static8.depositphotos.com/1280399/967/i/950/depositphotos_9675708-stock-photo-white-leather-texture-or-background.jpg");
@@ -10,7 +13,6 @@ mat-card{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
 
   label{
     margin-right: 15px;
@@ -28,4 +30,8 @@ mat-card{
   display: flex;
   justify-content: space-around;
   margin: 0 80px;
+}
+.feature-block{
+  width: 250px;
+  border-bottom: 1px solid #eeeeee;
 }

@@ -103,9 +103,4 @@ export class GoodsService {
     localStorage.setItem('order', purchaseArr);
   }
 
-  checkSubscription(subscription) {
-    if (subscription) {
-      subscription.unsubscribe();
-    }
-  }
 }

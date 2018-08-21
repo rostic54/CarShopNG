@@ -1,12 +1,20 @@
-<div class="container"><h2>Hello, Admin!</h2>
-    <div class="add"><button class="add-btn" mat-raised-button (click)="addToServer()">Add new</button>
-    <button class="order-btn"
-            mat-raised-button
-            [disabled]="!order"
-            (click)="orderList()">Look orders</button></div>
+<div class="container product-list"><h2>Hello, Admin!</h2>
+        <app-filter class="filter-wrap"></app-filter>
+    <div class="button-line">
+        <button class="add-btn"
+                mat-raised-button
+                (click)="addToServer()">Add new
+        </button>
+        <button class="order-btn"
+                mat-raised-button
+                [disabled]="!order"
+                (click)="orderList()">Look orders
+        </button>
+    </div>
     <div class="goods-list">
         <mat-card class="goods-item clearfix"
-                  *ngFor="let goods of goodsList | paginate: { itemsPerPage: 5, currentPage: page }; let i = index"
+                  *ngFor="let goods of goodsList | price:filterData.min:filterData.max | color:filterData.color |
+                        feature:filterData.feature | paginate: { itemsPerPage: 5, currentPage: page }; let i = index"
                   (click)="modifyProduct(goods.id)"
         >
             <div class="img-wrap">

@@ -1,7 +1,7 @@
-import {Component, OnInit, ChangeDetectorRef, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
-import {Observable, Subscription} from 'rxjs';
+import { Subscription} from 'rxjs';
 import {Goods} from '@shared/models/goods.model';
 import {GoodsService} from '@shared/services/goods.service';
 import {PurchaseService} from '@shared/services/purchase.service';
@@ -30,6 +30,7 @@ export class GoodsListComponent implements OnInit, OnDestroy {
   constructor(
     private goodsService: GoodsService,
     private router: Router,
+    private commonService: CommonService,
     private activeRoute: ActivatedRoute,
     private purchaseService: PurchaseService,
     private cdr: ChangeDetectorRef) {
@@ -55,7 +56,7 @@ export class GoodsListComponent implements OnInit, OnDestroy {
     );
   }
 
-  showProductDescription(product: Goods, page) {
+  showProductDescription(product: Goods) {
     this.goodsService.chosenProduct = product.id + 1;
     this.router.navigate([product.id], {relativeTo: this.activeRoute});
   }
@@ -65,7 +66,7 @@ export class GoodsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.goodsService.checkSubscription(this.subscribe);
-    this.goodsService.checkSubscription(this.subscribeFilter);
+    this.commonService.checkSubscription(this.subscribe);
+    this.commonService.checkSubscription(this.subscribeFilter);
   }
 }

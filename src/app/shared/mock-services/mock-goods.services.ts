@@ -17,7 +17,7 @@ export const goods = {
 };
 
 export const user = {
-  email: 'test@test.com',
+  email: 'admin@admin.com',
   name: 'Alex',
   tel: 123456
 };
@@ -30,6 +30,7 @@ export class MockGoodsService {
   goodsSubject = of([goods]);
   orderSubject = of({'number': {data: goods, list: user}});
   priceLimit = of({minPrice: 10, maxPrice: 50});
+  chosenProduct = 0;
   filterData = of({
     min: 0,
     max: 1600000,

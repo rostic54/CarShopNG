@@ -8,13 +8,13 @@ import {AdminPanelModule} from '../admin-panel.module';
 
 @NgModule({
   declarations: [
-    AdminComponent
+    AdminComponent,
   ],
   imports: [
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule,
     SharedModule,
+    HttpClientModule,
     AdminPanelModule,
     NgxPaginationModule,
   ],

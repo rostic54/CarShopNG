@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {SharedModule} from '../shared/modules/shared.module';
+import {SharedModule} from '@shared/modules/shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ControlPopupComponent} from './admin/control-popup/control-popup.component';
 import {HttpClientModule} from '@angular/common/http';

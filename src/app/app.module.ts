@@ -2,8 +2,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {RouterModule} from '@angular/router';
-import {Routes} from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import {ToasterModule, ToasterService} from 'angular2-toaster';
@@ -13,14 +11,13 @@ import {AppComponent} from './app.component';
 import {HeaderModule} from './header/header.module';
 import {ProductModule} from './product/product.module';
 import {FooterComponent} from './footer/footer.component';
-import {SharedModule} from './shared/modules/shared.module';
+import {SharedModule} from '@shared/modules/shared.module';
 import {AuthService} from '@shared/services/auth.service';
 import {AppService} from '@shared/services/app.service';
 import {GoodsService} from '@shared/services/goods.service';
 import {AdminModule} from './admin-panel/admin/admin.module';
 import {PurchaseService} from '@shared/services/purchase.service';
 import { CartComponent } from './cart/cart.component';
-import {ProductComponent} from './product/product.component';
 import {AdminGuard} from './admin-panel/admin/admin.guard';
 import { AboutComponent } from './about/about.component';
 import { ContactsComponent } from './contacts/contacts.component';
@@ -44,13 +41,13 @@ import {APP_BASE_HREF} from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SharedModule,
     ProductModule,
     HeaderModule,
     AdminModule,
     AdminPanelModule,
     AppRoutingModule,
     SliderModule,
-    SharedModule,
     ToasterModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDm1BYCuRhX5Y9Viy5lyi91gH6CtyW-Aj0'

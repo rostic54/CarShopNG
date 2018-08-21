@@ -76,6 +76,6 @@ export class AuthService {
   }
 
   isAdmin() {
-    return this.email === 'test@test.com';
+    return this.email === 'admin@admin.com';
   }
 }

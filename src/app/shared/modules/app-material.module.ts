@@ -7,7 +7,7 @@ import {
   MatFormFieldModule,
   MatDialogModule,
   MatIconModule,
-  MatGridListModule
+  MatGridListModule, MatRadioModule, MatSelectModule, MatOptionModule, MatExpansionModule
 } from '@angular/material';
 
 @NgModule({
@@ -18,8 +18,12 @@ import {
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatRadioModule,
     MatDialogModule,
+    MatSelectModule,
+    MatOptionModule,
     MatIconModule,
+    MatExpansionModule,
     MatGridListModule
   ],
   exports: [
@@ -27,7 +31,11 @@ import {
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
+    MatExpansionModule,
+    MatRadioModule,
     MatButtonModule,
+    MatSelectModule,
+    MatOptionModule,
     MatDialogModule,
     MatGridListModule,
   ]

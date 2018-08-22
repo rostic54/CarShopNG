@@ -4,7 +4,7 @@ import {SharedModule} from '@shared/modules/shared.module';
 import {ProductModule} from '@app/product/product.module';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CommonService} from '@shared/services/common.service';
-import {GoodsService} from '@shared/services/goods.service';
+import {ProductsService} from '@shared/services/products.service';
 import {HttpClientModule} from '@angular/common/http';
 import {goods, MockGoodsService} from '@shared/mock-services/mock-goods.services';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
@@ -30,7 +30,7 @@ describe('AdminComponent', () => {
       ],
       providers: [
         {provide: CommonService, useClass: CommonService},
-        {provide: GoodsService, useClass: MockGoodsService},
+        {provide: ProductsService, useClass: MockGoodsService},
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
@@ -56,18 +56,9 @@ describe('AdminComponent', () => {
     }));
   });
 
-  // describe('ngOnInit method', () => {  // skipt because didn't know how to work with router
-  //
-  //   fit('Should set name from route data', async(() => {
-  //     component.ngOnInit();
-  //     console.log(component);
-  //     expect(component.name).not.toBe(undefined);
-  //   }));
-  // });
-
   describe('getGoods method', () => {
 
-    it('Should call getGoods method in GoodsService', async(() => {
+    it('Should call getGoods method in ProductsService', async(() => {
       const spy = spyOn(component.goodsService, 'getGoods');
       component.getGoods();
       expect(spy).toHaveBeenCalledWith();
@@ -87,7 +78,7 @@ describe('AdminComponent', () => {
     }));
   });
 
-  describe('getGoods method', () => {  //  strange situation
+  describe('getGoods method', () => {
 
     it('Show popUp form for edit some product', async(() => {
       const spy = spyOn(component.dialog, 'open');
@@ -101,6 +92,15 @@ describe('AdminComponent', () => {
 
       component.modifyProduct(index);
       expect(spy).toHaveBeenCalledWith(jasmine.any(Function), params);
+    }));
+  });
+
+  describe('orderList method', () => {
+
+    it('Should navigate to \' Orders\'', async(() => {
+      const spy = spyOn(component.router, 'navigate');
+      component.orderList();
+      expect(spy).toHaveBeenCalledWith(['orders'], {relativeTo: component.activeRoute});
     }));
   });
 

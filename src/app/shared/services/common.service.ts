@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {FilterModel} from '@shared/models/filter.model';
-import {BehaviorSubject, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

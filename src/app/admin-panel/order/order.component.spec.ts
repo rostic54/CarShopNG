@@ -8,10 +8,10 @@ import {CommonService} from '@shared/services/common.service';
 import {RouterModule} from '@angular/router';
 import {SharedModule} from '@shared/modules/shared.module';
 import {ProductModule} from '@app/product/product.module';
-import {GoodsService} from '@shared/services/goods.service';
+import {ProductsService} from '@shared/services/products.service';
 import {OrderComponent} from '@app/admin-panel/order/order.component';
 import {AdminModule} from '@app/admin-panel/admin/admin.module';
-import {Goods} from '@shared/models/goods.model';
+import {Product} from '@shared/models/goods.model';
 import {User} from '@shared/models/user.model';
 
 describe('OrderComponent', () => {
@@ -33,7 +33,7 @@ describe('OrderComponent', () => {
       ],
       providers: [
         {provide: CommonService, useClass: CommonService},
-        {provide: GoodsService, useClass: MockGoodsService},
+        {provide: ProductsService, useClass: MockGoodsService},
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA

@@ -1,5 +1,5 @@
 
-export class Goods {
+export class Product {
   modelName: string;
   brande: string;
   price: number;

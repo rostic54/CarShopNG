@@ -14,7 +14,7 @@ import {FooterComponent} from './footer/footer.component';
 import {SharedModule} from '@shared/modules/shared.module';
 import {AuthService} from '@shared/services/auth.service';
 import {AppService} from '@shared/services/app.service';
-import {GoodsService} from '@shared/services/goods.service';
+import {ProductsService} from '@shared/services/products.service';
 import {AdminModule} from './admin-panel/admin/admin.module';
 import {PurchaseService} from '@shared/services/purchase.service';
 import { CartComponent } from './cart/cart.component';
@@ -57,7 +57,7 @@ import {APP_BASE_HREF} from '@angular/common';
   providers: [
     AuthService,
     AppService,
-    GoodsService,
+    ProductsService,
     ToasterService,
     PurchaseService,
     AdminGuard,

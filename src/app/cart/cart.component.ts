@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Goods} from '@shared/models/goods.model';
-import {GoodsService} from '@shared/services/goods.service';
+import {Product} from '@shared/models/goods.model';
+import {ProductsService} from '@shared/services/products.service';
 import {PurchaseService} from '@shared/services/purchase.service';
 import {ToasterService} from 'angular2-toaster';
 import {Router} from '@angular/router';
@@ -12,11 +12,11 @@ import {Router} from '@angular/router';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  shoppingList: Goods[];
+  shoppingList: Product[];
   orderForm: FormGroup;
   imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9h_LLTf5LYlXd9-ho5YW4SUOFI4M6vfDVwjc2n6PTBOpCb5z';
 
-  constructor(private goodsService: GoodsService,
+  constructor(private goodsService: ProductsService,
               private purchaseService: PurchaseService,
               private toasterService: ToasterService,
               private router: Router) {

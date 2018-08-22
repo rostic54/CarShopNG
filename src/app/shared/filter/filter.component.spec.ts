@@ -2,7 +2,7 @@ import {RouterModule} from '@angular/router';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ProductModule} from '@app/product/product.module';
 import {SharedModule} from '../modules/shared.module';
-import {GoodsService} from '../services/goods.service';
+import {ProductsService} from '../services/products.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppModule} from '@app/app.module';
 import {CommonService} from '../services/common.service';
@@ -35,7 +35,7 @@ describe('FilterComponent', () => {
       ],
       providers: [
         {provide: CommonService, useClass: CommonService},
-        {provide: GoodsService, useClass: MockGoodsService},
+        {provide: ProductsService, useClass: MockGoodsService},
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
@@ -59,7 +59,7 @@ describe('FilterComponent', () => {
     it('Should call initForm and create valid form', async(() => {
       const spy = spyOn(component, 'initForm');
       component.ngOnInit();
-      console.log(spy);
+
       expect(spy).toHaveBeenCalled();
       expect(component.filterForm.valid).toBeTruthy();
     }));
@@ -94,7 +94,6 @@ describe('FilterComponent', () => {
     it('Should call goodsService -> getFilterCondition', async(() => {
       const spy = spyOn(component.goodsService, 'getFilterCondition');
       component.ngOnInit();
-      // console.log(component.filterForm.dirty);
       component.pushChanges();
       expect(spy).toHaveBeenCalled();
     }));

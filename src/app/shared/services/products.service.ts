@@ -1,14 +1,14 @@
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from './auth.service';
 import {Injectable} from '@angular/core';
-import {Goods} from '../models/goods.model';
+import {Product} from '../models/goods.model';
 import {BehaviorSubject, Subject} from 'rxjs';
 import {ToasterService} from 'angular2-toaster';
 import {Order} from '@shared/models/order.model';
 import {FilterModel} from '@shared/models/filter.model';
 
 @Injectable()
-export class GoodsService {
+export class ProductsService {
   goodsSubject = new BehaviorSubject([]);
   orderSubject = new BehaviorSubject(null);
   priceLimit = new BehaviorSubject( null);
@@ -24,7 +24,7 @@ export class GoodsService {
 
   }
 
-  sendOrder(order: { list: Goods[], data: any }) {
+  sendOrder(order: { list: Product[], data: any }) {
     const token = this.authService.getToken();
     this.http.post('https://carshop-ff44a.firebaseio.com/order.json?auth=' + token, order)
       .subscribe(
@@ -36,7 +36,7 @@ export class GoodsService {
   getOrder() {
     this.http.get('https://carshop-ff44a.firebaseio.com/order.json')
       .subscribe(
-        ( response: {'key': {data: Order, list: Goods[]}})  => {
+        ( response: {'key': {data: Order, list: Product[]}})  => {
           this.orderSubject.next(response);
         }
       );
@@ -65,28 +65,35 @@ export class GoodsService {
   addGoods(goodsList) {
     const token = this.authService.getToken();
     this.http.put('https://carshop-ff44a.firebaseio.com/data.json?auth=' + token, goodsList)
-      .subscribe((data: Goods[]) => {
-        this.goodsSubject.next(data);
+      .subscribe((products: Product[]) => {
+        const modifiedProduct = this.priceLimitCalulate(products);
+        this.goodsSubject.next(modifiedProduct);
+        this.priceLimit.next({minPrice: this.min, maxPrice: this.max});
       });
   }
 
-  getGoods() {
+  priceLimitCalulate(products: Product[]) {
     let index = 0;
+    this.min = this.max = products[0].price;
+    return products.map(item => {
+      item.id = index++;
+      if (+item.price < this.min) {
+        this.min = item.price;
+      }
+      if (+item.price > this.max) {
+        this.max = item.price;
+      }
+      return item;
+    });
+  }
+
+  getGoods() {
     this.http.get('https://carshop-ff44a.firebaseio.com/data.json')
-      .subscribe((goods: Goods[]) => {
-        this.min = this.max = goods[0].price; /* getting cost limit 'height' and 'low' */
-        const modifiedGoods = goods.map(item => {
-          item.id = index++;
-          if (+item.price < this.min) {
-            this.min = item.price;
-          }
-          if (+item.price > this.max) {
-            this.max = item.price;
-          }
-          return item;
-        });
+      .subscribe((products: Product[]) => {
+        /* getting cost limit 'height' and 'low' */
+        const modifiedProduct = this.priceLimitCalulate(products);
         this.priceLimit.next({minPrice: this.min, maxPrice: this.max});
-        this.goodsSubject.next(modifiedGoods);
+        this.goodsSubject.next(modifiedProduct);
       });
   }
 

@@ -2,7 +2,7 @@ import {RouterModule} from '@angular/router';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ProductModule} from '@app/product/product.module';
 import {SharedModule} from '@shared/modules/shared.module';
-import {GoodsService} from '@shared/services/goods.service';
+import {ProductsService} from '@shared/services/products.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppModule} from '@app/app.module';
 import {CommonService} from '@shared/services/common.service';
@@ -36,7 +36,7 @@ describe('BasketIconComponent', () => {
       ],
       providers: [
         {provide: CommonService, useClass: CommonService},
-        {provide: GoodsService, useClass: MockGoodsService},
+        {provide: ProductsService, useClass: MockGoodsService},
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA

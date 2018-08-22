@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {GoodsService} from '../services/goods.service';
+import {ProductsService} from '../services/products.service';
 import {Subscription} from 'rxjs';
 import {CommonService} from '../services/common.service';
 
@@ -19,7 +19,7 @@ export class FilterComponent implements OnInit, OnDestroy {
   color = 'all';
   feature = 'all';
 
-  constructor(private goodsService: GoodsService,
+  constructor(private goodsService: ProductsService,
               private commonService: CommonService,) {
   }
 

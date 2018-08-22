@@ -1,7 +1,10 @@
 <h2 mat-dialog-title  class="text-center">Fill up information</h2>
 <form [formGroup]="signIn">
   <mat-form-field>
-    <input matInput formControlName="email" placeholder="Email">
+    <input matInput
+           pattern="(?=.*[.]).*$"
+           formControlName="email"
+           placeholder="Email">
   </mat-form-field>
   <mat-form-field>
     <input matInput type="password" formControlName="password" placeholder="Password">

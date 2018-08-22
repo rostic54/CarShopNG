@@ -1,4 +1,4 @@
-import {Goods} from '@shared/models/goods.model';
+import {Product} from '@shared/models/goods.model';
 import {Observable, of, Subject, Subscribable} from 'rxjs';
 import {Order} from '@shared/models/order.model';
 import {FilterModel} from '@shared/models/filter.model';
@@ -14,6 +14,7 @@ export const goods = {
   url: 'url',
   description: 'example',
   id: 3,
+  index: 3
 };
 
 export const user = {
@@ -47,7 +48,7 @@ export class MockGoodsService {
   }
 
   getCurrentGoods() {
-    return [];
+    return [goods, goods];
   }
 
   deleteProduct(index: number) {

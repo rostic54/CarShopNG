@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Goods} from '@shared/models/goods.model';
-import {GoodsService} from '@shared/services/goods.service';
+import {Product} from '@shared/models/goods.model';
+import {ProductsService} from '@shared/services/products.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {PurchaseService} from '@shared/services/purchase.service';
@@ -11,11 +11,11 @@ import {PurchaseService} from '@shared/services/purchase.service';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-  goodsList: Goods[];
+  goodsList: Product[];
   id: number;
   private subscription: Subscription;
 
-  constructor(private goodsService: GoodsService,
+  constructor(private goodsService: ProductsService,
               private activateRoute: ActivatedRoute,
               private router: Router,
               private purchaseService: PurchaseService) {
@@ -27,12 +27,12 @@ export class ProductDetailComponent implements OnInit {
     this.goodsService.getGoods();
 
     this.goodsService.goodsSubject.subscribe(
-      (goods: Goods[]) => {
+      (goods: Product[]) => {
         this.goodsList = goods;
       });
   }
 
-  addToCart(product: Goods) {
+  addToCart(product: Product) {
     this.purchaseService.addProduct(product);
   }
 

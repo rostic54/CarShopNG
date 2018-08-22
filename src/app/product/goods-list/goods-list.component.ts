@@ -2,8 +2,8 @@ import {Component, OnInit, ChangeDetectorRef, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
 import { Subscription} from 'rxjs';
-import {Goods} from '@shared/models/goods.model';
-import {GoodsService} from '@shared/services/goods.service';
+import {Product} from '@shared/models/goods.model';
+import {ProductsService} from '@shared/services/products.service';
 import {PurchaseService} from '@shared/services/purchase.service';
 import {CommonService} from '@shared/services/common.service';
 import {FilterModel} from '@shared/models/filter.model';
@@ -15,7 +15,7 @@ import {FilterModel} from '@shared/models/filter.model';
   styleUrls: ['./goods-list.component.scss'],
 })
 export class GoodsListComponent implements OnInit, OnDestroy {
-  goodsList: Goods[];
+  goodsList: Product[];
   subscribe: Subscription;
   subscribeFilter: Subscription;
   page: number;
@@ -28,7 +28,7 @@ export class GoodsListComponent implements OnInit, OnDestroy {
   };
 
   constructor(
-    private goodsService: GoodsService,
+    private goodsService: ProductsService,
     private router: Router,
     private commonService: CommonService,
     private activeRoute: ActivatedRoute,
@@ -41,7 +41,7 @@ export class GoodsListComponent implements OnInit, OnDestroy {
     this.goodsService.getGoods();
 
     this.subscribe = this.goodsService.goodsSubject.subscribe(
-      (goods: Goods[]) => {
+      (goods: Product[]) => {
         this.goodsList = goods;
       }
     );
@@ -56,12 +56,12 @@ export class GoodsListComponent implements OnInit, OnDestroy {
     );
   }
 
-  showProductDescription(product: Goods) {
+  showProductDescription(product: Product) {
     this.goodsService.chosenProduct = product.id + 1;
     this.router.navigate([product.id], {relativeTo: this.activeRoute});
   }
 
-  addToCart(product: Goods) {
+  addToCart(product: Product) {
     this.purchaseService.addProduct(product);
   }
 

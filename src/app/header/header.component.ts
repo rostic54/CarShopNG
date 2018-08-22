@@ -7,7 +7,7 @@ import {AuthService} from '@shared/services/auth.service';
 import {Subscription} from 'rxjs';
 import {ToasterService} from 'angular2-toaster';
 import {CommonService} from '@shared/services/common.service';
-import {GoodsService} from '@shared/services/goods.service';
+import {ProductsService} from '@shared/services/products.service';
 
 @Component({
   selector: 'app-header',

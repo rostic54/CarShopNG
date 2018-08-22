@@ -1,14 +1,17 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {GoodsService} from '@shared/services/goods.service';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {ProductsService} from '@shared/services/products.service';
 
 import {MatDialog} from '@angular/material';
 import {ControlPopupComponent} from './control-popup/control-popup.component';
-import {Goods} from '@shared/models/goods.model';
+import {Product} from '@shared/models/goods.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {CommonService} from '@shared/services/common.service';
 import {FilterModel} from '@shared/models/filter.model';
 
+/**
+ * @summary Admin component
+ */
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -30,16 +33,28 @@ export class AdminComponent implements OnInit, OnDestroy {
     feature: 'all'
   };
 
-  constructor(private goodsService: GoodsService,
+  /**
+   * @summary Control-poUp component constructor
+   * @param productsService - Product service
+   * @param dialog - MatDialog service (popUp)
+   * @param commonService - CommonService Service
+   * @param activeRoute - Activated route Service
+   * @param router -  Route Service
+   */
+  constructor(private productsService: ProductsService,
               public dialog: MatDialog,
               private commonService: CommonService,
               private router: Router,
-              private activeRoute: ActivatedRoute) {
+              private activeRoute: ActivatedRoute,
+              ) {
   }
 
+  /**
+   * @summary Call getGoods, getOrder from goods service, fetch initial name & order & filter data
+   * */
   ngOnInit() {
     this.getGoods();
-    this.goodsService.getOrder();
+    this.productsService.getOrder();
     this.subscribe = this.activeRoute.data.subscribe(
       (value: { name: string }) => {
 
@@ -47,13 +62,13 @@ export class AdminComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.subscriptionOrder = this.goodsService.orderSubject.subscribe(
+    this.subscriptionOrder = this.productsService.orderSubject.subscribe(
       order => {
         this.order = order;
       }
     );
 
-    this.subscribeFilter = this.goodsService.filterData.subscribe(
+    this.subscribeFilter = this.productsService.filterData.subscribe(
       (data: FilterModel) => {
         if (data) {
           this.filterData = data;
@@ -63,11 +78,14 @@ export class AdminComponent implements OnInit, OnDestroy {
     );
   }
 
+  /**
+   * @summary Call getGoods, getOrder from goods service, fetch initial name & order & filter data
+   * */
   getGoods() {
-    this.goodsService.getGoods();
+    this.productsService.getGoods();
 
-    this.goodsService.goodsSubject.subscribe(
-      (goods: Goods[]) => {
+    this.productsService.goodsSubject.subscribe(
+      (goods: Product[]) => {
         goods.forEach((item, i) => {
           item.id = i;
         });

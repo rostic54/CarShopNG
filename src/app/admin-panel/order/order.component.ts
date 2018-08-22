@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {GoodsService} from '@shared/services/goods.service';
+import {ProductsService} from '@shared/services/products.service';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CommonService} from '@shared/services/common.service';
@@ -18,7 +18,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   subscribe: Subscription;
   defaultImageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9h_LLTf5LYlXd9-ho5YW4SUOFI4M6vfDVwjc2n6PTBOpCb5z';
 
-  constructor(private goodsService: GoodsService,
+  constructor(private goodsService: ProductsService,
               private commonService: CommonService,
               private router: Router,
               private activeRoute: ActivatedRoute) {

@@ -1,7 +1,7 @@
 import {RouterModule} from '@angular/router';
 import {ProductModule} from '@app/product/product.module';
 import {SharedModule} from '@shared/modules/shared.module';
-import {GoodsService} from '@shared/services/goods.service';
+import {ProductsService} from '@shared/services/products.service';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CommonService} from '@shared/services/common.service';
 import {MockGoodsService, shoppingList} from '@shared/mock-services/mock-goods.services';
@@ -40,7 +40,7 @@ describe('CartComponent', () => {
       ],
       providers: [
         {provide: CommonService, useClass: CommonService},
-        {provide: GoodsService, useClass: MockGoodsService},
+        {provide: ProductsService, useClass: MockGoodsService},
         {provide: PurchaseService, useClass: MockPurchaseService},
         ToasterService,
       ],
@@ -158,7 +158,6 @@ describe('CartComponent', () => {
 
     it('Should call  method -> getTotal.', async(() => {
       component.shoppingList = [{price: 1}, {price: 2}, {price: 3}, {price: 4}];
-      console.log(component.shoppingList);
       expect(component.getTotal()).toBe(10);
     }));
   });

@@ -4,6 +4,9 @@ import {ProductsService} from '../services/products.service';
 import {Subscription} from 'rxjs';
 import {CommonService} from '../services/common.service';
 
+/**
+ * @summary Filter component
+ */
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
@@ -18,13 +21,20 @@ export class FilterComponent implements OnInit, OnDestroy {
   staticMin: number;
   color = 'all';
   feature = 'all';
-
-  constructor(private goodsService: ProductsService,
+  /**
+   * @summary Control-poUp component constructor
+   * @param commonService - CommonService
+   * @param productsService - Product Service
+   */
+  constructor(private productsService: ProductsService,
               private commonService: CommonService,) {
   }
 
+  /**
+   * @summary receiving max & min price of all products, calling initForm
+   */
   ngOnInit() {
-    this.subscribe = this.goodsService.priceLimit.subscribe(
+    this.subscribe = this.productsService.priceLimit.subscribe(
       priceLimit => {
         if (priceLimit) {
           this.minPrice = this.staticMin = priceLimit.minPrice;
@@ -37,6 +47,9 @@ export class FilterComponent implements OnInit, OnDestroy {
     this.initForm();
   }
 
+  /**
+   * @summary form init & change a price if it isn't within limits min-max
+   */
   initForm () {
     this.filterForm = new FormGroup({
       'min': new FormControl([this.minPrice]),
@@ -66,10 +79,16 @@ export class FilterComponent implements OnInit, OnDestroy {
     );
   }
 
+  /**
+   * @summary rewriting filter dating
+   */
   pushChanges() {
-    this.goodsService.getFilterCondition(this.filterForm.value);
+    this.productsService.getFilterCondition(this.filterForm.value);
   }
 
+  /**
+   * @summary logic clean
+   */
   ngOnDestroy() {
     this.commonService.checkSubscription(this.subscribe);
   }

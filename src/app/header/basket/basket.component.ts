@@ -1,10 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {PurchaseService} from '../../shared/services/purchase.service';
+import {PurchaseService} from '@shared/services/purchase.service';
 import {Subscription} from 'rxjs';
 import {CommonService} from '@shared/services/common.service';
 import {ProductsService} from '@shared/services/products.service';
 
+/**
+ * @summary BasketIcon component
+ */
 @Component({
   selector: 'app-basket',
   templateUrl: './basket.component.html',
@@ -16,17 +19,28 @@ export class BasketIconComponent implements OnInit, OnDestroy {
   subscript: Subscription;
   total = 0;
 
+  /**
+   * @summary Control-poUp component constructor
+   * @param purchaseService - Purchase service
+   * @param router - Router
+   * @param commonService - CommonService
+   * @param activeRoute - Activating route
+   * @param productsService - Product Service
+   */
   constructor(private purchaseService: PurchaseService,
               private router: Router,
               private commonService: CommonService,
               private activeRoute: ActivatedRoute,
-              private goodsService: ProductsService) {
+              private productsService: ProductsService) {
   }
 
+  /**
+   * @summary checking & getting data from Local Storage, calculate of general summ & rewrite Local Storage, getting order length
+   */
   ngOnInit() {
-
-    if (this.getBasketData()) {
-      this.productList = this.getBasketData();
+    const dataLocalStorage = this.getBasketData();
+    if (dataLocalStorage) {
+      this.productList = dataLocalStorage;
       this.totalCalculate();
     }
     this.subscribe = this.purchaseService.purchaseSubject.subscribe(
@@ -48,14 +62,24 @@ export class BasketIconComponent implements OnInit, OnDestroy {
     );
   }
 
+  /**
+   * @summary getting whole price
+   */
   getTotalPrice() {
     return this.total;
   }
 
+  /**
+   * @summary saving order to Local Storage
+   * @param productsList - list of products
+   */
   rewriteLocalStor(productsList) {
-    this.goodsService.setLocalStorage(productsList);
+    this.productsService.setLocalStorage(productsList);
   }
 
+  /**
+   * @summary total price calculate
+   */
   totalCalculate() {
     this.total = 0;
     this.productList.forEach(item => {
@@ -63,15 +87,24 @@ export class BasketIconComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * @summary getting order from Local Storage
+   */
   getBasketData() {
-    return this.goodsService.getLocalStorage();
+    return this.productsService.getLocalStorage();
   }
 
+  /**
+   * @summary navigating to cart page
+   */
   cartPage() {
     this.router.navigate(['./cart'], {relativeTo: this.activeRoute});
 
   }
 
+  /**
+   * clean of logic
+   */
   ngOnDestroy() {
     this.commonService.checkSubscription(this.subscribe);
     this.commonService.checkSubscription(this.subscript);

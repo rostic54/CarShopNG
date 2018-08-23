@@ -3,7 +3,7 @@ import {ProductsService} from '@shared/services/products.service';
 
 import {MatDialog} from '@angular/material';
 import {ControlPopupComponent} from './control-popup/control-popup.component';
-import {Product} from '@shared/models/goods.model';
+import {Product} from '@shared/models/product.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {CommonService} from '@shared/services/common.service';
@@ -79,12 +79,12 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * @summary Call getGoods, getOrder from goods service, fetch initial name & order & filter data
+   * @summary Get products from product service
    * */
   getGoods() {
     this.productsService.getGoods();
 
-    this.productsService.goodsSubject.subscribe(
+    this.productsService.productsSubject.subscribe(
       (goods: Product[]) => {
         goods.forEach((item, i) => {
           item.id = i;
@@ -94,6 +94,9 @@ export class AdminComponent implements OnInit, OnDestroy {
     );
   }
 
+  /**
+   * @summary Open popUp window for addition new product
+   * */
   addToServer() {
     this.dialog.open(ControlPopupComponent, {
       width: '450px',
@@ -101,6 +104,10 @@ export class AdminComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * @summary Open popUp window for edition new product
+   * @param index - index of product in list
+   * */
   modifyProduct(index: number) {
     this.dialog.open(ControlPopupComponent, {
       width: '450px',
@@ -108,10 +115,16 @@ export class AdminComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * @summary Navigate to orders list
+   * */
   orderList() {
     this.router.navigate(['orders'], {relativeTo: this.activeRoute});
   }
 
+  /**
+   * @summary Cleanup logic.
+   * */
   ngOnDestroy() {
     this.commonService.checkSubscription(this.subscribe);
     this.commonService.checkSubscription(this.subscriptionOrder);

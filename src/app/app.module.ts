@@ -13,7 +13,6 @@ import {ProductModule} from './product/product.module';
 import {FooterComponent} from './footer/footer.component';
 import {SharedModule} from '@shared/modules/shared.module';
 import {AuthService} from '@shared/services/auth.service';
-import {AppService} from '@shared/services/app.service';
 import {ProductsService} from '@shared/services/products.service';
 import {AdminModule} from './admin-panel/admin/admin.module';
 import {PurchaseService} from '@shared/services/purchase.service';
@@ -56,7 +55,6 @@ import {APP_BASE_HREF} from '@angular/common';
   ],
   providers: [
     AuthService,
-    AppService,
     ProductsService,
     ToasterService,
     PurchaseService,

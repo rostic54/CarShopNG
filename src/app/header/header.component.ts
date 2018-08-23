@@ -5,10 +5,11 @@ import {SignUpComponent} from './sign-up/sign-up.component';
 import {SignInComponent} from './sign-in/sign-in.component';
 import {AuthService} from '@shared/services/auth.service';
 import {Subscription} from 'rxjs';
-import {ToasterService} from 'angular2-toaster';
 import {CommonService} from '@shared/services/common.service';
-import {ProductsService} from '@shared/services/products.service';
 
+/**
+ * Header component
+ */
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -20,13 +21,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   email;
 
-
+  /**
+   * @summary Control-poUp component constructor
+   * @param commonService - CommonService
+   * @param dialog - MatDialog service
+   * @param authService - Auth Service
+   */
   constructor(public dialog: MatDialog,
               public authService: AuthService,
               private commonService: CommonService
               ) {
   }
 
+  /**
+   * @summary receiving token from server
+   */
   ngOnInit() {
     this.subscription = this.authService.currentTokenSubject.subscribe(
       (token) => {
@@ -40,6 +49,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authCondition = this.authService.getToken();
   }
 
+  /**
+   * @summary open popUp form
+   */
   openSignUp(): void {
     const popUp = this.dialog.open(SignUpComponent, {
       width: '450px',
@@ -48,6 +60,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * @summary open popUp form
+   */
   openSignIn(): void {
     const popUp = this.dialog.open(SignInComponent, {
       width: '450px',
@@ -55,10 +70,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * @summary calling logOut method in AuthService
+   */
   onSignOut() {
     this.authService.logOut();
   }
 
+  /**
+   * @summary clean Logic
+   */
   ngOnDestroy() {
     this.commonService.checkSubscription(this.subscription);
   }

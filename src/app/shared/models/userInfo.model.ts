@@ -1,4 +1,4 @@
-export class Order {
+export class UserInfo {
   email: string;
   name: string;
   tel: number;

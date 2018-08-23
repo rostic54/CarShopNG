@@ -1,4 +1,4 @@
-import {Product} from '@shared/models/goods.model';
+import {Product} from '@shared/models/product.model';
 
 export class MockPurchaseService {
   addProduct(product: Product) {}

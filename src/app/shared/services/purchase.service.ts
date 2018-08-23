@@ -1,11 +1,9 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Subject} from 'rxjs';
-import {Product} from '@shared/models/goods.model';
+import { Subject} from 'rxjs';
+import {Product} from '@shared/models/product.model';
 
 @Injectable()
 export class PurchaseService {
-//  purchaseSubject = new BehaviorSubject(null);
-//  changedSubject = new BehaviorSubject(null);
   purchaseSubject = new Subject<Product>();
   changedSubject = new Subject<{amount: number, total: number}>();
 

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * @summary adminPanel component
+ */
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',

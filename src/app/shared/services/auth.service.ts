@@ -4,14 +4,24 @@ import {BehaviorSubject} from 'rxjs';
 import {ToasterService} from 'angular2-toaster';
 import {environment} from '../../../environments/environment';
 
+/**
+ * @summary Auth Service
+ */
 @Injectable()
 export class AuthService {
   currentTokenSubject = new BehaviorSubject(null);
   email;
 
+  /**
+   *  @param toasterService - Toaster Service
+   */
   constructor(private toasterService: ToasterService) {
   }
 
+  /**
+   * @summary passing user information for registration and checking data for coincidence
+   * @param cred - user info email-password
+   */
   signUpUser(cred: { email: string, password: string }) {
     firebase.auth().createUserWithEmailAndPassword(cred.email, cred.password)
       .then((response) => {
@@ -27,6 +37,11 @@ export class AuthService {
     );
   }
 
+  /**
+   * @summary Passing data to server for signIn and getting token
+   * @param email - user email
+   * @param password - user password
+   */
   signInUser(email: string, password: string) {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((response) => {
@@ -45,6 +60,9 @@ export class AuthService {
     );
   }
 
+  /**
+   * @summary Initialization by needed key & domain. Checking existence token for logIn or logOut when the application start
+   */
   authInit() {
     firebase.initializeApp({
       apiKey: environment.apiKey,
@@ -63,10 +81,17 @@ export class AuthService {
     });
   }
 
+  /**
+   * @summary receive value of current token
+   * @return current token value
+   */
   getToken() {
     return this.currentTokenSubject.value;
   }
 
+  /**
+   * @summary logOut - current rewrite token to null
+   */
   logOut() {
     firebase.auth().signOut().then(() => {
       this.currentTokenSubject.next(null);
@@ -75,6 +100,10 @@ export class AuthService {
     });
   }
 
+  /**
+   * @summary compare entered data with admin email
+   * @return boolean result of compare
+   */
   isAdmin() {
     return this.email === 'admin@admin.com';
   }

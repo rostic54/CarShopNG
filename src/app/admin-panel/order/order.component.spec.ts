@@ -1,4 +1,4 @@
-import {goods, MockGoodsService, user} from '@shared/mock-services/mock-goods.services';
+import {MockGoodsService} from '@shared/mock-services/mock-goods.services';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {AppMaterialModule} from '@shared/modules/app-material.module';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
@@ -11,8 +11,6 @@ import {ProductModule} from '@app/product/product.module';
 import {ProductsService} from '@shared/services/products.service';
 import {OrderComponent} from '@app/admin-panel/order/order.component';
 import {AdminModule} from '@app/admin-panel/admin/admin.module';
-import {Product} from '@shared/models/goods.model';
-import {User} from '@shared/models/user.model';
 
 describe('OrderComponent', () => {
   let component: any;
@@ -27,7 +25,6 @@ describe('OrderComponent', () => {
         AdminModule,
         AppMaterialModule,
         RouterModule,
-        // ReactiveFormsModule,
         SharedModule,
         ProductModule,
       ],

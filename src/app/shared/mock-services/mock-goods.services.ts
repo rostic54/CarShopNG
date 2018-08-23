@@ -1,6 +1,5 @@
-import {Product} from '@shared/models/goods.model';
 import {Observable, of, Subject, Subscribable} from 'rxjs';
-import {Order} from '@shared/models/order.model';
+import {UserInfo} from '@shared/models/userInfo.model';
 import {FilterModel} from '@shared/models/filter.model';
 
 export const goods = {
@@ -39,7 +38,7 @@ export class MockGoodsService {
     feature: 'all'
   });
 
-  sendOrder(order: Order) {
+  sendOrder(order: UserInfo) {
     return true;
   }
 

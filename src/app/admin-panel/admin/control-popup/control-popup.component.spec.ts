@@ -151,7 +151,7 @@ describe('ControlPopupComponent', () => {
 
     it('Should set to productsList the product array from goodsService', async(() => {
       const spyToaster = spyOn(component.toasterService, 'pop');
-      const spyAddGoods = spyOn(component.goodsService, 'addGoods');
+      const spyAddGoods = spyOn(component.goodsService, 'addProduct');
       component.onAddGoods();
       expect(component.productsList.length).toEqual(2);
       expect(spyToaster).toHaveBeenCalledWith('success', 'The changes\'s saved', 'You\'ve recently done some changes!');

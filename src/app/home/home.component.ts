@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Slider} from 'ngx-slider';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
+/**
+ * @summary  Home Component
+ */
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

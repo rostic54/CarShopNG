@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductsService} from '@shared/services/products.service';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
-import {Product} from '@shared/models/goods.model';
+import {Product} from '@shared/models/product.model';
 import {ToasterService} from 'angular2-toaster';
 
 /**
@@ -110,7 +110,7 @@ export class ControlPopupComponent implements OnInit {
       // console.log(this.productsList);
       this.toasterService.pop('success', 'You\'ve recently added new car!', 'Brande: ' + product.brande);
     }
-    this.productsService.addGoods(this.productsList);
+    this.productsService.addProduct(this.productsList);
     this.dialog.closeAll();
   }
 

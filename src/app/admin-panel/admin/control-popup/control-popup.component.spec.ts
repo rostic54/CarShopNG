@@ -4,25 +4,21 @@ import {ProductModule} from '@app/product/product.module';
 import {SharedModule} from '@shared/modules/shared.module';
 import {ProductsService} from '@shared/services/products.service';
 import {CommonService} from '@shared/services/common.service';
-import {goods, MockGoodsService} from '@shared/mock-services/mock-goods.services';
+import {product, MockProductService} from '@shared/mock-services/mock-products.services';
 import {AppMaterialModule} from '@shared/modules/app-material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {AdminModule} from '@app/admin-panel/admin/admin.module';
 import {RouterTestingModule} from '@angular/router/testing';
 import {ControlPopupComponent} from '@app/admin-panel/admin/control-popup/control-popup.component';
-import {ToasterConfig, ToasterContainerComponent, ToasterModule, ToasterService} from 'angular2-toaster';
+import { ToasterModule, ToasterService} from 'angular2-toaster';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {AppModule} from '@app/app.module';
-import {AppComponent} from '@app/app.component';
 
 
 describe('ControlPopupComponent', () => {
   let component: any;
   let fixture: ComponentFixture<ControlPopupComponent>;
-  // let fixtureApp: ComponentFixture<AppComponent>;
-  // let toasterService: ToasterService,
-  //   toasterContainer: ToasterContainerComponent;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [],
@@ -39,9 +35,9 @@ describe('ControlPopupComponent', () => {
       ],
       providers: [
         {provide: CommonService, useClass: CommonService},
-        {provide: ProductsService, useClass: MockGoodsService},
+        {provide: ProductsService, useClass: MockProductService},
         {provide: MatDialogRef, useValue: {}},
-        {provide: MAT_DIALOG_DATA, useValue: {obj: goods, index: goods.id}},
+        {provide: MAT_DIALOG_DATA, useValue: {obj: product, index: product.id}},
         ToasterService
       ],
       schemas: [
@@ -49,10 +45,7 @@ describe('ControlPopupComponent', () => {
       ]
     }).compileComponents().then(() => {
       fixture = TestBed.createComponent(ControlPopupComponent);
-      // fixtureApp = TestBed.createComponent(AppComponent);
       component = fixture.debugElement.componentInstance;
-      // toasterContainer = fixtureApp.debugElement.children[1].componentInstance;
-      // toasterService = fixture.componentInstance.toasterService;
       component.ngOnInit();
       // fixture.detectChanges();
     });
@@ -66,8 +59,8 @@ describe('ControlPopupComponent', () => {
 
     it('Set data to product and index', async(() => {
       component.ngOnInit();
-      expect(component.product).toEqual(goods);
-      expect(component.index).toBe(goods.id);
+      expect(component.product).toEqual(product);
+      expect(component.index).toBe(product.id);
     }));
   });
 
@@ -125,9 +118,9 @@ describe('ControlPopupComponent', () => {
 
   describe('deleteProduct method', () => {
 
-    it('Should call goodsService -> deleteProduct', async(() => {
+    it('Should call productsService -> deleteProduct', async(() => {
       const spyToaster = spyOn(component.toasterService, 'pop');
-      const spy = spyOn(component.goodsService, 'deleteProduct');
+      const spy = spyOn(component.productsService, 'deleteProduct');
       component.ngOnInit();
       component.index = 3;
       component.deleteProduct();
@@ -139,19 +132,19 @@ describe('ControlPopupComponent', () => {
 
   describe('modifyProductsList method', () => {
 
-    it('Should remove element form goods array', async(() => {
-      component.productsList = [goods, goods, goods];
-      component.modifyProductsList({name: 'goods'}, 1);
-      expect(component.productsList[1]).toEqual({name: 'goods'});
+    it('Should remove element form product array', async(() => {
+      component.productsList = [product, product, product];
+      component.modifyProductsList({name: 'product'}, 1);
+      expect(component.productsList[1]).toEqual({name: 'product'});
 
     }));
   });
 
   describe('onAddGoods method', () => {
 
-    it('Should set to productsList the product array from goodsService', async(() => {
+    it('Should set to productsList the products array from productsService', async(() => {
       const spyToaster = spyOn(component.toasterService, 'pop');
-      const spyAddGoods = spyOn(component.goodsService, 'addProduct');
+      const spyAddGoods = spyOn(component.productsService, 'addProduct');
       component.onAddGoods();
       expect(component.productsList.length).toEqual(2);
       expect(spyToaster).toHaveBeenCalledWith('success', 'The changes\'s saved', 'You\'ve recently done some changes!');

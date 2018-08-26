@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Product} from '@shared/models/product.model';
 import {ProductsService} from '@shared/services/products.service';
-import {PurchaseService} from '@shared/services/purchase.service';
 import {ToasterService} from 'angular2-toaster';
 import {Router} from '@angular/router';
 
@@ -22,12 +21,10 @@ export class CartComponent implements OnInit {
   /**
    * @summary Control-poUp component constructor
    * @param productsService - Product service
-   * @param purchaseService - Purchase Service
    * @param toasterService - Toaster Service
    * @param router -  Route Service
    */
   constructor(private productsService: ProductsService,
-              private purchaseService: PurchaseService,
               private toasterService: ToasterService,
               private router: Router) {
   }
@@ -62,11 +59,11 @@ export class CartComponent implements OnInit {
       this.router.navigate(['/']);
     }
     this.setGoods(this.shoppingList);
-    this.purchaseService.purchaseStatus({amount: this.shoppingList.length, total: this.getTotal()});
+    this.productsService.purchaseStatus({amount: this.shoppingList.length, total: this.getTotal()});
   }
 
   /**
-   * @summary general price of the order
+   * @summary total price of the order
    */
   getTotal() {
     return this.shoppingList.reduce((sum, item) => {

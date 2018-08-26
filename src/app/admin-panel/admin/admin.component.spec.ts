@@ -6,7 +6,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CommonService} from '@shared/services/common.service';
 import {ProductsService} from '@shared/services/products.service';
 import {HttpClientModule} from '@angular/common/http';
-import {goods, MockGoodsService} from '@shared/mock-services/mock-goods.services';
+import {product, MockProductService} from '@shared/mock-services/mock-products.services';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {AdminModule} from '@app/admin-panel/admin/admin.module';
 import {AppMaterialModule} from '@shared/modules/app-material.module';
@@ -30,7 +30,7 @@ describe('AdminComponent', () => {
       ],
       providers: [
         {provide: CommonService, useClass: CommonService},
-        {provide: ProductsService, useClass: MockGoodsService},
+        {provide: ProductsService, useClass: MockProductService},
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
@@ -59,7 +59,7 @@ describe('AdminComponent', () => {
   describe('getGoods method', () => {
 
     it('Should call getGoods method in ProductsService', async(() => {
-      const spy = spyOn(component.goodsService, 'getGoods');
+      const spy = spyOn(component.productsService, 'getGoods');
       component.getGoods();
       expect(spy).toHaveBeenCalledWith();
     }));
@@ -80,11 +80,11 @@ describe('AdminComponent', () => {
 
   describe('getGoods method', () => {
 
-    it('Show popUp form for edit some product', async(() => {
+    it('Show popUp form for edit a product', async(() => {
       const spy = spyOn(component.dialog, 'open');
       const index = 1;
-      const goodsList = [goods, goods];
-      component.goodsList = goodsList;
+      const goodsList = [product, product];
+      component.productsList = goodsList;
       const params = {
         width: '450px',
         data: {obj: goodsList[index], index: index}
@@ -95,11 +95,11 @@ describe('AdminComponent', () => {
     }));
   });
 
-  describe('orderList method', () => {
+  describe('goToOrderList method', () => {
 
     it('Should navigate to \' Orders\'', async(() => {
       const spy = spyOn(component.router, 'navigate');
-      component.orderList();
+      component.goToOrderList();
       expect(spy).toHaveBeenCalledWith(['orders'], {relativeTo: component.activeRoute});
     }));
   });

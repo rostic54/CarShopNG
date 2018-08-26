@@ -1,10 +1,9 @@
 import {Component, OnInit, ChangeDetectorRef, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
-import { Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {Product} from '@shared/models/product.model';
 import {ProductsService} from '@shared/services/products.service';
-import {PurchaseService} from '@shared/services/purchase.service';
 import {CommonService} from '@shared/services/common.service';
 import {FilterModel} from '@shared/models/filter.model';
 
@@ -17,7 +16,7 @@ import {FilterModel} from '@shared/models/filter.model';
   styleUrls: ['./goods-list.component.scss'],
 })
 export class GoodsListComponent implements OnInit, OnDestroy {
-  goodsList: Product[];
+  productsList: Product[];
   subscribe: Subscription;
   subscribeFilter: Subscription;
   page: number;
@@ -31,7 +30,6 @@ export class GoodsListComponent implements OnInit, OnDestroy {
 
   /**
    * @summary Control-poUp component constructor
-   * @param purchaseService - Purchase service
    * @param router - Router
    * @param commonService - CommonService
    * @param activeRoute - Activating route
@@ -41,8 +39,7 @@ export class GoodsListComponent implements OnInit, OnDestroy {
     private productsService: ProductsService,
     private router: Router,
     private commonService: CommonService,
-    private activeRoute: ActivatedRoute,
-    private purchaseService: PurchaseService) {
+    private activeRoute: ActivatedRoute) {
   }
 
   /**
@@ -51,20 +48,8 @@ export class GoodsListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.page = Math.ceil(this.productsService.chosenProduct / this.viewProducts);
     this.productsService.getGoods();
-
-    this.subscribe = this.productsService.productsSubject.subscribe(
-      (goods: Product[]) => {
-        this.goodsList = goods;
-      }
-    );
-
-    this.subscribeFilter = this.productsService.filterData.subscribe(
-      (data: FilterModel) => {
-        if (data) {
-          this.filterData = data;
-        }
-      }
-    );
+    this.getProductList();
+    this.getFilterData();
   }
 
   /**
@@ -77,11 +62,35 @@ export class GoodsListComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * @summary getting properties of filter after any changing
+   */
+  getFilterData() {
+    this.subscribeFilter = this.productsService.filterData.subscribe(
+      (data: FilterModel) => {
+        if (data) {
+          this.filterData = data;
+        }
+      }
+    );
+  }
+
+  /**
+   * @summary getting fresh productList after each update
+   */
+  getProductList() {
+    this.subscribe = this.productsService.productsSubject.subscribe(
+      (goods: Product[]) => {
+        this.productsList = goods;
+      }
+    );
+  }
+
+  /**
    * @summary Addition of product to cart
    * @param product - single product
    */
   addToCart(product: Product) {
-    this.purchaseService.addProduct(product);
+    this.productsService.addToBasket(product);
   }
 
   /**

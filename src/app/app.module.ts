@@ -15,7 +15,6 @@ import {SharedModule} from '@shared/modules/shared.module';
 import {AuthService} from '@shared/services/auth.service';
 import {ProductsService} from '@shared/services/products.service';
 import {AdminModule} from './admin-panel/admin/admin.module';
-import {PurchaseService} from '@shared/services/purchase.service';
 import { CartComponent } from './cart/cart.component';
 import {AdminGuard} from './admin-panel/admin/admin.guard';
 import { AboutComponent } from './about/about.component';
@@ -57,7 +56,6 @@ import {APP_BASE_HREF} from '@angular/common';
     AuthService,
     ProductsService,
     ToasterService,
-    PurchaseService,
     AdminGuard,
     CartGuard,
     {provide: APP_BASE_HREF, useValue : '/' }

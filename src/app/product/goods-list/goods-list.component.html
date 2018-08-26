@@ -8,7 +8,7 @@
     <div class="product-list">
         <div class="row">
             <div class="product-item  col-12 col-md-6 col-lg-4"
-                 *ngFor="let product of goodsList | price:filterData.min:filterData.max | color:filterData.color |
+                 *ngFor="let product of productsList | price:filterData.min:filterData.max | color:filterData.color |
                         feature:filterData.feature | paginate: { itemsPerPage: viewProducts, currentPage: page }">
                 <mat-card class="card text-sm-center text-md-left">
                     <div (click)="showProductDescription(product)">

@@ -8,45 +8,45 @@
         <button class="order-btn"
                 mat-raised-button
                 [disabled]="!order"
-                (click)="orderList()">Look orders
+                (click)="goToOrderList()">Look orders
         </button>
     </div>
     <div class="goods-list">
         <mat-card class="goods-item clearfix"
-                  *ngFor="let goods of goodsList | price:filterData.min:filterData.max | color:filterData.color |
+                  *ngFor="let product of productsList | price:filterData.min:filterData.max | color:filterData.color |
                         feature:filterData.feature | paginate: { itemsPerPage: 5, currentPage: page }; let i = index"
-                  (click)="modifyProduct(goods.id)"
+                  (click)="modifyProduct(product.id)"
         >
             <div class="img-wrap">
-                <img [src]="goods.url.length ? goods.url : imageUrl" alt="car">
+                <img [src]="product.url.length ? product.url : imageUrl" alt="car">
             </div>
             <div class="desc">
                 <ul class="desc-list">
                     <li class="desc-item">
-                        <p><span>Brand:</span> {{ goods.brande }}</p>
+                        <p><span>Brand:</span> {{ product.brande }}</p>
                     </li>
                     <li class="desc-item">
-                        <p><span>Model name:</span> {{ goods.modelName }}</p>
+                        <p><span>Model name:</span> {{ product.modelName }}</p>
                     </li>
                     <li class="desc-item">
-                        <p><span>Color:</span> {{ goods.color }}</p>
+                        <p><span>Color:</span> {{ product.color }}</p>
                     </li>
                     <li class="desc-item">
-                        <p><span>Power:</span> {{ goods.power }}</p>
+                        <p><span>Power:</span> {{ product.power }}</p>
                     </li>
                 </ul>
                 <ul class="desc-list">
                     <li class="desc-item">
-                        <p><span>Special Feature:</span> {{ goods.feature }}</p>
+                        <p><span>Special Feature:</span> {{ product.feature }}</p>
                     </li>
                     <li class="desc-item">
-                        <p><span>Description:</span> {{ goods.desc }}</p>
+                        <p><span>Description:</span> {{ product.desc }}</p>
                     </li>
                     <li class="desc-item">
-                        <p><span>Price:</span> {{ goods.price }}</p>
+                        <p><span>Price:</span> {{ product.price }}</p>
                     </li>
                     <li class="desc-item">
-                        <p><span>Discount:</span> {{ goods.discount }}</p>
+                        <p><span>Discount:</span> {{ product.discount }}</p>
                     </li>
                 </ul>
             </div>

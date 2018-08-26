@@ -6,7 +6,7 @@ import {ProductsService} from '../services/products.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppModule} from '@app/app.module';
 import {CommonService} from '../services/common.service';
-import {MockGoodsService} from '../mock-services/mock-goods.services';
+import {MockProductService} from '../mock-services/mock-products.services';
 import {AppMaterialModule} from '../modules/app-material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
@@ -35,7 +35,7 @@ describe('FilterComponent', () => {
       ],
       providers: [
         {provide: CommonService, useClass: CommonService},
-        {provide: ProductsService, useClass: MockGoodsService},
+        {provide: ProductsService, useClass: MockProductService},
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
@@ -91,8 +91,8 @@ describe('FilterComponent', () => {
 
   describe('pushChanges method', () => {
 
-    it('Should call goodsService -> getFilterCondition', async(() => {
-      const spy = spyOn(component.goodsService, 'getFilterCondition');
+    it('Should call productsService -> getFilterCondition', async(() => {
+      const spy = spyOn(component.productsService, 'getFilterCondition');
       component.ngOnInit();
       component.pushChanges();
       expect(spy).toHaveBeenCalled();

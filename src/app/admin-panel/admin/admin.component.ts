@@ -19,12 +19,11 @@ import {FilterModel} from '@shared/models/filter.model';
 })
 export class AdminComponent implements OnInit, OnDestroy {
   imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9h_LLTf5LYlXd9-ho5YW4SUOFI4M6vfDVwjc2n6PTBOpCb5z';
-  goodsList;
+  productsList;
   order;
   subscribe: Subscription;
   subscriptionOrder: Subscription;
   subscribeFilter: Subscription;
-  name: string;
   page: number;
   filterData = {
     min: 0,
@@ -46,36 +45,16 @@ export class AdminComponent implements OnInit, OnDestroy {
               private commonService: CommonService,
               private router: Router,
               private activeRoute: ActivatedRoute,
-              ) {
+  ) {
   }
 
   /**
-   * @summary Call getGoods, getOrder from goods service, fetch initial name & order & filter data
+   * @summary Call getGoods, getOrder from product service, fetch initial name & order & filter data
    * */
   ngOnInit() {
     this.getGoods();
-    this.productsService.getOrder();
-    this.subscribe = this.activeRoute.data.subscribe(
-      (value: { name: string }) => {
-
-        this.name = value.name;
-      }
-    );
-
-    this.subscriptionOrder = this.productsService.orderSubject.subscribe(
-      order => {
-        this.order = order;
-      }
-    );
-
-    this.subscribeFilter = this.productsService.filterData.subscribe(
-      (data: FilterModel) => {
-        if (data) {
-          this.filterData = data;
-          // this.cdr.markForCheck();
-        }
-      }
-    );
+    this.getOrderList();
+    this.getFilterProperty();
   }
 
   /**
@@ -89,7 +68,7 @@ export class AdminComponent implements OnInit, OnDestroy {
         goods.forEach((item, i) => {
           item.id = i;
         });
-        this.goodsList = goods;
+        this.productsList = goods;
       }
     );
   }
@@ -111,14 +90,40 @@ export class AdminComponent implements OnInit, OnDestroy {
   modifyProduct(index: number) {
     this.dialog.open(ControlPopupComponent, {
       width: '450px',
-      data: {obj: this.goodsList[index], index: index}
+      data: {obj: this.productsList[index], index: index}
     });
+  }
+
+  /**
+   * @summary Get fresh data from filter
+   */
+  getFilterProperty() {
+    this.subscribeFilter = this.productsService.filterData.subscribe(
+      (data: FilterModel) => {
+        if (data) {
+          this.filterData = data;
+          // this.cdr.markForCheck();
+        }
+      }
+    );
+  }
+
+  /**
+   * @summary Get fresh order list
+   */
+  getOrderList() {
+    this.productsService.getOrder();
+    this.subscriptionOrder = this.productsService.orderSubject.subscribe(
+      order => {
+        this.order = order;
+      }
+    );
   }
 
   /**
    * @summary Navigate to orders list
    * */
-  orderList() {
+  goToOrderList() {
     this.router.navigate(['orders'], {relativeTo: this.activeRoute});
   }
 

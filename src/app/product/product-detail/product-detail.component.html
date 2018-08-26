@@ -1,29 +1,29 @@
 <div class="row">
     <mat-card class="single-card col-10 col-ms-8 col-md-4">
         <div class="img-wrap">
-            <img src="{{goodsList[id]?.url}}" alt="{{goodsList[id]?.modelName}}">
+            <img src="{{productsList[id]?.url}}" alt="{{productsList[id]?.modelName}}">
         </div>
-        <h4>{{goodsList[id]?.brande | uppercase}}</h4>
-        <h5>{{goodsList[id]?.modelName}}</h5>
+        <h4>{{productsList[id]?.brande | uppercase}}</h4>
+        <h5>{{productsList[id]?.modelName}}</h5>
         <div class="product-desc">
             <div><span class="desc name">color: </span>
                 <span class="color-circle"
-                      [ngStyle]="{backgroundColor: goodsList[id]?.color}"></span>
+                      [ngStyle]="{backgroundColor: productsList[id]?.color}"></span>
             </div>
             <div class="desc feature"><span class="name">Feature: </span><span
-                    class="value">{{goodsList[id]?.feature}}</span>
+                    class="value">{{productsList[id]?.feature}}</span>
             </div>
-            <div class="desc power"><span class="name">Power: </span><span class="value">{{goodsList[id]?.power}}</span>
+            <div class="desc power"><span class="name">Power: </span><span class="value">{{productsList[id]?.power}}</span>
             </div>
-            <div class="desc price"><span class="name">Price: </span><span class="value">{{goodsList[id]?.price}}</span>
+            <div class="desc price"><span class="name">Price: </span><span class="value">{{productsList[id]?.price}}</span>
             </div>
-            <div class="desc discount"><span class="name">Discount: </span><span class="value">{{goodsList[id]?.discount}}</span>
+            <div class="desc discount"><span class="name">Discount: </span><span class="value">{{productsList[id]?.discount}}</span>
             </div>
         </div>
-        <p><span class="desc name">Description: </span>{{goodsList[id]?.description}}</p>
+        <p><span class="desc name">Description: </span>{{productsList[id]?.description}}</p>
         <button mat-raised-button type="button"
                                  class="buy"
-                                 (click)="addToCart(goodsList[id])"
+                                 (click)="addToCart(productsList[id])"
         >BUY</button>
     </mat-card>
     <button mat-raised-button

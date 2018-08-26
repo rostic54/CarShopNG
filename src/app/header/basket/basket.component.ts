@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {PurchaseService} from '@shared/services/purchase.service';
 import {Subscription} from 'rxjs';
 import {CommonService} from '@shared/services/common.service';
 import {ProductsService} from '@shared/services/products.service';
@@ -13,7 +12,7 @@ import {ProductsService} from '@shared/services/products.service';
   templateUrl: './basket.component.html',
   styleUrls: ['./basket.component.scss']
 })
-export class BasketIconComponent implements OnInit, OnDestroy {
+export class BasketComponent implements OnInit, OnDestroy {
   subscribe: Subscription;
   productList: any = [];
   subscript: Subscription;
@@ -21,29 +20,28 @@ export class BasketIconComponent implements OnInit, OnDestroy {
 
   /**
    * @summary Control-poUp component constructor
-   * @param purchaseService - Purchase service
    * @param router - Router
    * @param commonService - CommonService
    * @param activeRoute - Activating route
    * @param productsService - Product Service
    */
-  constructor(private purchaseService: PurchaseService,
+  constructor(private productsService: ProductsService,
               private router: Router,
               private commonService: CommonService,
-              private activeRoute: ActivatedRoute,
-              private productsService: ProductsService) {
+              private activeRoute: ActivatedRoute) {
   }
 
   /**
-   * @summary checking & getting data from Local Storage, calculate of general summ & rewrite Local Storage, getting order length
+   * @summary checking & getting data from Local Storage, calculate of total summ & rewrite Local Storage, getting order length
    */
   ngOnInit() {
     const dataLocalStorage = this.getBasketData();
+
     if (dataLocalStorage) {
       this.productList = dataLocalStorage;
       this.totalCalculate();
     }
-    this.subscribe = this.purchaseService.purchaseSubject.subscribe(
+    this.subscribe = this.productsService.purchaseSubject.subscribe(
       (product) => {
         if (product) {
           this.productList.push(product);
@@ -52,7 +50,7 @@ export class BasketIconComponent implements OnInit, OnDestroy {
         }
       }
     );
-    this.subscript = this.purchaseService.changedSubject.subscribe(
+    this.subscript = this.productsService.changedSubject.subscribe(
       purchaseStatus => {
         if (purchaseStatus) {
           this.productList.length = purchaseStatus.amount;
@@ -63,7 +61,7 @@ export class BasketIconComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * @summary getting whole price
+   * @summary getting total price
    */
   getTotalPrice() {
     return this.total;
@@ -106,7 +104,7 @@ export class BasketIconComponent implements OnInit, OnDestroy {
    * clean of logic
    */
   ngOnDestroy() {
-    this.commonService.checkSubscription(this.subscribe);
+    // this.commonService.checkSubscription(this.subscribe);
     this.commonService.checkSubscription(this.subscript);
   }
 }

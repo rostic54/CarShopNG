@@ -31,6 +31,7 @@ export class ControlPopupComponent implements OnInit {
               public toasterService: ToasterService,
               @Inject(MAT_DIALOG_DATA) public data: { obj: Product, index: number }) {
   }
+
   /**
    * @summary Call initForm fetch initial product & index if data exist when payment plan component init.
    */
@@ -41,6 +42,7 @@ export class ControlPopupComponent implements OnInit {
     }
     this.initForm();
   }
+
   /**
    * @summary Call initForm and create form with data or empty, it depends on add or edit product.
    */
@@ -98,16 +100,14 @@ export class ControlPopupComponent implements OnInit {
    */
   onAddGoods() {
     this.productsList = this.productsService.getCurrentGoods();
+
     if (this.data) {
       this.modifyProductsList(this.addGoodsForm.value, this.data.index);
       this.toasterService.pop('success', 'The changes\'s saved', 'You\'ve recently done some changes!');
     } else {
       const product = this.addGoodsForm.value;
       product.id = this.productsList.length;
-      // console.log(product);
-      // console.log(this.productsList);
       this.productsList.push(product);
-      // console.log(this.productsList);
       this.toasterService.pop('success', 'You\'ve recently added new car!', 'Brande: ' + product.brande);
     }
     this.productsService.addProduct(this.productsList);

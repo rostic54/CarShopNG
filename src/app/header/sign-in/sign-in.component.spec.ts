@@ -6,10 +6,9 @@ import {ProductsService} from '@shared/services/products.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppModule} from '@app/app.module';
 import {CommonService} from '@shared/services/common.service';
-import {MockGoodsService} from '@shared/mock-services/mock-goods.services';
+import {MockProductService} from '@shared/mock-services/mock-products.services';
 import {AppMaterialModule} from '@shared/modules/app-material.module';
 import {HttpClientModule} from '@angular/common/http';
-import {BasketIconComponent} from '@app/header/basket/basket.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {AdminModule} from '@app/admin-panel/admin/admin.module';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -38,7 +37,7 @@ describe('SignInComponent', () => {
       ],
       providers: [
         {provide: CommonService, useClass: CommonService},
-        {provide: ProductsService, useClass: MockGoodsService},
+        {provide: ProductsService, useClass: MockProductService},
         {provide: AuthService, useClass: MockAuthService},
       ],
       schemas: [
@@ -53,7 +52,7 @@ describe('SignInComponent', () => {
 
   }));
 
-  it('Should create BasketIconComponent', async(() => {
+  it('Should create BasketComponent', async(() => {
     expect(component).toBeTruthy();
   }));
 

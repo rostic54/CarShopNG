@@ -77,7 +77,7 @@ export class ProductsService {
   }
 
   /**
-   * @summary remove desired product from ProductList and pass this List to addProduct
+   * @summary remove desired product from ProductList and pass this List to addToBasket
    * @param index - index of product witch need delete
    */
   deleteProduct(index: number) {
@@ -138,8 +138,20 @@ export class ProductsService {
     this.filterData.next(data);
   }
 
-  addToCart() {
+  /**
+   * @summary call by 'BUY' button and pass the checked product to basket component & show in header
+   * @param product - ordered product
+   */
+  addToBasket(product: Product) {
+    this.purchaseSubject.next(product);
+  }
 
+  /**
+   * @summary Changing and passing orderList length & total price after removing a product from cart
+   * @param orderAmount - orderList length & total price
+   */
+  purchaseStatus(orderAmount: {amount: number, total: number}) {
+    this.changedSubject.next(orderAmount);
   }
 
   /**

@@ -1,4 +1,4 @@
-import {MockGoodsService} from '@shared/mock-services/mock-goods.services';
+import {MockProductService} from '@shared/mock-services/mock-products.services';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {AppMaterialModule} from '@shared/modules/app-material.module';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
@@ -30,7 +30,7 @@ describe('OrderComponent', () => {
       ],
       providers: [
         {provide: CommonService, useClass: CommonService},
-        {provide: ProductsService, useClass: MockGoodsService},
+        {provide: ProductsService, useClass: MockProductService},
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
@@ -50,7 +50,7 @@ describe('OrderComponent', () => {
   describe('ngOnInit method calling getOrder()', () => {
 
     it('Should call getOrder method.', async(() => {
-      const spy = spyOn(component.goodsService, 'getOrder');
+      const spy = spyOn(component.productsService, 'getOrder');
       component.ngOnInit();
       expect(spy).toHaveBeenCalledWith();
     }));
@@ -59,7 +59,7 @@ describe('OrderComponent', () => {
   describe('Calling and passing data in getOrders()', () => {
 
     it('Should call getOrders method.', async(() => {
-      const order = component.goodsService.getOrder().value;
+      const order = component.productsService.getOrder().value;
       component.getOrders(order);
       expect(component.productsList.length).toBe(1);
     }));

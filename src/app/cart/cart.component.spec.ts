@@ -4,19 +4,15 @@ import {SharedModule} from '@shared/modules/shared.module';
 import {ProductsService} from '@shared/services/products.service';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CommonService} from '@shared/services/common.service';
-import {MockGoodsService, shoppingList} from '@shared/mock-services/mock-goods.services';
+import {MockProductService, shoppingList} from '@shared/mock-services/mock-products.services';
 import {AppMaterialModule} from '@shared/modules/app-material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {AdminModule} from '@app/admin-panel/admin/admin.module';
 import {RouterTestingModule} from '@angular/router/testing';
 import {CartComponent} from '@app/cart/cart.component';
-import {PurchaseService} from '@shared/services/purchase.service';
-import {MockPurchaseService} from '@shared/mock-services/mock-purchase.service';
-import {HeaderComponent} from '@app/header/header.component';
 import {ToasterService} from 'angular2-toaster';
 import {AppModule} from '@app/app.module';
-import {APP_BASE_HREF} from '@angular/common';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 describe('CartComponent', () => {
@@ -40,8 +36,7 @@ describe('CartComponent', () => {
       ],
       providers: [
         {provide: CommonService, useClass: CommonService},
-        {provide: ProductsService, useClass: MockGoodsService},
-        {provide: PurchaseService, useClass: MockPurchaseService},
+        {provide: ProductsService, useClass: MockProductService},
         ToasterService,
       ],
       schemas: [
@@ -146,8 +141,8 @@ describe('CartComponent', () => {
 
   describe('removeProduct method', () => {
 
-    it('Should call PurchaseService  method -> purchaseStatus.', async(() => {
-      const spy = spyOn(component.purchaseService, 'purchaseStatus');
+    it('Should call ProductsService  method -> purchaseStatus.', async(() => {
+      const spy = spyOn(component.productsService, 'purchaseStatus');
       component.shoppingList = shoppingList;
       component.removeProduct(1);
       expect(spy).toHaveBeenCalled();

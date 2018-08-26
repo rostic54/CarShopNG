@@ -9,7 +9,7 @@ import {SharedModule} from '@shared/modules/shared.module';
 import {ProductModule} from '@app/product/product.module';
 import {CommonService} from '@shared/services/common.service';
 import {ProductsService} from '@shared/services/products.service';
-import {MockGoodsService} from '@shared/mock-services/mock-goods.services';
+import {MockProductService} from '@shared/mock-services/mock-products.services';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {SignUpComponent} from '@app/header/sign-up/sign-up.component';
 import {AuthService} from '@shared/services/auth.service';
@@ -35,7 +35,7 @@ describe('SignUpComponent', () => {
       ],
       providers: [
         {provide: CommonService, useClass: CommonService},
-        {provide: ProductsService, useClass: MockGoodsService},
+        {provide: ProductsService, useClass: MockProductService},
         {provide: AuthService, useClass: MockAuthService},
         ToasterService
       ],

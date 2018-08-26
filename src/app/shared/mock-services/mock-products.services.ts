@@ -1,11 +1,12 @@
 import {Observable, of, Subject, Subscribable} from 'rxjs';
 import {UserInfo} from '@shared/models/userInfo.model';
 import {FilterModel} from '@shared/models/filter.model';
+import {Product} from '@shared/models/product.model';
 
-export const goods = {
+export const product = {
   modelName: 'example',
   brande: 'example',
-  price: 10,
+  price: 5,
   discount: 5,
   color: 'color',
   feature: 'feature',
@@ -26,10 +27,13 @@ export const user = {
 export const shoppingList = [{price: 1}, {price: 2}, {price: 3}, {price: 4}];
 
 
-export class MockGoodsService {
-  goodsSubject = of([goods]);
-  orderSubject = of({'number': {data: goods, list: user}});
+export class MockProductService {
+  productsSubject = of([product]);
+  orderSubject = of({'number': {data: product, list: user}});
   priceLimit = of({minPrice: 10, maxPrice: 50});
+  purchaseSubject = of( product);
+  // changedSubject = of( {total: 200, amount: 3});
+  changedSubject = of( {total: ((+product.price) * (1 - (+product.discount / 100))) * 2 , amount: 3});
   chosenProduct = 0;
   filterData = of({
     min: 0,
@@ -47,25 +51,29 @@ export class MockGoodsService {
   }
 
   getCurrentGoods() {
-    return [goods, goods];
+    return [product, product];
   }
 
   deleteProduct(index: number) {
   }
 
-  addGoods(goodsList) {
+  addProduct(goodsList) {
   }
 
   getFilterCondition(data: FilterModel) {
     // this.filterData.next(data);
   }
+  priceLimitCalulate(products: Product[]) {
+
+  }
 
   getLocalStorage() {
+    console.log('GET');
     return JSON.parse(localStorage.getItem('order'));
   }
 
-  setLocalStorage(shoppingList) {
-    const purchaseArr = JSON.stringify(shoppingList);
+  setLocalStorage(order) {
+    const purchaseArr = JSON.stringify([product, product]);
     localStorage.setItem('order', purchaseArr);
   }
 
@@ -74,8 +82,10 @@ export class MockGoodsService {
       subscription.unsubscribe();
     }
   }
+  addToBasket(elem) {}
+  purchaseStatus(products) {}
 
   getGoods() {
-    return this.goodsSubject;
+    return this.productsSubject;
   }
 }

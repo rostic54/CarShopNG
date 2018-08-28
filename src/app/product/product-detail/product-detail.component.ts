@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Product} from '@shared/models/product.model';
 import {ProductsService} from '@shared/services/products.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {CommonService} from '@shared/services/common.service';
 
 /**
  * @summary Product Detail
@@ -12,10 +13,11 @@ import {Subscription} from 'rxjs';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnDestroy {
   productsList: Product[];
   id: number;
-  private subscription: Subscription;
+  subscription: Subscription;
+  subscriptionProduct: Subscription;
 
   /**
    * @summary Control-poUp component constructor
@@ -26,8 +28,8 @@ export class ProductDetailComponent implements OnInit {
   constructor(private productsService: ProductsService,
               private activateRoute: ActivatedRoute,
               private router: Router,
-             ) {
-    this.subscription = activateRoute.params.subscribe(params => this.id = params['id']);
+              private commonService: CommonService
+  ) {
   }
 
   /**
@@ -35,9 +37,13 @@ export class ProductDetailComponent implements OnInit {
    */
   ngOnInit() {
     this.productsService.getGoods();
-    this.productsService.productsSubject.subscribe(
+    this.subscription = this.activateRoute.params.subscribe(params => this.id = params['id']);
+    this.subscriptionProduct = this.productsService.productsSubject.subscribe(
       (goods: Product[]) => {
-        this.productsList = goods;
+        if (!this.id) {
+          this.returnToProducts();
+        }
+          this.productsList = goods;
       });
   }
 
@@ -54,6 +60,11 @@ export class ProductDetailComponent implements OnInit {
    */
   returnToProducts() {
     this.router.navigate(['../'], {relativeTo: this.activateRoute});
+  }
+
+  ngOnDestroy() {
+    this.commonService.checkSubscription(this.subscription);
+    this.commonService.checkSubscription(this.subscriptionProduct);
   }
 }
 

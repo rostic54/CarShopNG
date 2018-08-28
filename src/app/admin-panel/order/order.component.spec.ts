@@ -11,6 +11,7 @@ import {ProductModule} from '@app/product/product.module';
 import {ProductsService} from '@shared/services/products.service';
 import {OrderComponent} from '@app/admin-panel/order/order.component';
 import {AdminModule} from '@app/admin-panel/admin/admin.module';
+import {AppModule} from '@app/app.module';
 
 describe('OrderComponent', () => {
   let component: any;
@@ -27,6 +28,7 @@ describe('OrderComponent', () => {
         RouterModule,
         SharedModule,
         ProductModule,
+        AppModule
       ],
       providers: [
         {provide: CommonService, useClass: CommonService},

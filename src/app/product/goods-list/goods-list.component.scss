@@ -1,34 +1,34 @@
 
-.products-wrap{
+.products-wrap {
   margin: 20px 0;
-  .product-item{
+  .product-item {
     display: flex;
-    .card{
+    .card {
       display: flex;
       justify-content: space-between;
-    background-image: url("https://static8.depositphotos.com/1280399/967/i/950/depositphotos_9675708-stock-photo-white-leather-texture-or-background.jpg");
-    background-repeat: repeat;
+      background-image: url("https://static8.depositphotos.com/1280399/967/i/950/depositphotos_9675708-stock-photo-white-leather-texture-or-background.jpg");
+      background-repeat: repeat;
       width: 100%;
       padding: 10px;
     }
   }
-  .buy{
+  .buy {
     color: white;
     background-color: #58bdb9;
   }
-  .img-block{
+  .img-block {
     height: 180px;
     margin-bottom: 15px;
-    img{
+    img {
       width: 100%;
       max-width: 330px;
       height: 100%;
     }
   }
-  h5, h6{
+  h5, h6 {
     color: #000;
     font-size: 20px;
-    .field{
+    .field {
       color: #8a8a8a;
       margin-right: 20px;
     }

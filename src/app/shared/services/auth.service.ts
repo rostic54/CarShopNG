@@ -11,6 +11,7 @@ import {environment} from '../../../environments/environment';
 export class AuthService {
   currentTokenSubject = new BehaviorSubject(null);
   email;
+  token: string;
 
   /**
    *  @param toasterService - Toaster Service
@@ -69,15 +70,27 @@ export class AuthService {
       authDomain: environment.authDomain
     });
 
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.email = user.email;
-        user.getIdToken().then((token) => {
-          this.currentTokenSubject.next(token);
-        });
-      } else {
-        this.currentTokenSubject.next(null);
-      }
+    this.checkLogining();
+
+  }
+
+  /**
+   * Checking user was loginedIn or not by request from DB and receiving of token
+   */
+  checkLogining(): Promise<string | boolean> {
+    return new Promise(resolve => {
+      firebase.auth().onAuthStateChanged((user) => {
+          if (user) {
+            this.email = user.email;
+            user.getIdToken().then((token) => {
+              this.currentTokenSubject.next(token);
+              return resolve(token);
+            });
+          } else {
+            return resolve(null);
+          }
+        }
+      );
     });
   }
 

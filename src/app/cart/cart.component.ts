@@ -56,7 +56,7 @@ export class CartComponent implements OnInit {
   removeProduct(index: number) {
     this.shoppingList.splice(index, 1);
     if (!this.shoppingList.length) {
-      this.router.navigate(['/']);
+      this.leaveAway();
     }
     this.setGoods(this.shoppingList);
     this.productsService.purchaseStatus({amount: this.shoppingList.length, total: this.getTotal()});
@@ -86,12 +86,20 @@ export class CartComponent implements OnInit {
     this.productsService.setLocalStorage(shoppingList);
   }
 
+  leaveAway() {
+    this.router.navigate(['/']);
+  }
+
   /**
-   * @summary processing of order form
+   * @summary processing of order form & clearing the cart and redirect to '/'
    */
   submit() {
     this.productsService.sendOrder({list: this.shoppingList, data: this.orderForm.value});
     this.toasterService.pop('success', 'Your order\'s just sent', 'Wait when our operator\'ll call you');
+    this.shoppingList.length = 0;
+    this.setGoods(this.shoppingList);
+    this.productsService.purchaseStatus({amount: 0, total: 0});
+    this.leaveAway();
     this.orderForm.reset();
   }
 

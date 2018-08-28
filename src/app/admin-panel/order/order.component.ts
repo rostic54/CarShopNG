@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CommonService} from '@shared/services/common.service';
 import {Product} from '@shared/models/product.model';
+import {UserInfo} from '@shared/models/userInfo.model';
 
 /**
  * @summary UserInfo component constructor
@@ -42,11 +43,12 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.productsService.getOrder();
     this.subscribe = this.productsService.orderSubject
       .subscribe(orders => {
-          this.ordersList = orders;
-          this.getOrders(orders);
           if (!orders) {
             this.router.navigate(['../'], {relativeTo: this.activeRoute});
           }
+          this.ordersList = orders;
+        console.log(this.ordersList);
+          this.getOrders(orders);
         }
       );
   }
@@ -55,7 +57,7 @@ export class OrderComponent implements OnInit, OnDestroy {
    * @summary creating orders, products list & info
    * @param orderList - ordered products
    * */
-  getOrders(orderLIst) {
+  getOrders(orderLIst: [{ data: UserInfo, list: Product[] }]) {
     this.productsList.length = 0;
     this.clientInfo.length = 0;
     this.keysList.length = 0;
@@ -67,7 +69,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * @summary delete of order from DB by passing data to product Server
+   * @summary delete of order from DB by passing changed orders array to product Server
    * @param index of deleted order
    * */
   removeOrder(index: number) {

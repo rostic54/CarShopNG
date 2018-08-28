@@ -44,7 +44,6 @@ describe('BasketComponent', () => {
       fixture = TestBed.createComponent(BasketComponent);
       component = fixture.debugElement.componentInstance;
     });
-
   }));
 
   it('Should create BasketComponent', async(() => {

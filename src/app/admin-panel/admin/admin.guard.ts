@@ -1,4 +1,4 @@
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {CanActivate, Router} from '@angular/router';
 import {AuthService} from '@shared/services/auth.service';
 import {Injectable} from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
@@ -11,25 +11,19 @@ export class AdminGuard implements CanActivate {
               private router: Router) {
   }
 
+  /**
+   * Getting promise response with(out) token & check email by coincidence with the admin
+   */
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.authService.getToken() && this.authService.isAdmin()) {
-      return true;
-    } else {
-      return new Promise((resolve, reject) => {
-        this.subscription = this.authService.currentTokenSubject.subscribe(
-          (token) => {
-            if (!token) {
-              return;
-            }
-            this.subscription.unsubscribe();
-            return resolve(this.authService.isAdmin());
-          },
-          (error) => {
-            this.subscription.unsubscribe();
-            return resolve(false);
-          }
-        );
+
+    return this.authService.checkLogining()
+      .then(token => {
+        if (token && this.authService.isAdmin()) {
+          return true;
+        } else {
+          this.router.navigate(['/']);
+          return false;
+        }
       });
-    }
   }
 }

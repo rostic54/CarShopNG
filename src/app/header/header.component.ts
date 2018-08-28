@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(public dialog: MatDialog,
               public authService: AuthService,
               private commonService: CommonService
-              ) {
+  ) {
   }
 
   /**

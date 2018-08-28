@@ -5,7 +5,7 @@
     <app-menu class="nav"></app-menu>
     <div class="auth-block">
         <div class="button-wrap">
-        <div class="sign-in">
+        <div class="sign-in" >
             <ng-container *ngIf="authCondition">
                 <div class="user-info">
                     <p *ngIf="email === 'admin@admin.com';else guest">Hello, <a routerLink="/admin" class="user-link">Admin </a></p>

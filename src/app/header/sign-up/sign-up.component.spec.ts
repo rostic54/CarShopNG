@@ -16,6 +16,7 @@ import {AuthService} from '@shared/services/auth.service';
 import {MockAuthService} from '@shared/mock-services/mock-auth.service';
 import {ToasterService} from 'angular2-toaster';
 import {MatDialog} from '@angular/material';
+import {AppModule} from '@app/app.module';
 
 describe('SignUpComponent', () => {
   let component: any;
@@ -32,6 +33,7 @@ describe('SignUpComponent', () => {
         RouterModule,
         SharedModule,
         ProductModule,
+        AppModule
       ],
       providers: [
         {provide: CommonService, useClass: CommonService},

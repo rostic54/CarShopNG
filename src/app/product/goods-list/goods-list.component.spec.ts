@@ -13,6 +13,7 @@ import {ProductsService} from '@shared/services/products.service';
 import { RouterModule} from '@angular/router';
 import {ProductComponent} from '@app/product/product.component';
 import {ProductDetailComponent} from '@app/product/product-detail/product-detail.component';
+import {AppModule} from '@app/app.module';
 
 describe('GoodsListComponent', () => {
   let component: any;
@@ -28,6 +29,7 @@ describe('GoodsListComponent', () => {
         RouterModule,
         SharedModule,
         ProductModule,
+        AppModule,
         RouterTestingModule.withRoutes([
           {
             path: 'products', component: ProductComponent, children: [

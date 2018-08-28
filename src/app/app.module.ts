@@ -24,6 +24,7 @@ import {CartGuard} from './cart/cart.guard';
 import {AdminPanelModule} from './admin-panel/admin-panel.module';
 import {AppRoutingModule} from '@app/app-routing.module';
 import {APP_BASE_HREF} from '@angular/common';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {APP_BASE_HREF} from '@angular/common';
     CartComponent,
     AboutComponent,
     ContactsComponent,
-    HomeComponent
+    HomeComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -40,8 +42,8 @@ import {APP_BASE_HREF} from '@angular/common';
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-    ProductModule,
     HeaderModule,
+    ProductModule,
     AdminModule,
     AdminPanelModule,
     AppRoutingModule,

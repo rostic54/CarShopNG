@@ -11,6 +11,7 @@ import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {AdminModule} from '@app/admin-panel/admin/admin.module';
 import {AppMaterialModule} from '@shared/modules/app-material.module';
 import {AdminComponent} from '@app/admin-panel/admin/admin.component';
+import {AppModule} from '@app/app.module';
 
 describe('AdminComponent', () => {
   let component: any;
@@ -27,6 +28,7 @@ describe('AdminComponent', () => {
         RouterModule,
         SharedModule,
         ProductModule,
+        AppModule
       ],
       providers: [
         {provide: CommonService, useClass: CommonService},
@@ -38,6 +40,7 @@ describe('AdminComponent', () => {
     }).compileComponents().then(() => {
       fixture = TestBed.createComponent(AdminComponent);
       component = fixture.debugElement.componentInstance;
+      component.ngOnInit();
       // fixture.detectChanges();
 
     });

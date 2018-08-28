@@ -9,8 +9,8 @@ import {CartGuard} from '@app/cart/cart.guard';
 const headerRouts: Routes = [
   {
     path: 'admin', component: AdminPanelComponent, data: {name: 'Administrator!'}, canActivate: [AdminGuard], children: [
+      {path: 'orders', component: OrderComponent},
       {path: '', component: AdminComponent},
-      {path: 'orders', component: OrderComponent}
     ]
   },
 ];

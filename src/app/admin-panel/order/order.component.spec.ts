@@ -43,7 +43,7 @@ describe('OrderComponent', () => {
     });
 
   }));
-  it('Should create GoodsListComponent', async(() => {
+  it('Should create ProductsListComponent', async(() => {
     expect(component).toBeTruthy();
   }));
 

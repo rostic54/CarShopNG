@@ -12,10 +12,10 @@ import {FilterModel} from '@shared/models/filter.model';
  */
 @Component({
   selector: 'app-goods',
-  templateUrl: './goods-list.component.html',
-  styleUrls: ['./goods-list.component.scss'],
+  templateUrl: './products-list.component.html',
+  styleUrls: ['./products-list.component.scss'],
 })
-export class GoodsListComponent implements OnInit, OnDestroy {
+export class ProductsListComponent implements OnInit, OnDestroy {
   productsList: Product[];
   subscribe: Subscription;
   subscribeFilter: Subscription;

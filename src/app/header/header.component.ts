@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
    * @summary open popUp form
    */
   openSignUp(): void {
-    const popUp = this.dialog.open(SignUpComponent, {
+    this.dialog.open(SignUpComponent, {
       width: '450px',
       data: null,
       autoFocus: false
@@ -64,7 +64,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
    * @summary open popUp form
    */
   openSignIn(): void {
-    const popUp = this.dialog.open(SignInComponent, {
+    this.dialog.open(SignInComponent, {
       width: '450px',
       data: null
     });

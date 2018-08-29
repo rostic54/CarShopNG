@@ -1,4 +1,4 @@
-import {GoodsListComponent} from '@app/product/goods-list/goods-list.component';
+import {ProductsListComponent} from '@app/product/products-list/products-list.component';
 import {product, MockProductService} from '@shared/mock-services/mock-products.services';
 import {async, TestBed, ComponentFixture} from '@angular/core/testing';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
@@ -15,9 +15,9 @@ import {ProductComponent} from '@app/product/product.component';
 import {ProductDetailComponent} from '@app/product/product-detail/product-detail.component';
 import {AppModule} from '@app/app.module';
 
-describe('GoodsListComponent', () => {
+describe('ProductsListComponent', () => {
   let component: any;
-  let fixture: ComponentFixture<GoodsListComponent>;
+  let fixture: ComponentFixture<ProductsListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -33,7 +33,7 @@ describe('GoodsListComponent', () => {
         RouterTestingModule.withRoutes([
           {
             path: 'products', component: ProductComponent, children: [
-              {path: '', component: GoodsListComponent},
+              {path: '', component: ProductsListComponent},
               {path: ':id', component: ProductDetailComponent},
             ],
           }
@@ -47,14 +47,14 @@ describe('GoodsListComponent', () => {
         CUSTOM_ELEMENTS_SCHEMA
       ]
     }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(GoodsListComponent);
+      fixture = TestBed.createComponent(ProductsListComponent);
       component = fixture.debugElement.componentInstance;
       component.ngOnInit();
     });
 
   }));
 
-  it('Should create GoodsListComponent', async(() => {
+  it('Should create ProductsListComponent', async(() => {
     expect(component).toBeTruthy();
   }));
 

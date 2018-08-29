@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
+## Preparation & Installation
+  - sudo npm i -g typescript
+  - sudo npm i -g @angular/cli
+  - brew install yarn
+  - yarn install
+
 ## Development server
 
 `ng serve` - development local server.
@@ -13,12 +19,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 `ng build` - test environment
 `ng build --prod --aot` - production environment
 The build artifacts'll be stored in the `dist/shop` directory
-
-## Preparation & Installation
-  - sudo npm i -g typescript
-  - sudo npm i -g @angular/cli
-  - brew install yarn
-  - yarn install
 
 ## Running unit tests
 

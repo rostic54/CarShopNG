@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '@shared/services/auth.service';
-import {Subscription} from 'rxjs';
 import {ToasterConfig} from 'angular2-toaster';
 
 @Component({

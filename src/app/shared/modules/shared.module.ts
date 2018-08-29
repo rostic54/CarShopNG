@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {AppMaterialModule} from './app-material.module';
-import {FilterComponent} from '@shared/filter/filter.component';
+import {FilterComponent} from '@shared/components/filter/filter.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {FeaturePipe} from '@shared/pipe/feature.pipe';
-import {ColorPipe} from '@shared/pipe/color.pipe';
-import {PricePipe} from '@shared/pipe/price.pipe';
+import {FeaturePipe} from '@shared/pipes/feature.pipe';
+import {ColorPipe} from '@shared/pipes/color.pipe';
+import {PricePipe} from '@shared/pipes/price.pipe';
 
 @NgModule({
   declarations: [

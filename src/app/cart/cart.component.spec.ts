@@ -8,12 +8,12 @@ import {MockProductService, shoppingList} from '@shared/mock-services/mock-produ
 import {AppMaterialModule} from '@shared/modules/app-material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {AdminModule} from '@app/admin-panel/admin/admin.module';
 import {RouterTestingModule} from '@angular/router/testing';
 import {CartComponent} from '@app/cart/cart.component';
 import {ToasterService} from 'angular2-toaster';
 import {AppModule} from '@app/app.module';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import {AdminPanelModule} from '@app/admin-panel/admin-panel.module';
 
 describe('CartComponent', () => {
   let component: any;
@@ -27,7 +27,7 @@ describe('CartComponent', () => {
         HttpClientModule,
         ReactiveFormsModule,
         FormsModule,
-        AdminModule,
+        AdminPanelModule,
         AppMaterialModule,
         AppModule,
         RouterModule,
@@ -45,8 +45,6 @@ describe('CartComponent', () => {
     }).compileComponents().then(() => {
       fixture = TestBed.createComponent(CartComponent);
       component = fixture.debugElement.componentInstance;
-      // fixture.detectChanges();
-
     });
 
   }));

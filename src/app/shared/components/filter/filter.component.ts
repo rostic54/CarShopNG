@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ProductsService} from '../services/products.service';
+import {ProductsService} from '../../services/products.service';
 import {Subscription} from 'rxjs';
-import {CommonService} from '../services/common.service';
+import {CommonService} from '../../services/common.service';
 
 /**
  * @summary Filter component
@@ -87,7 +87,7 @@ export class FilterComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * @summary logic clean
+   * @summary cleanUp logic
    */
   ngOnDestroy() {
     this.commonService.checkSubscription(this.subscribe);

@@ -3,31 +3,51 @@
 <div class="form-wrap">
   <form [formGroup]="addGoodsForm" (ngSubmit)="onAddGoods()">
     <mat-form-field>
-      <input matInput formControlName="brande" placeholder="brande">
+      <input matInput
+             formControlName="brande"
+             placeholder="brande">
     </mat-form-field>
     <mat-form-field>
-      <input matInput formControlName="modelName" placeholder="Name of Model">
+      <input matInput
+             formControlName="modelName"
+             placeholder="Name of Model">
     </mat-form-field>
     <mat-form-field>
-      <input matInput formControlName="power" placeholder="Power">
+      <input matInput
+             formControlName="power"
+             placeholder="Power">
     </mat-form-field>
     <mat-form-field>
-      <input matInput formControlName="color" placeholder="Color">
+      <input matInput
+             formControlName="color"
+             placeholder="Color">
     </mat-form-field>
     <mat-form-field>
-      <input matInput formControlName="feature" placeholder="Super feature">
+      <input matInput
+             formControlName="feature"
+             placeholder="Super feature">
     </mat-form-field>
     <mat-form-field>
-      <input matInput formControlName="url" placeholder="Image url">
+      <input matInput
+             formControlName="url"
+             placeholder="Image url">
     </mat-form-field>
     <mat-form-field class="block">
-      <textarea matInput formControlName="description" placeholder="Description"></textarea>
+      <textarea matInput
+                formControlName="description"
+                placeholder="Description"></textarea>
     </mat-form-field>
     <mat-form-field>
-      <input matInput formControlName="price" placeholder="Price">
+      <input matInput
+             type="number"
+             formControlName="price"
+             placeholder="Price">
     </mat-form-field>
     <mat-form-field>
-      <input matInput formControlName="discount" placeholder="discount">
+      <input matInput
+             type="number"
+             formControlName="discount"
+             placeholder="discount">
     </mat-form-field>
     <button mat-raised-button
             *ngIf="index == undefined"

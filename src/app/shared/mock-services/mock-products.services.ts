@@ -1,4 +1,4 @@
-import {Observable, of, Subject, Subscribable} from 'rxjs';
+import { of} from 'rxjs';
 import {UserInfo} from '@shared/models/userInfo.model';
 import {FilterModel} from '@shared/models/filter.model';
 import {Product} from '@shared/models/product.model';
@@ -22,7 +22,6 @@ export const user = {
   name: 'Alex',
   tel: 123456
 };
-// export const index = +2;
 
 export const shoppingList = [{price: 1}, {price: 2}, {price: 3}, {price: 4}];
 
@@ -32,7 +31,6 @@ export class MockProductService {
   orderSubject = of({'number': {data: product, list: user}});
   priceLimit = of({minPrice: 10, maxPrice: 50});
   purchaseSubject = of( product);
-  // changedSubject = of( {total: 200, amount: 3});
   changedSubject = of( {total: ((+product.price) * (1 - (+product.discount / 100))) * 2 , amount: 3});
   chosenProduct = 0;
   filterData = of({
@@ -57,18 +55,16 @@ export class MockProductService {
   deleteProduct(index: number) {
   }
 
-  addProduct(goodsList) {
+  updateProduct(goodsList) {
   }
 
   getFilterCondition(data: FilterModel) {
-    // this.filterData.next(data);
   }
   priceLimitCalulate(products: Product[]) {
 
   }
 
   getLocalStorage() {
-    console.log('GET');
     return JSON.parse(localStorage.getItem('order'));
   }
 

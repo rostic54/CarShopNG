@@ -4,15 +4,14 @@ import {ProductModule} from '@app/product/product.module';
 import {SharedModule} from '@shared/modules/shared.module';
 import {ProductsService} from '@shared/services/products.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AppModule} from '@app/app.module';
 import {CommonService} from '@shared/services/common.service';
 import {MockProductService} from '@shared/mock-services/mock-products.services';
 import {AppMaterialModule} from '@shared/modules/app-material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {AdminModule} from '@app/admin-panel/admin/admin.module';
 import {RouterTestingModule} from '@angular/router/testing';
 import {BasketComponent} from '@app/header/basket/basket.component';
+import {AdminPanelModule} from '@app/admin-panel/admin-panel.module';
 
 describe('BasketComponent', () => {
   let component: any;
@@ -26,9 +25,8 @@ describe('BasketComponent', () => {
         HttpClientModule,
         ReactiveFormsModule,
         FormsModule,
-        AdminModule,
         AppMaterialModule,
-        AppModule,
+        AdminPanelModule,
         RouterModule,
         SharedModule,
         ProductModule

@@ -8,7 +8,6 @@ import {ProductsService} from '@shared/services/products.service';
 import {HttpClientModule} from '@angular/common/http';
 import {product, MockProductService} from '@shared/mock-services/mock-products.services';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {AdminModule} from '@app/admin-panel/admin/admin.module';
 import {AppMaterialModule} from '@shared/modules/app-material.module';
 import {AdminComponent} from '@app/admin-panel/admin/admin.component';
 import {AppModule} from '@app/app.module';
@@ -23,7 +22,6 @@ describe('AdminComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientModule,
-        AdminModule,
         AppMaterialModule,
         RouterModule,
         SharedModule,
@@ -41,8 +39,6 @@ describe('AdminComponent', () => {
       fixture = TestBed.createComponent(AdminComponent);
       component = fixture.debugElement.componentInstance;
       component.ngOnInit();
-      // fixture.detectChanges();
-
     });
 
   }));

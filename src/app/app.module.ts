@@ -14,7 +14,6 @@ import {FooterComponent} from './footer/footer.component';
 import {SharedModule} from '@shared/modules/shared.module';
 import {AuthService} from '@shared/services/auth.service';
 import {ProductsService} from '@shared/services/products.service';
-import {AdminModule} from './admin-panel/admin/admin.module';
 import { CartComponent } from './cart/cart.component';
 import {AdminGuard} from './admin-panel/admin/admin.guard';
 import { AboutComponent } from './about/about.component';
@@ -44,7 +43,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     SharedModule,
     HeaderModule,
     ProductModule,
-    AdminModule,
     AdminPanelModule,
     AppRoutingModule,
     SliderModule,

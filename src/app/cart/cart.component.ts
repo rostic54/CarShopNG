@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Product} from '@shared/models/product.model';
 import {ProductsService} from '@shared/services/products.service';
 import {ToasterService} from 'angular2-toaster';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {CommonService} from '@shared/services/common.service';
 
 /**
  * @summary Cart component
@@ -13,19 +15,22 @@ import {Router} from '@angular/router';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
   shoppingList: Product[];
   orderForm: FormGroup;
+  subscription: Subscription;
   imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9h_LLTf5LYlXd9-ho5YW4SUOFI4M6vfDVwjc2n6PTBOpCb5z';
 
   /**
    * @summary Control-poUp component constructor
    * @param productsService - Product service
    * @param toasterService - Toaster Service
+   * @param commonService - Common Service
    * @param router -  Route Service
    */
   constructor(private productsService: ProductsService,
               private toasterService: ToasterService,
+              private commonService: CommonService,
               private router: Router) {
   }
 
@@ -91,11 +96,23 @@ export class CartComponent implements OnInit {
   }
 
   /**
-   * @summary processing of order form & clearing the cart and redirect to '/'
+   * @summary getting response about data sending to DB
    */
   submit() {
-    this.productsService.sendOrder({list: this.shoppingList, data: this.orderForm.value});
-    this.toasterService.pop('success', 'Your order\'s just sent', 'Wait when our operator\'ll call you');
+    this.subscription = this.productsService.sendOrder({list: this.shoppingList, data: this.orderForm.value})
+      .subscribe(
+      (response) => {
+        this.toasterService.pop('success', 'Your order\'s just sent', 'Wait when our operator\'ll call you');
+        this.cleanUpOrder();
+      },
+      (error) => this.toasterService.pop('error', 'Failed', 'The order didn\'t send')
+    );
+  }
+
+  /**
+   * @summary clearing the cart and redirect to '/'
+   */
+  cleanUpOrder() {
     this.shoppingList.length = 0;
     this.setGoods(this.shoppingList);
     this.productsService.purchaseStatus({amount: 0, total: 0});
@@ -103,4 +120,7 @@ export class CartComponent implements OnInit {
     this.orderForm.reset();
   }
 
+  ngOnDestroy() {
+    this.commonService.checkSubscription(this.subscription);
+  }
 }

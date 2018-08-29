@@ -1,5 +1,4 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {AppComponent} from '@app/app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {AppMaterialModule} from '@shared/modules/app-material.module';
 import {SharedModule} from '@shared/modules/shared.module';
@@ -36,8 +35,6 @@ describe('ProductDetailComponent', () => {
       fixture = TestBed.createComponent(ProductDetailComponent);
       component = fixture.debugElement.componentInstance;
       component.ngOnInit();
-      // fixture.detectChanges();
-
     });
 
   }));

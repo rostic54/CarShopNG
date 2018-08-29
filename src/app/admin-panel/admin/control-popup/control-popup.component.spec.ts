@@ -8,12 +8,12 @@ import {product, MockProductService} from '@shared/mock-services/mock-products.s
 import {AppMaterialModule} from '@shared/modules/app-material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {AdminModule} from '@app/admin-panel/admin/admin.module';
 import {RouterTestingModule} from '@angular/router/testing';
 import {ControlPopupComponent} from '@app/admin-panel/admin/control-popup/control-popup.component';
 import { ToasterModule, ToasterService} from 'angular2-toaster';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {AppModule} from '@app/app.module';
+import {AdminPanelModule} from '@app/admin-panel/admin-panel.module';
 
 
 describe('ControlPopupComponent', () => {
@@ -25,8 +25,8 @@ describe('ControlPopupComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientModule,
-        AdminModule,
         AppMaterialModule,
+        AdminPanelModule,
         RouterModule,
         SharedModule,
         ProductModule,
@@ -47,7 +47,6 @@ describe('ControlPopupComponent', () => {
       fixture = TestBed.createComponent(ControlPopupComponent);
       component = fixture.debugElement.componentInstance;
       component.ngOnInit();
-      // fixture.detectChanges();
     });
   }));
 
@@ -119,14 +118,11 @@ describe('ControlPopupComponent', () => {
   describe('deleteProduct method', () => {
 
     it('Should call productsService -> deleteProduct', async(() => {
-      const spyToaster = spyOn(component.toasterService, 'pop');
       const spy = spyOn(component.productsService, 'deleteProduct');
       component.ngOnInit();
       component.index = 3;
       component.deleteProduct();
-      expect(spyToaster).toHaveBeenCalledWith('error', 'The product was deleted');
       expect(spy).toHaveBeenCalledWith(3);
-
     }));
   });
 
@@ -143,12 +139,10 @@ describe('ControlPopupComponent', () => {
   describe('onAddGoods method', () => {
 
     it('Should set to productsList the products array from productsService', async(() => {
-      const spyToaster = spyOn(component.toasterService, 'pop');
-      const spyAddGoods = spyOn(component.productsService, 'addProduct');
+      const spyAddGoods = spyOn(component.productsService, 'updateProduct');
       component.onAddGoods();
       expect(component.productsList.length).toEqual(2);
-      expect(spyToaster).toHaveBeenCalledWith('success', 'The changes\'s saved', 'You\'ve recently done some changes!');
-      expect(spyAddGoods).toHaveBeenCalledWith(component.productsList);
+      expect(spyAddGoods).toHaveBeenCalled();
     }));
   });
 });

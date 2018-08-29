@@ -19,7 +19,6 @@ export class MockAuthService {
   logOut() {}
 
   isAdmin() {
-    // return this.email === 'test@test.com';
     return true;
   }
 }

@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductsService} from '@shared/services/products.service';
 
 import {MatDialog} from '@angular/material';
@@ -102,7 +102,6 @@ export class AdminComponent implements OnInit, OnDestroy {
       (data: FilterModel) => {
         if (data) {
           this.filterData = data;
-          // this.cdr.markForCheck();
         }
       }
     );
@@ -128,7 +127,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * @summary Cleanup logic.
+   * @summary cleanup logic.
    * */
   ngOnDestroy() {
     this.commonService.checkSubscription(this.subscribe);

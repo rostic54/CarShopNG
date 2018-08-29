@@ -1,8 +1,6 @@
-import {async, ComponentFixture, TestBed} from '../../../../node_modules/@angular/core/testing';
-import {AdminComponent} from '@app/admin-panel/admin/admin.component';
-import {RouterTestingModule} from '../../../../node_modules/@angular/router/testing';
-import {HttpClientModule} from '../../../../node_modules/@angular/common/http';
-import {AdminModule} from '@app/admin-panel/admin/admin.module';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientModule} from '@angular/common/http';
 import {AppMaterialModule} from '@shared/modules/app-material.module';
 import {RouterModule} from '@angular/router';
 import {SharedModule} from '@shared/modules/shared.module';
@@ -15,8 +13,8 @@ import {SignUpComponent} from '@app/header/sign-up/sign-up.component';
 import {AuthService} from '@shared/services/auth.service';
 import {MockAuthService} from '@shared/mock-services/mock-auth.service';
 import {ToasterService} from 'angular2-toaster';
-import {MatDialog} from '@angular/material';
 import {AppModule} from '@app/app.module';
+import {AdminPanelModule} from '@app/admin-panel/admin-panel.module';
 
 describe('SignUpComponent', () => {
   let component: any;
@@ -28,7 +26,7 @@ describe('SignUpComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientModule,
-        AdminModule,
+        AdminPanelModule,
         AppMaterialModule,
         RouterModule,
         SharedModule,
@@ -47,7 +45,6 @@ describe('SignUpComponent', () => {
     }).compileComponents().then(() => {
       fixture = TestBed.createComponent(SignUpComponent);
       component = fixture.debugElement.componentInstance;
-      // fixture.detectChanges();
 
     });
 

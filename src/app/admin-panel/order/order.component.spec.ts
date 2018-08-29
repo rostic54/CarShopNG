@@ -10,8 +10,8 @@ import {SharedModule} from '@shared/modules/shared.module';
 import {ProductModule} from '@app/product/product.module';
 import {ProductsService} from '@shared/services/products.service';
 import {OrderComponent} from '@app/admin-panel/order/order.component';
-import {AdminModule} from '@app/admin-panel/admin/admin.module';
 import {AppModule} from '@app/app.module';
+import {AdminPanelModule} from '@app/admin-panel/admin-panel.module';
 
 describe('OrderComponent', () => {
   let component: any;
@@ -23,7 +23,7 @@ describe('OrderComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientModule,
-        AdminModule,
+        AdminPanelModule,
         AppMaterialModule,
         RouterModule,
         SharedModule,
@@ -40,8 +40,6 @@ describe('OrderComponent', () => {
     }).compileComponents().then(() => {
       fixture = TestBed.createComponent(OrderComponent);
       component = fixture.debugElement.componentInstance;
-      // fixture.detectChanges();
-
     });
 
   }));

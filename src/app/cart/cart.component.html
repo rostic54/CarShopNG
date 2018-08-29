@@ -60,7 +60,10 @@
                    formControlName="email">
         </mat-form-field>
         <mat-form-field>
-            <input matInput type="number" placeholder="Your phone number" formControlName="tel">
+            <input matInput
+                   type="number"
+                   placeholder="Your phone number"
+                   formControlName="tel">
         </mat-form-field>
         <button mat-flat-button [disabled]="shoppingList.length && orderForm.invalid">Send</button>
     </form>

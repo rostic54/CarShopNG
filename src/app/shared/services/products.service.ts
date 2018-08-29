@@ -2,9 +2,10 @@ import {HttpClient} from '@angular/common/http';
 import {AuthService} from './auth.service';
 import {Injectable} from '@angular/core';
 import {Product} from '../models/product.model';
-import {BehaviorSubject, Subject} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {UserInfo} from '@shared/models/userInfo.model';
 import {FilterModel} from '@shared/models/filter.model';
+import {ToasterService} from 'angular2-toaster';
 
 /**
  * @summary Product Service
@@ -15,7 +16,7 @@ export class ProductsService {
   orderSubject = new BehaviorSubject(null);
   priceLimit = new BehaviorSubject(null);
   purchaseSubject = new Subject<Product>();
-  changedSubject = new Subject<{amount: number, total: number}>();
+  changedSubject = new Subject<{ amount: number, total: number }>();
 
   filterData = new Subject<any>();
   chosenProduct = 0;
@@ -25,22 +26,20 @@ export class ProductsService {
   /**
    * @param http - HttpClient
    * @param authService - Auth Service
+   * @param toasterService - Toaster Service
    */
   constructor(private http: HttpClient,
-              private  authService: AuthService) {
+              private  authService: AuthService,
+              private  toasterService: ToasterService) {
   }
 
   /**
    * Adding new order to data base
    * @param order - list of products & customer connect info
    */
-  sendOrder(order: { list: Product[], data: any }) {
+  sendOrder(order: { list: Product[], data: any }): Observable<any> {
     const token = this.authService.getToken();
-    this.http.post('https://carshop-ff44a.firebaseio.com/order.json?auth=' + token, order)
-      .subscribe(
-        result => console.log(result),
-        error => console.log(error)
-      );
+    return this.http.post('https://carshop-ff44a.firebaseio.com/order.json?auth=' + token, order);
   }
 
   /**
@@ -59,20 +58,16 @@ export class ProductsService {
    * @summary rewriting the order in DB
    * @param order - customer info & order data
    */
-  deleteOrder(order) {
+  deleteOrder(order): Observable<any> {
     const token = this.authService.getToken();
-    this.http.put('https://carshop-ff44a.firebaseio.com/order.json?auth=' + token, order)
-      .subscribe(
-        result => this.getOrder(),
-        error => console.log(error)
-      );
+    return this.http.put('https://carshop-ff44a.firebaseio.com/order.json?auth=' + token, order);
   }
 
   /**
    * @summary getting list of products from DB
    * @return the productList or empty array
    */
-  getCurrentGoods() {
+  getCurrentGoods(): Product[] {
     return this.productsSubject.value ? this.productsSubject.value : [];
   }
 
@@ -83,20 +78,23 @@ export class ProductsService {
   deleteProduct(index: number) {
     const productsList = this.getCurrentGoods();
     productsList.splice(index, 1);
-    this.addProduct(productsList);
+    this.updateProduct(productsList, 'The product was deleted');
+
   }
 
   /**
    * @summary rewrite products list in DB & getting the value of updated productList for shown to clients
    * @param productsList - whole arr of product
+   * @param message - text of message
    */
-  addProduct(productsList) {
+  updateProduct(productsList: Product[], message: string) {
     const token = this.authService.getToken();
     this.http.put('https://carshop-ff44a.firebaseio.com/data.json?auth=' + token, productsList)
       .subscribe((products: Product[]) => {
         const modifiedProduct = this.priceLimitCalulate(products);
         this.productsSubject.next(modifiedProduct);
         this.priceLimit.next({minPrice: this.min, maxPrice: this.max});
+        this.toasterService.pop('success', `${message}`);
       });
   }
 
@@ -150,7 +148,7 @@ export class ProductsService {
    * @summary Changing and passing orderList length & total price after removing a product from cart
    * @param orderAmount - orderList length & total price
    */
-  purchaseStatus(orderAmount: {amount: number, total: number}) {
+  purchaseStatus(orderAmount: { amount: number, total: number }) {
     this.changedSubject.next(orderAmount);
   }
 

@@ -10,11 +10,11 @@ import {MockProductService} from '@shared/mock-services/mock-products.services';
 import {AppMaterialModule} from '@shared/modules/app-material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {AdminModule} from '@app/admin-panel/admin/admin.module';
 import {RouterTestingModule} from '@angular/router/testing';
 import {SignInComponent} from '@app/header/sign-in/sign-in.component';
 import {MockAuthService} from '@shared/mock-services/mock-auth.service';
 import {AuthService} from '@shared/services/auth.service';
+import {AdminPanelModule} from '@app/admin-panel/admin-panel.module';
 
 describe('SignInComponent', () => {
   let component: any;
@@ -28,7 +28,7 @@ describe('SignInComponent', () => {
         HttpClientModule,
         ReactiveFormsModule,
         FormsModule,
-        AdminModule,
+        AdminPanelModule,
         AppMaterialModule,
         AppModule,
         RouterModule,
@@ -47,7 +47,6 @@ describe('SignInComponent', () => {
       fixture = TestBed.createComponent(SignInComponent);
       component = fixture.debugElement.componentInstance;
       component.ngOnInit();
-      // fixture.detectChanges();
     });
 
   }));

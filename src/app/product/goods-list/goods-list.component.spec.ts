@@ -50,8 +50,6 @@ describe('GoodsListComponent', () => {
       fixture = TestBed.createComponent(GoodsListComponent);
       component = fixture.debugElement.componentInstance;
       component.ngOnInit();
-      // fixture.detectChanges();
-
     });
 
   }));

@@ -62,7 +62,7 @@ export class AuthService {
   }
 
   /**
-   * @summary Initialization by needed key & domain. Checking existence token for logIn or logOut when the application start
+   * @summary Initialization by needed key & domain.
    */
   authInit() {
     firebase.initializeApp({
@@ -75,7 +75,7 @@ export class AuthService {
   }
 
   /**
-   * Checking user was loginedIn or not by request from DB and receiving of token
+   * @summary Checking user was logined In or not by request from DB and receiving of token
    */
   checkLogining(): Promise<string | boolean> {
     return new Promise(resolve => {
@@ -109,7 +109,7 @@ export class AuthService {
     firebase.auth().signOut().then(() => {
       this.currentTokenSubject.next(null);
     }).catch((error) => {
-      console.log('error while Outing');
+      this.toasterService.pop('error', 'ERROR');
     });
   }
 

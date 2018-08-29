@@ -94,7 +94,7 @@ export class GoodsListComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * @summary clean logic
+   * @summary cleanUp logic
    */
   ngOnDestroy() {
     this.commonService.checkSubscription(this.subscribe);

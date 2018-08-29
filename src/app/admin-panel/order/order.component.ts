@@ -5,9 +5,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CommonService} from '@shared/services/common.service';
 import {Product} from '@shared/models/product.model';
 import {UserInfo} from '@shared/models/userInfo.model';
+import {ToasterService} from 'angular2-toaster';
 
 /**
- * @summary UserInfo component constructor
+ * @summary UserInfo component
  * */
 @Component({
   selector: 'app-order',
@@ -16,11 +17,13 @@ import {UserInfo} from '@shared/models/userInfo.model';
 })
 export class OrderComponent implements OnInit, OnDestroy {
   page = 1;
+  productShow = 1;
   ordersList = {};
   keysList = [];
   productsList = [];
   clientInfo = [];
-  subscribe: Subscription;
+  subscription: Subscription;
+  subscriptionOrder: Subscription;
   defaultImageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9h_LLTf5LYlXd9-ho5YW4SUOFI4M6vfDVwjc2n6PTBOpCb5z';
 
   /**
@@ -29,25 +32,23 @@ export class OrderComponent implements OnInit, OnDestroy {
    * @param commonService - CommonService Service
    * @param activeRoute - Activated route Service
    * @param router -  Route Service
+   * @param toasterService -  Toaster Service
    */
   constructor(private productsService: ProductsService,
               private commonService: CommonService,
               private router: Router,
-              private activeRoute: ActivatedRoute) {
+              private activeRoute: ActivatedRoute,
+              private toasterService: ToasterService) {
   }
 
   /**
-   * @summary Control-poUp component constructor
+   * @summary Control-poUp component
    * */
   ngOnInit() {
     this.productsService.getOrder();
-    this.subscribe = this.productsService.orderSubject
+    this.subscription = this.productsService.orderSubject
       .subscribe(orders => {
-          if (!orders) {
-            this.router.navigate(['../'], {relativeTo: this.activeRoute});
-          }
           this.ordersList = orders;
-        console.log(this.ordersList);
           this.getOrders(orders);
         }
       );
@@ -57,14 +58,14 @@ export class OrderComponent implements OnInit, OnDestroy {
    * @summary creating orders, products list & info
    * @param orderList - ordered products
    * */
-  getOrders(orderLIst: [{ data: UserInfo, list: Product[] }]) {
+  getOrders(orderList: { data: UserInfo, list: Product[] }) {
     this.productsList.length = 0;
     this.clientInfo.length = 0;
     this.keysList.length = 0;
-    for (const key in orderLIst) {
+    for (const key in orderList) {
       this.keysList.push(key);
-      this.clientInfo.push(orderLIst[key].data);
-      this.productsList.push(orderLIst[key].list);
+      this.clientInfo.push(orderList[key].data);
+      this.productsList.push(orderList[key].list);
     }
   }
 
@@ -74,14 +75,35 @@ export class OrderComponent implements OnInit, OnDestroy {
    * */
   removeOrder(index: number) {
     delete this.ordersList[this.keysList[index]];
-    this.productsService.deleteOrder(this.ordersList);
+    this.subscriptionOrder = this.productsService.deleteOrder(this.ordersList)
+      .subscribe(
+        () => {
+          this.productsService.getOrder();
+          this.toasterService.pop('success', 'Success', 'Order was just deleted');
+          if (!Object.keys(this.ordersList).length) {
+            this.goToAdmin();
+          }
+        },
+        () => {
+          this.toasterService.pop('error', 'Error', 'Order wasn\'t just deleted');
+        }
+      );
+
   }
 
   /**
-   * @summary logic clean
+   * @summary Make relocate to admin panel
+   */
+  goToAdmin() {
+    this.router.navigate(['../'], {relativeTo: this.activeRoute});
+  }
+
+  /**
+   * @summary cleanUp logic
    * */
   ngOnDestroy() {
-    this.commonService.checkSubscription(this.subscribe);
+    this.commonService.checkSubscription(this.subscription);
+    this.commonService.checkSubscription(this.subscriptionOrder);
   }
 
 }

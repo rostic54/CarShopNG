@@ -13,8 +13,10 @@
     </div>
     <div class="goods-list">
         <mat-card class="goods-item clearfix"
-                  *ngFor="let product of productsList | price:filterData.min:filterData.max | color:filterData.color |
-                        feature:filterData.feature | paginate: { itemsPerPage: 5, currentPage: page }; let i = index"
+                  *ngFor="let product of productsList |
+                   price:filterData.min:filterData.max |
+                    color:filterData.color |
+                        feature:filterData.feature | paginate: { itemsPerPage: 6, currentPage: page }"
                   (click)="modifyProduct(product.id)"
         >
             <div class="img-wrap">
@@ -53,4 +55,4 @@
         </mat-card>
     </div>
 </div>
-<pagination-controls (pageChange)="page = $event"></pagination-controls>
+<pagination-controls (pageChange)="page = $event" ></pagination-controls>

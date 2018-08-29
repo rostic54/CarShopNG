@@ -1,7 +1,12 @@
 <div class="order-block">
+  <button class="back-btn"
+          mat-raised-button
+          (click)="goToAdmin()">Go Back
+  </button>
   <div class="goods-order-list">
     <div class="client-order"
-         *ngFor="let clientGoods of productsList | paginate: { itemsPerPage: 1, currentPage: page }">
+         *ngFor="let clientGoods of productsList |
+          paginate: { itemsPerPage: productShow, currentPage: page }">
     <mat-card class="goods-item clearfix"
               *ngFor="let goods of clientGoods"
     >
@@ -55,4 +60,4 @@
     </div>
   </div>
 </div>
-<pagination-controls (pageChange)="page = $event"></pagination-controls>
+<pagination-controls (pageChange)="page = $event" *ngIf="productsList.length > 1"></pagination-controls>

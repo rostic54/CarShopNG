@@ -1,18 +1,18 @@
 import {RouterModule} from '@angular/router';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ProductModule} from '@app/product/product.module';
-import {SharedModule} from '../modules/shared.module';
-import {ProductsService} from '../services/products.service';
+import {SharedModule} from '../../modules/shared.module';
+import {ProductsService} from '../../services/products.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppModule} from '@app/app.module';
-import {CommonService} from '../services/common.service';
-import {MockProductService} from '../mock-services/mock-products.services';
-import {AppMaterialModule} from '../modules/app-material.module';
+import {CommonService} from '../../services/common.service';
+import {MockProductService} from '../../mock-services/mock-products.services';
+import {AppMaterialModule} from '../../modules/app-material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {AdminModule} from '@app/admin-panel/admin/admin.module';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FilterComponent} from './filter.component';
+import {AdminPanelModule} from '@app/admin-panel/admin-panel.module';
 
 describe('FilterComponent', () => {
   let component: any;
@@ -26,7 +26,7 @@ describe('FilterComponent', () => {
         HttpClientModule,
         ReactiveFormsModule,
         FormsModule,
-        AdminModule,
+        AdminPanelModule,
         AppMaterialModule,
         AppModule,
         RouterModule,
@@ -44,8 +44,6 @@ describe('FilterComponent', () => {
       fixture = TestBed.createComponent(FilterComponent);
       component = fixture.debugElement.componentInstance;
       component.initForm();
-      // fixture.detectChanges();
-
     });
 
   }));

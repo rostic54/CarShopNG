@@ -7,12 +7,14 @@ import {AdminPanelComponent} from './admin-panel.component';
 import {OrderComponent} from './order/order.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {HeaderModule} from '../header/header.module';
+import {AdminComponent} from '@app/admin-panel/admin/admin.component';
 
 @NgModule({
   declarations: [
     ControlPopupComponent,
     AdminPanelComponent,
-    OrderComponent
+    OrderComponent,
+    AdminComponent
   ],
   imports: [
     ReactiveFormsModule,

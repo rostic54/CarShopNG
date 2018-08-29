@@ -78,7 +78,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * @summary clean Logic
+   * @summary cleanUp logic
    */
   ngOnDestroy() {
     this.commonService.checkSubscription(this.subscription);

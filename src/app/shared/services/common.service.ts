@@ -9,7 +9,6 @@ import {Subscription} from 'rxjs';
   providedIn: 'root'
 })
 export class CommonService {
-  // filterData = new Subject<any>();
 
   constructor() {
   }

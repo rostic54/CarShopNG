@@ -13,9 +13,9 @@ import {ProductsService} from '@shared/services/products.service';
   styleUrls: ['./basket.component.scss']
 })
 export class BasketComponent implements OnInit, OnDestroy {
-  subscribe: Subscription;
+  subscriptionProductList: Subscription;
   productList: any = [];
-  subscript: Subscription;
+  subscriptionBasketInfo: Subscription;
   total = 0;
 
   /**
@@ -41,7 +41,7 @@ export class BasketComponent implements OnInit, OnDestroy {
       this.productList = dataLocalStorage;
       this.totalCalculate();
     }
-    this.subscribe = this.productsService.purchaseSubject.subscribe(
+    this.subscriptionProductList = this.productsService.purchaseSubject.subscribe(
       (product) => {
         if (product) {
           this.productList.push(product);
@@ -50,7 +50,7 @@ export class BasketComponent implements OnInit, OnDestroy {
         }
       }
     );
-    this.subscript = this.productsService.changedSubject.subscribe(
+    this.subscriptionBasketInfo = this.productsService.changedSubject.subscribe(
       purchaseStatus => {
         if (purchaseStatus) {
           this.productList.length = purchaseStatus.amount;
@@ -101,10 +101,10 @@ export class BasketComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * clean of logic
+   * @summary cleanUp logic
    */
   ngOnDestroy() {
-    // this.commonService.checkSubscription(this.subscribe);
-    this.commonService.checkSubscription(this.subscript);
+    this.commonService.checkSubscription(this.subscriptionProductList);
+    this.commonService.checkSubscription(this.subscriptionBasketInfo);
   }
 }

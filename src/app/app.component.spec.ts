@@ -31,8 +31,6 @@ describe('AppComponent', () => {
       fixture = TestBed.createComponent(AppComponent);
       component = fixture.debugElement.componentInstance;
       component.ngOnInit();
-      // fixture.detectChanges();
-
     });
 
   }));

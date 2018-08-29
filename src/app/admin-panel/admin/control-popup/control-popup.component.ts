@@ -63,7 +63,7 @@ export class ControlPopupComponent implements OnInit {
   /**
    * @summary Call getKey and create form with data or empty, it depends on add or edit product.
    * @param key - key of product property
-   * @return value of this key if it exict or empty string
+   * @return value of this key if it exist or empty string
    */
   getKey(key: string) {
     return this.product ? this.product[key] : '';
@@ -81,7 +81,6 @@ export class ControlPopupComponent implements OnInit {
    */
   deleteProduct() {
     this.productsService.deleteProduct(this.index);
-    this.toasterService.pop('error', 'The product was deleted');
     this.dialog.closeAll();
   }
 
@@ -95,22 +94,21 @@ export class ControlPopupComponent implements OnInit {
   }
 
   /**
-   * @summary Call onAddGoods and if data passed when form was created,
-   *          then modify and show chang toaster if data was absent new product create and show add toaster.
+   * @summary Call onAddGoods, open new popUp for add, create or delete product.
    */
   onAddGoods() {
     this.productsList = this.productsService.getCurrentGoods();
-
+    let message: string;
     if (this.data) {
       this.modifyProductsList(this.addGoodsForm.value, this.data.index);
-      this.toasterService.pop('success', 'The changes\'s saved', 'You\'ve recently done some changes!');
+      message = 'The changes was saved';
     } else {
       const product = this.addGoodsForm.value;
       product.id = this.productsList.length;
       this.productsList.push(product);
-      this.toasterService.pop('success', 'You\'ve recently added new car!', 'Brande: ' + product.brande);
+      message = 'You\'ve recently added new car!';
     }
-    this.productsService.addProduct(this.productsList);
+    this.productsService.updateProduct(this.productsList, message);
     this.dialog.closeAll();
   }
 

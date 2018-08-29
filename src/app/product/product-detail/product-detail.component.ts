@@ -24,6 +24,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
    * @param router - Router
    * @param activateRoute - Activating route
    * @param productsService - Product Service
+   * @param commonService - Common Service
    */
   constructor(private productsService: ProductsService,
               private activateRoute: ActivatedRoute,
